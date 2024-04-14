@@ -1,0 +1,22 @@
+# ignore credential files
+*credentials*
+
+# ignore software that could contain private keys or sensitive information
+argocd/
+expressvpn/
+gcloud/
+gh/
+github-copilot/
+helm/
+
+# ignore log files
+*.log
+
+# ignore backup files
+*.bak
+
+# ignore state files
+lazygit/state.yml
+
+# ignore tmux plugins with embedded credentials
+tmux/plugins/*
