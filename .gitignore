@@ -24,3 +24,5 @@ lazygit/state.yml
 # ignore fish plugins with embedded git repositories
 .config/fish/fish-kube-prompt
 
+# ignore macos files
+.DS_Store
