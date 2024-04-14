@@ -18,5 +18,9 @@ helm/
 # ignore state files
 lazygit/state.yml
 
-# ignore tmux plugins with embedded credentials
+# ignore tmux plugins with embedded git repositories
 tmux/plugins/*
+
+# ignore fish plugins with embedded git repositories
+.config/fish/fish-kube-prompt
+
