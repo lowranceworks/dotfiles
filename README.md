@@ -6,10 +6,6 @@ This is the home of all my dotfiles. These are files that add custom configurati
 
 ## How to install
 
-You have a couple of options to install my dotfiles. You can install them manually, with Stow, or with Ansible.
-
-### Install with Stow
-
 You can install all of my dotfiles with [GNU Stow](https://www.gnu.org/software/stow/).
 
 1. Install [homebrew](https://brew.sh/)
@@ -20,15 +16,6 @@ You can install all of my dotfiles with [GNU Stow](https://www.gnu.org/software/
 ```sh
 stow . -t ~ --adopt
 ```
-
-### Install with Ansible
-
-You can install all of my dotfiles with Ansible using my [macbook-config](https://github.com/lowranceworks/macbook-config) project.
-
-1. Install [homebrew](https://brew.sh/)
-2. Install [Ansible](https://www.ansible.com/) (`brew install ansible`)
-3. Clone the [macbook-config](https://github.com/lowranceworks/macbook-config) repository
-4. Run `ansible-playbook ./restore.yaml` --tags dotfiles
 
 ```## Software
 
