@@ -1,0 +1,26 @@
+{
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "editor.accessibilitySupport": "off",
+  "editor.tabSize": 2,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "redhat.telemetry.enabled": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "workbench.colorTheme": "Dracula",
+  "workbench.sideBar.location": "right",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "vs-kubernetes": {
+    "vs-kubernetes.minikube-show-information-expiration": "2024-03-19T22:18:24.496Z",
+    "vs-kubernetes.crd-code-completion": "enabled"
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "window.zoomLevel": 1
+}

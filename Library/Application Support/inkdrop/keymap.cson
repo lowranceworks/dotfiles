@@ -1,0 +1,2 @@
+'global':
+  'cmd-shift-x': 'application:toggle-main-window'
