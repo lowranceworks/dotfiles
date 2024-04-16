@@ -174,6 +174,7 @@ abbr tp "t --repo (pbpaste)"
 abbr tn "tmux new -s (basename (pwd))"
 abbr tt "touch .t && chmod +x .t && echo -e '#!/usr/bin/env bash\n' > .t && nvim .t"
 
+abbr tf terraform
 abbr tfa "terraform apply"
 abbr tfd "terraform destroy"
 abbr tff "terraform format"
