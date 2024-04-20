@@ -33,7 +33,7 @@ local config = {
 	-- },
 
 	color_scheme = "Dracula (Official)",
-	font = wezterm.font("MesloLGS NF"),
+	font = wezterm.font("CommitMono"),
 	font_size = 16,
 
 	window_padding = {
