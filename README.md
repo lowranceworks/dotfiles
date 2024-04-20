@@ -14,7 +14,7 @@ You can install all of my dotfiles with [GNU Stow](https://www.gnu.org/software/
 4. Run stow command
 
 ```sh
-stow . -t ~ --adopt
+stow . -t ~
 ```
 
 ```## Software
