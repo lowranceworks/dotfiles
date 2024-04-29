@@ -21,9 +21,12 @@ lazygit/state.yml
 # ignore tmux plugins with embedded git repositories
 .config/tmux/plugins/
 
-
 # ignore fish plugins with embedded git repositories
 .config/fish/fish-kube-prompt
 
 # ignore macos files
 .DS_Store
+
+
+fish_variables
+.config/fish
