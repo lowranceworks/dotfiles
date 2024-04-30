@@ -67,10 +67,10 @@ style = "bold #f1fa8c"
 style = "bold #50fa7b"
 
 [git_branch]
-command_timeout = 2
+disabled = true
 
 [git_status]
-command_timeout = 2
+disabled = true
 
 [hostname]
 
