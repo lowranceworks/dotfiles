@@ -74,7 +74,7 @@ disabled = true
 [hostname]
 
 [username]
-format = "[$user]($style) on "
+format = "[$user]($style) "
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
