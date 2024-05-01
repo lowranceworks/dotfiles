@@ -180,11 +180,12 @@ abbr tfd "terraform destroy"
 abbr tff "terraform format"
 abbr tfi "terraform init"
 abbr tfm "terraform format"
-abbr tfr "terraform refresh"
 abbr tfo "terraform output"
 abbr tfp "terraform plan"
+abbr tfr "terraform refresh"
 abbr tfs "terraform state"
 abbr tfsl "terraform state list"
+abbr tfss "terraform state show"
 abbr tfv "terraform validate"
 
 abbr tg terragrunt
