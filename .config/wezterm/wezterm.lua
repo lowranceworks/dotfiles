@@ -32,7 +32,7 @@ local config = {
 	-- 	saturation = 1.0,
 	-- },
 
-	color_scheme = "Dracula (Official)",
+	color_scheme = "Catppuccin Mocha",
 	font = wezterm.font("CommitMono"),
 	font_size = 16,
 
