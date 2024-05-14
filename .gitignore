@@ -30,3 +30,5 @@ lazygit/state.yml
 
 fish_variables
 .config/fish
+.config/nvim/lazy-lock.json
+.config/nvim/lazyvim.json
