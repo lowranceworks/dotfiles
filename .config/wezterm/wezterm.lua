@@ -32,6 +32,12 @@ local config = {
 	-- 	saturation = 1.0,
 	-- },
 
+	default_cursor_style = "BlinkingBlock",
+	cursor_blink_rate = 333,
+	animation_fps = 1, -- reduce the number of frames per second for the cursor blink animation
+	cursor_blink_ease_in = "Constant",
+	cursor_blink_ease_out = "Constant",
+
 	color_scheme = "Catppuccin Mocha",
 	font = wezterm.font("CommitMono"),
 	font_size = 16,
