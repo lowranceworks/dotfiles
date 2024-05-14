@@ -19,18 +19,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local config = {
-	-- background = b.get_background(),
-	--	w.get_wallpaper(),
-
-	-- color_scheme = cs.get_color_scheme(),
-	-- window_background_image = os.getenv("HOME") .. "/.config/wezterm/wallpapers/sessions/dotfiles/_config/fish.jpeg",
 	window_background_opacity = 0.9,
-
-	-- window_background_image_hsb = {
-	-- 	brightness = 1.0,
-	-- 	hue = 1.0,
-	-- 	saturation = 1.0,
-	-- },
 
 	default_cursor_style = "BlinkingBlock",
 	cursor_blink_rate = 333,
@@ -49,16 +38,9 @@ local config = {
 		bottom = 10,
 	},
 
-	-- set_environment_variables = {
-	-- 	-- THEME_FLAVOUR = "latte",
-	-- 	BAT_THEME = h.is_dark() and "Catppuccin-mocha" or "Catppuccin-latte",
-	-- 	TERM = "xterm-256color",
-	-- },
-
-	-- general options
-	-- enable_scroll_bar = false,
-	-- scrollback_lines = 5000, -- Set the number of lines in the scrollback buffer
-	-- mouse_wheel_scroll_rate = 3, -- Adjust the mouse scroll rate (number of lines per wheel click)
+	set_environment_variables = {
+		-- THEME_FLAVOUR = "mocha",
+	},
 
 	adjust_window_size_when_changing_font_size = false,
 	debug_key_events = false,
