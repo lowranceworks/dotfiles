@@ -191,6 +191,9 @@ abbr tfv "terraform validate"
 
 abbr tg terragrunt
 
+abbr vim nvim
+abbr v "nvim ."
+
 abbr x "chmod +x (ls | gum filter --limit 1 --header 'chmod +x')"
 
 abbr y yarn
