@@ -53,6 +53,7 @@ abbr gbD "git branch -D"
 abbr gbd "git branch -d"
 abbr gf "git fetch --all"
 abbr gl "git pull"
+abbr glr "git pull --rebase"
 abbr glog "git log --oneline --decorate --graph"
 abbr gma "git merge --abort"
 abbr gmc "git merge --continue"
@@ -174,29 +175,24 @@ abbr tp "t --repo (pbpaste)"
 abbr tn "tmux new -s (basename (pwd))"
 abbr tt "touch .t && chmod +x .t && echo -e '#!/usr/bin/env bash\n' > .t && nvim .t"
 
+abbr tf terraform
 abbr tfa "terraform apply"
 abbr tfd "terraform destroy"
 abbr tff "terraform format"
 abbr tfi "terraform init"
 abbr tfm "terraform format"
+abbr tfo "terraform output"
 abbr tfp "terraform plan"
+abbr tfr "terraform refresh"
 abbr tfs "terraform state"
 abbr tfsl "terraform state list"
+abbr tfss "terraform state show"
 abbr tfv "terraform validate"
 
 abbr tg terragrunt
 
-abbr v "nvim +GoToFile"
-abbr vfzf "nvim (fd --type f --hidden --follow --exclude .git | fzf-tmux -p -w 100 --reverse --preview 'bat --color=always --style=numbers --line-range=:500 {}')"
-abbr va "nvim ~/.config/alacritty/alacritty.yml"
-abbr vf "nvim ~/.config/fish/config.fish"
-abbr vt "nvim ~/.config/tmux/tmux.conf"
-abbr vp "nvim package.json"
-abbr vpc "nvim +PlugClean"
-abbr vpi "nvim +PlugInstall"
-abbr vpu "nvim +PlugUpdate"
-abbr vpug "nvim +PlugUpgrade"
-abbr vt "nvim ~/.config/tmux/tmux.conf"
+abbr vim nvim
+abbr v "nvim ."
 
 abbr x "chmod +x (ls | gum filter --limit 1 --header 'chmod +x')"
 

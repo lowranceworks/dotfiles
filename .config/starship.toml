@@ -69,11 +69,12 @@ style = "bold #50fa7b"
 [git_branch]
 
 [git_status]
+disabled = true
 
 [hostname]
 
 [username]
-format = "[$user]($style) on "
+format = "[$user]($style) "
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"

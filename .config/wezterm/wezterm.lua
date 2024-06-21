@@ -19,21 +19,16 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local config = {
-	-- background = b.get_background(),
-	--	w.get_wallpaper(),
-
-	-- color_scheme = cs.get_color_scheme(),
-	-- window_background_image = os.getenv("HOME") .. "/.config/wezterm/wallpapers/sessions/dotfiles/_config/fish.jpeg",
 	window_background_opacity = 0.9,
 
-	-- window_background_image_hsb = {
-	-- 	brightness = 1.0,
-	-- 	hue = 1.0,
-	-- 	saturation = 1.0,
-	-- },
+	default_cursor_style = "BlinkingBlock",
+	cursor_blink_rate = 333,
+	animation_fps = 1, -- reduce the number of frames per second for the cursor blink animation
+	cursor_blink_ease_in = "Constant",
+	cursor_blink_ease_out = "Constant",
 
-	color_scheme = "Dracula (Official)",
-	font = wezterm.font("MesloLGS NF"),
+	color_scheme = "Catppuccin Mocha",
+	font = wezterm.font("CommitMono"),
 	font_size = 16,
 
 	window_padding = {
@@ -43,16 +38,9 @@ local config = {
 		bottom = 10,
 	},
 
-	-- set_environment_variables = {
-	-- 	-- THEME_FLAVOUR = "latte",
-	-- 	BAT_THEME = h.is_dark() and "Catppuccin-mocha" or "Catppuccin-latte",
-	-- 	TERM = "xterm-256color",
-	-- },
-
-	-- general options
-	-- enable_scroll_bar = false,
-	-- scrollback_lines = 5000, -- Set the number of lines in the scrollback buffer
-	-- mouse_wheel_scroll_rate = 3, -- Adjust the mouse scroll rate (number of lines per wheel click)
+	set_environment_variables = {
+		-- THEME_FLAVOUR = "mocha",
+	},
 
 	adjust_window_size_when_changing_font_size = false,
 	debug_key_events = false,

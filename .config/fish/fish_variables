@@ -62,7 +62,7 @@ SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/opt/homebrew/opt/openjdk\x4011/bin\x1e/opt/homebrew/opt/openjdk/bin\x1e/Users/josh/\x2econfig/tmux/plugins/t\x2dsmart\x2dtmux\x2dsession\x2dmanager/bin\x1e/Users/josh/\x2ecargo/bin\x1e/Users/josh/go/bin
+SETUVAR fish_user_paths:/Users/josh/\x2escripts\x1e/opt/homebrew/opt/openjdk\x4011/bin\x1e/opt/homebrew/opt/openjdk/bin\x1e/Users/josh/\x2econfig/tmux/plugins/t\x2dsmart\x2dtmux\x2dsession\x2dmanager/bin\x1e/Users/josh/\x2ecargo/bin\x1e/Users/josh/go/bin
 SETUVAR pisces_pairs:\x28\x2c\x29\x1e\x5b\x2c\x5d\x1e\x7b\x2c\x7d\x1e\x22\x2c\x22\x1e\x27\x2c\x27
 SETUVAR sponge_allow_previously_successful:true
 SETUVAR sponge_delay:2

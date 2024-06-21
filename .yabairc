@@ -31,8 +31,6 @@ yabai -m config layout bsp
 yabai -m config top_padding 15
 yabai -m config bottom_padding 15
 yabai -m config left_padding 15
-# NOTE: for OBS floating head
-yabai -m config left_padding 15
 yabai -m config right_padding 15
 yabai -m config window_gap 15
 
@@ -48,6 +46,7 @@ yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="Raycast" manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Bitwarden$" manage=off
+
+~/.scripts/position-windows.sh
 
 echo "yabai configuration loaded.."
