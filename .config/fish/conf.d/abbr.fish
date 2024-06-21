@@ -191,18 +191,6 @@ abbr tfv "terraform validate"
 
 abbr tg terragrunt
 
-abbr v "nvim +GoToFile"
-abbr vfzf "nvim (fd --type f --hidden --follow --exclude .git | fzf-tmux -p -w 100 --reverse --preview 'bat --color=always --style=numbers --line-range=:500 {}')"
-abbr va "nvim ~/.config/alacritty/alacritty.yml"
-abbr vf "nvim ~/.config/fish/config.fish"
-abbr vt "nvim ~/.config/tmux/tmux.conf"
-abbr vp "nvim package.json"
-abbr vpc "nvim +PlugClean"
-abbr vpi "nvim +PlugInstall"
-abbr vpu "nvim +PlugUpdate"
-abbr vpug "nvim +PlugUpgrade"
-abbr vt "nvim ~/.config/tmux/tmux.conf"
-
 abbr x "chmod +x (ls | gum filter --limit 1 --header 'chmod +x')"
 
 abbr y yarn
