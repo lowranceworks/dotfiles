@@ -28,7 +28,7 @@ yabai -m config mouse_drop_action swap
 
 # general space settings
 yabai -m config default_paddings {0, 0, 0, 0}
-# yabai -m config layout bsp
+yabai -m config layout float
 # yabai -m config top_padding 15
 # yabai -m config bottom_padding 15
 # yabai -m config left_padding 15
