@@ -5,7 +5,7 @@
 
 let
   dotfilesPath = builtins.path {
-    path = "/Users/josh/.config/";
+    path = "/Users/josh/Projects/lowranceworks/dotfiles/";
     name = "dotfiles";
   };
 in
@@ -18,13 +18,18 @@ in
   ];
 
   home.file = {
+    "starship.toml".source = "${dotfilesPath}/starship/starship.toml";
+    ".skhdrc".source = "${dotfilesPath}/skhd/.skhdrc";
+    ".yabairc".source = "${dotfilesPath}/yabai/.yabairc";
+    ".config/fish".source = "${dotfilesPath}/fish";
     ".config/wezterm".source = "${dotfilesPath}/wezterm";
-    ".config/skhd".source = "${dotfilesPath}/skhd";
-    ".config/starship".source = "${dotfilesPath}/starship";
+    ".config/lazygit".source = "${dotfilesPath}/lazygit";
+    ".config/neofetch".source = "${dotfilesPath}/neofetch";
     ".config/nvim".source = "${dotfilesPath}/nvim";
     ".config/nix".source = "${dotfilesPath}/nix";
     ".config/nix-darwin".source = "${dotfilesPath}/nix-darwin";
     ".config/tmux".source = "${dotfilesPath}/tmux";
+    # ".config/sketchybar".source = "${dotfilesPath}/sketchybar";
   };
 
   home.sessionVariables = {
