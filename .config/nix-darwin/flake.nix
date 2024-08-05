@@ -14,25 +14,22 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [ 
-          pkgs.vim
-          pkgs.direnv
-          pkgs.age
-          pkgs.sshs
-          pkgs.atac
-          pkgs.termshark
-          pkgs.portal
-          pkgs.glow
-        ];
+      environment.systemPackages = [
+        pkgs.vim
+        pkgs.direnv
+        pkgs.age
+        pkgs.sshs
+        pkgs.atac
+        pkgs.termshark
+        pkgs.portal
+        pkgs.glow
+      ];
       services.nix-daemon.enable = true;
       nix.settings.experimental-features = "nix-command flakes";
-      programs.zsh.enable = true;  # default shell on catalina
+      programs.zsh.enable = true;
+      programs.fish.enable = true;
       system.configurationRevision = self.rev or self.dirtyRev or null;
       system.stateVersion = 4;
-      nixpkgs.hostPlatform = "aarch64-darwin";
       security.pam.enableSudoTouchIdAuth = true;
 
       users.users.josh.home = "/Users/josh";
@@ -50,22 +47,21 @@
         screensaver.askForPasswordDelay = 10;
       };
 
-      # Homebrew needs to be installed on its own!
       homebrew.enable = true;
       homebrew.casks = [
-	      "wireshark"
+              "wireshark"
               "google-chrome"
       ];
       homebrew.brews = [
-	      "imagemagick"
+              "imagemagick"
       ];
     };
   in
   {
     darwinConfigurations."Joshs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
-      modules = [ 
-	configuration
+      modules = [
+        configuration
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -74,7 +70,6 @@
       ];
     };
 
-    # Expose the package set, including overlays, for convenience.
     darwinPackages = self.darwinConfigurations."Joshs-MacBook-Pro".pkgs;
   };
 }
