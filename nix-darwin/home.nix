@@ -18,9 +18,9 @@ in
   ];
 
   home.file = {
-    "starship.toml".source = "${dotfilesPath}/starship/starship.toml";
     ".skhdrc".source = "${dotfilesPath}/skhd/.skhdrc";
     ".yabairc".source = "${dotfilesPath}/yabai/.yabairc";
+    ".config/starship.toml".source = "${dotfilesPath}/starship/starship.toml";
     ".config/fish".source = "${dotfilesPath}/fish";
     ".config/wezterm".source = "${dotfilesPath}/wezterm";
     ".config/lazygit".source = "${dotfilesPath}/lazygit";
