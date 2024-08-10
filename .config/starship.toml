@@ -1,46 +1,13 @@
-
-# ███████╗████████╗ █████╗ ██████╗ ███████╗██╗  ██╗██╗██████╗
-# ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║  ██║██║██╔══██╗
-# ███████╗   ██║   ███████║██████╔╝███████╗███████║██║██████╔╝
-# ╚════██║   ██║   ██╔══██║██╔══██╗╚════██║██╔══██║██║██╔═══╝
-# ███████║   ██║   ██║  ██║██║  ██║███████║██║  ██║██║██║
-# ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝
-# The minimal, blazing-fast, and infinitely customizable prompt
-# https://starship.rs
-
-add_newline = false
-
-# prompt
-format = """
-$directory\
-$git_branch\
-$git_status\
-$fill\
-$python\
-$lua\
-$nodejs\
-$golang\
-$haskell\
-$rust\
-$ruby\
-$aws\
-$docker_context\
-$jobs\
-$cmd_duration\
-$line_break\
-$character"""
-
-# move the rest of the prompt to the right
-right_format = """$all"""
+# right_format = """$all"""
 
 # sets user-defined palette (theme)
 palette = "catppuccin_mocha"
 
 [directory.substitutions]
-# '~/tests/starship-custom' = 'work-project'
-
-[golang]
-format = '[ ](bold cyan)'
+'Documents' = '󰈙'
+'Downloads' = ' '
+'Music' = ' '
+'Pictures' = ' '
 
 [kubernetes]
 symbol = '☸ '
@@ -53,6 +20,11 @@ format = '[$context(\[$namespace\])]($style) '
 
 [docker_context]
 disabled = true
+symbol = ' '
+style = 'fg:#06969A'
+format = '[$symbol]($style) $path'
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+detect_extensions = ['Dockerfile']
 
 [gcloud]
 disabled = true
@@ -75,7 +47,7 @@ symbol = "  "
 [character]
 error_symbol = "[󰩈](bold #f38ba8)"
 success_symbol = "[](bold #a6e3a1)"
-vicmd_symbol = "[](bold #94e2d5)"
+vicmd_symbol = "[](bold #94e2d5)"
 
 [cmd_duration]
 style = "bold #f1fa8c"
@@ -84,9 +56,38 @@ style = "bold #f1fa8c"
 style = "bold #50fa7b"
 
 [git_branch]
+symbol = ' '
+format = '[on](white) [$symbol$branch ]($style)'
 
 [git_status]
 disabled = true
+# format = '([$all_status$ahead_behind]($style) )'
+
+[python]
+style = 'teal'
+symbol = ' '
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_version_name = true
+pyenv_prefix = ''
+
+[lua]
+symbol = ' '
+
+[nodejs]
+style = 'blue'
+symbol = ' '
+
+[golang]
+style = 'blue'
+symbol = ' '
+
+[haskell]
+style = 'blue'
+symbol = ' '
+
+[rust]
+style = 'orange'
+symbol = ' '
 
 [hostname]
 
