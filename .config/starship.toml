@@ -10,8 +10,25 @@
 
 add_newline = false
 
-# A minimal left prompt
-format = """$directory$character"""
+# prompt
+format = """
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$python\
+$lua\
+$nodejs\
+$golang\
+$haskell\
+$rust\
+$ruby\
+$aws\
+$docker_context\
+$jobs\
+$cmd_duration\
+$line_break\
+$character"""
 
 # move the rest of the prompt to the right
 right_format = """$all"""
