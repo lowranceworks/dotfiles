@@ -1,5 +1,10 @@
-Library
 .DS_Store
+.git
 .gitconfig
 .ssh/config
 .wget-hsts
+Library
+.gitignore
+README.md
+.stowrc
+vimium

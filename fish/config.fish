@@ -42,3 +42,9 @@ fish_add_path $HOME/.scripts
 
 # github-copilot
 set copilot_cli_path (which github-copilot-cli)
+
+# atuin
+source $HOME/.atuin/bin/env.fish
+
+# starship config
+set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
