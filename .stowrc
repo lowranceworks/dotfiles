@@ -1,4 +1,7 @@
---target=~
+--target=~/.config
+--ignore=.gitignore
+--ignore=.git
+--ignore=README.md
 --ignore=.stowrc
 --ignore=DS_Store
 --ignore=Library
