@@ -10,29 +10,11 @@ This is the home of all my dotfiles. These are files that add custom configurati
 - Colors: [catppuccin-mocha](https://github.com/catppuccin/catppuccin)
 - Shell: [fish](https://fishshell.com)
 - Multiplexer: [tmux](https://github.com/tmux/tmux/wiki)
-  - Session manager: [sesh](https://github.com/joshmedeski/sesh)
+  - Session manager: [smart-tmux-session-manager]()
 - Editor: [Neovim](https://neovim.io)
   - Configuration: [LazyVim](https://www.lazyvim.org/)
 - Git: [lazygit](https://github.com/jesseduffield/lazygit)
 - macOS package manager: [Homebrew](https://brew.sh)
-
-                    'c.
-                 ,xNMM.
-               .OMMMMo
-               OMMM0,           🍎 -> macOS 14.4.1 23E224 arm64
-     .;loddo:' loolloddol;.     🤖 -> Apple M1 Pro
-   cKMMMMMMMMMMNWMMMMMMMMMM0:   🍿 -> 23.4.0
- .KMMMMMMMMMMMMMMMMMMMMMMMWd.   🧠 -> 2255MiB / 16384MiB
- XMMMMMMMMMMMMMMMMMMMMMMMX.     💻 -> 3440x1440
-;MMMMMMMMMMMMMMMMMMMMMMMM:      🪟 -> yabai
-:MMMMMMMMMMMMMMMMMMMMMMMM:      🍻 -> 256 (brew)
-.MMMMMMMMMMMMMMMMMMMMMMMMX.     🐠 -> fish 3.7.0
- kMMMMMMMMMMMMMMMMMMMMMMMMWd.   🪟 -> tmux
- .XMMMMMMMMMMMMMMMMMMMMMMMMMMk
-  .XMMMMMMMMMMMMMMMMMMMMMMMMK.
-    kMMMMMMMMMMMMMMMMMMMMMMd
-     ;KMMMMMMMWXXWMMMMMMMk.
-       .cooc,.    .,coo:.
 ```
 
 ## How to install
