@@ -42,12 +42,12 @@ You can install all of my dotfiles with [GNU Stow](https://www.gnu.org/software/
 1. Install [homebrew](https://brew.sh/): `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 2. Install [GNU Stow](https://www.gnu.org/software/stow/): `brew install stow`
 3. Clone this repository: `mkdir -p ~/Projects/lowranceworks/ && git clone https://github.com/lowranceworks/dotfiles.git ~/Projects/lowranceworks/dotfiles/`
-4. Change directory: `~/Projects/lowranceworks/dotfiles/`
+4. Change directory: `cd ~/Projects/lowranceworks/dotfiles/`
 5. Run stow command: `stow .`
 
 ## How to uninstall
 
 You can uninstall all of my dotfiles with [GNU Stow](https://www.gnu.org/software/stow/).
 
-1. Change directory: `~/Projects/lowranceworks/dotfiles/`
+1. Change directory: `cd ~/Projects/lowranceworks/dotfiles/`
 2. Run stow command: `stow -D .`
