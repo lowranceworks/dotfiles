@@ -26,8 +26,6 @@ set -U fish_key_bindings fish_vi_key_bindings
 set -Ux EDITOR nvim # 'neovim/neovim' text editor
 set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git'"
 
-# TODO: find better alternative
-# set -Ux PAGER "~/.local/bin/nvimpager" # 'lucc/nvimpager'
 set -Ux VISUAL nvim
 
 # golang
@@ -43,8 +41,11 @@ fish_add_path $HOME/.scripts
 # github-copilot
 set copilot_cli_path (which github-copilot-cli)
 
-# atuin
-source $HOME/.atuin/bin/env.fish
-
 # starship config
 set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
+
+# yabai config
+set -x YABAI_CONFIG "$HOME/.config/yabai/yabairc"
+
+# skhd config
+set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
