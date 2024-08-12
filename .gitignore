@@ -15,20 +15,17 @@ helm/
 # ignore backup files
 *.bak
 
-# ignore state files
-lazygit/state.yml
-
 # ignore tmux plugins with embedded git repositories
-.config/tmux/plugins/
+./tmux/plugins/
 
 # ignore fish plugins with embedded git repositories
-.config/fish/fish-kube-prompt
+./fish/fish-kube-prompt
 
 # ignore macos files
 .DS_Store
 
 
 fish_variables
-.config/fish
-.config/nvim/lazy-lock.json
-.config/nvim/lazyvim.json
+./fish
+./nvim/lazy-lock.json
+./nvim/lazyvim.json
