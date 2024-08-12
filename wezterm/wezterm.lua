@@ -22,7 +22,7 @@ local config = {
 	window_background_opacity = 0.9,
 
 	adjust_window_size_when_changing_font_size = false,
-	default_cursor_style = "BlinkingBar",
+	default_cursor_style = "BlinkingBlock",
 	cursor_blink_rate = 333,
 	animation_fps = 1, -- reduce the number of frames per second for the cursor blink animation
 	cursor_blink_ease_in = "Constant",
