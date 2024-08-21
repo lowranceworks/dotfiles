@@ -24,8 +24,10 @@ helm/
 # ignore macos files
 .DS_Store
 
-
 fish_variables
 ./fish
 ./nvim/lazy-lock.json
 ./nvim/lazyvim.json
+
+
+./tmux/plugins/
