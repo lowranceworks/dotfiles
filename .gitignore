@@ -15,9 +15,6 @@ helm/
 # ignore backup files
 *.bak
 
-# ignore tmux plugins with embedded git repositories
-./tmux/plugins/
-
 # ignore fish plugins with embedded git repositories
 ./fish/fish-kube-prompt
 
