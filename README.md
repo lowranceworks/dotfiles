@@ -4,7 +4,6 @@
 
 This is the home of all my dotfiles. These are files that add custom configurations to my computer and applications, primarily the terminal.
 
-```
 - Terminal: [Wezterm](https://wezfurlong.org/wezterm)
 - Font: [Monaspace](https://monaspace.githubnext.com/)
 - Colors: [catppuccin-mocha](https://github.com/catppuccin/catppuccin)
@@ -15,7 +14,6 @@ This is the home of all my dotfiles. These are files that add custom configurati
   - Configuration: [LazyVim](https://www.lazyvim.org/)
 - Git: [lazygit](https://github.com/jesseduffield/lazygit)
 - macOS package manager: [Homebrew](https://brew.sh)
-```
 
 ## How to install
 
