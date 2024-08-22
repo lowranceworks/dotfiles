@@ -30,4 +30,4 @@ fish_variables
 ./nvim/lazyvim.json
 
 # ignore tmux plugins with embedded git repositories
-./tmux/plugins/*
+tmux/plugins/
