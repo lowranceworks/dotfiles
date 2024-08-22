@@ -1,7 +1,7 @@
 # ignore credential files
 *credentials*
 
-# ignore software that could contain private keys or sensitive information
+# ignore software that could contain private keys or sensitive information (just in case)
 argocd/
 expressvpn/
 gcloud/
@@ -31,3 +31,6 @@ fish_variables
 
 # ignore tmux plugins with embedded git repositories
 tmux/plugins/
+
+# ignore fzf history
+fzf
