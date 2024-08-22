@@ -89,10 +89,17 @@ drwxr-xr-x@   8 josh  staff   256 Aug 17 14:09 zed/
 
 ### Creating the symlinks with `stow`
 
-Change into the `dotfiles` directory and run the stow command
+#### Change into the `dotfiles` directory and create `./cowsay/speak.txt`
 
 ```bash
 cd ~./demo/dotfiles/
+touch ./cowsay/speak.txt
+echo "foo" > ./cowsay/speak.txt
+```
+
+#### run the stow command
+
+```bash
 stow .
 ```
 
