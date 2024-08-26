@@ -76,6 +76,8 @@ abbr gstl "git stash list"
 abbr gstp "git stash pop"
 abbr gsts "git stash show --text"
 
+abbr gcsp "gcloud config set project"
+
 abbr hd "history delete --exact --case-sensitive \'(history | fzf-tmux -p -m)\'"
 
 abbr k kubectl
