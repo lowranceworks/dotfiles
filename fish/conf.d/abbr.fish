@@ -134,7 +134,7 @@ abbr tt "touch .t && chmod +x .t && echo -e '#!/usr/bin/env bash\n' > .t && nvim
 abbr tf terraform
 abbr tfa "terraform apply"
 abbr tfd "terraform destroy"
-abbr tff "terraform format"
+abbr tff "terraform fmt"
 abbr tfi "terraform init"
 abbr tfm "terraform format"
 abbr tfo "terraform output"
