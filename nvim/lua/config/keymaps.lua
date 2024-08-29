@@ -10,8 +10,3 @@
 -- navigation
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
-
--- files
-vim.keymap.set("n", "QQ", ":q!<enter>", { noremap = false })
-vim.keymap.set("n", "WW", ":w!<enter>", { noremap = false })
-vim.keymap.set("n", "XX", ":x!<enter>", { noremap = false })
