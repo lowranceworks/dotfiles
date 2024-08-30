@@ -23,6 +23,11 @@ return {
       "yaml",
       "json",
       "toml",
+      "svelte",
+      "vim",
+      "dockerfile",
+      "gitignore",
+      "vimdoc",
     },
 
     highlight = { enable = true },
