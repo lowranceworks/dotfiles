@@ -178,41 +178,41 @@ backspace = ['close-all-windows-but-current', 'mode main']
 if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace A"
 
-[[on-window-detected]]
-if.app-id = 'info.pkpk.inkdrop'
-run = "move-node-to-workspace A"
-
-[[on-window-detected]]
-if.app-id = 'com.sigmaos.sigmaos.macos'
-run = "move-node-to-workspace S"
-
-[[on-window-detected]]
-if.app-id = 'org.whispersystems.signal-desktop'
-run = "move-node-to-workspace S"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.teams'
-run = "move-node-to-workspace S"
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace M"
-
-[[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop '
-run = "move-node-to-workspace Q"
-
-[[on-window-detected]]
-if.app-id = 'com.jgraph.drawio.desktop'
-run = "move-node-to-workspace D"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.Outlook'
-run = "move-node-to-workspace D"
-
-[[on-window-detected]]
-if.app-id = 'us.zoom.xos '
-run = "move-node-to-workspace Z"
+# [[on-window-detected]]
+# if.app-id = 'info.pkpk.inkdrop'
+# run = "move-node-to-workspace A"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.sigmaos.sigmaos.macos'
+# run = "move-node-to-workspace S"
+#
+# [[on-window-detected]]
+# if.app-id = 'org.whispersystems.signal-desktop'
+# run = "move-node-to-workspace S"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.microsoft.teams'
+# run = "move-node-to-workspace S"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.tinyspeck.slackmacgap'
+# run = "move-node-to-workspace M"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.bitwarden.desktop '
+# run = "move-node-to-workspace Q"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.jgraph.drawio.desktop'
+# run = "move-node-to-workspace D"
+#
+# [[on-window-detected]]
+# if.app-id = 'com.microsoft.Outlook'
+# run = "move-node-to-workspace D"
+#
+# [[on-window-detected]]
+# if.app-id = 'us.zoom.xos '
+# run = "move-node-to-workspace Z"
 
 # [[on-window-detected]]
 # if.app-id = ''
