@@ -17,14 +17,14 @@ zoxide init fish | source # 'ajeetdsouza/zoxide'
 direnv hook fish | source # https://direnv.net/
 set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every arrow-based directory change (default)
 
-set -U fish_greeting # disable fish greeting
+set -U fish_greeting "" # disable the default fish greeting for a cleaner startup
 set -U fish_key_bindings fish_vi_key_bindings
-# set -U LANG en_US.UTF-8
-# set -U LC_ALL en_US.UTF-8
+set -Ux LANG en_US.UTF-8
+set -Ux LC_ALL en_US.UTF-8
 
 # set -Ux BAT_THEME Catppuccin-latte # 'sharkdp/bat' cat clone
 set -Ux EDITOR nvim # 'neovim/neovim' text editor
-set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git'"
+set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git'" # Use fd for fzf, showing hidden files but excluding .git
 
 set -Ux VISUAL nvim
 
@@ -39,7 +39,11 @@ pyenv init - | source
 fish_add_path $HOME/.scripts
 
 # github-copilot
-set copilot_cli_path (which github-copilot-cli)
+if command -v github-copilot-cli >/dev/null 2>&1
+    set copilot_cli_path (which github-copilot-cli)
+else
+    echo "Warning: github-copilot-cli not found in PATH"
+end
 
 # starship config
 set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
@@ -49,3 +53,7 @@ set -x YABAI_CONFIG "$HOME/.config/yabai/yabairc"
 
 # skhd config
 set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
+
+# api keys 
+# set -x OPENAI_API_KEY (read -s < ~/.keys/openai-chatgpt/api.key)
+set -x ANTHROPIC_API_KEY (read -s < ~/.keys/anthropic/claude/api.key)
