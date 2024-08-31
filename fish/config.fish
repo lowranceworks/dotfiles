@@ -39,11 +39,7 @@ pyenv init - | source
 fish_add_path $HOME/.scripts
 
 # github-copilot
-if command -v github-copilot-cli >/dev/null 2>&1
-    set copilot_cli_path (which github-copilot-cli)
-else
-    echo "Warning: github-copilot-cli not found in PATH"
-end
+set copilot_cli_path (which github-copilot-cli)
 
 # starship config
 set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
