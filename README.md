@@ -2,7 +2,20 @@
 
 <!-- add screenshot of your terminal -->
 
-This is the home of all my dotfiles. These are files that add custom configurations to my computer and applications, primarily the terminal.
+This repository contains my personal dotfiles, which are configuration files used to customize various applications and tools on my computer, with a focus on terminal-based utilities.
+
+These dotfiles include settings for:
+
+- Terminal: [Wezterm](https://wezfurlong.org/wezterm)
+- Font: [Monaspace](https://monaspace.githubnext.com/)
+- Color scheme: [catppuccin-mocha](https://github.com/catppuccin/catppuccin)
+- Shell: [fish](https://fishshell.com)
+- Terminal multiplexer: [tmux](https://github.com/tmux/tmux/wiki)
+  - Session manager: [smart-tmux-session-manager]()
+- Text editor: [Neovim](https://neovim.io)
+  - Configuration framework: [LazyVim](https://www.lazyvim.org/)
+- Git interface: [lazygit](https://github.com/jesseduffield/lazygit)
+- macOS package manager: [Homebrew](https://brew.sh)
 
 - Terminal: [Wezterm](https://wezfurlong.org/wezterm)
 - Font: [Monaspace](https://monaspace.githubnext.com/)
