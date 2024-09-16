@@ -1,7 +1,7 @@
 # ignore credential files
 *credentials*
 
-# ignore software that could contain private keys or sensitive information
+# ignore software that could contain private keys or sensitive information (just in case)
 argocd/
 expressvpn/
 gcloud/
@@ -15,17 +15,22 @@ helm/
 # ignore backup files
 *.bak
 
-# ignore tmux plugins with embedded git repositories
-./tmux/plugins/
-
 # ignore fish plugins with embedded git repositories
 ./fish/fish-kube-prompt
 
 # ignore macos files
 .DS_Store
 
-
+# ignore compiled fish files
 fish_variables
 ./fish
+
+# ignore nvim lock/json files
 ./nvim/lazy-lock.json
 ./nvim/lazyvim.json
+
+# ignore tmux plugins with embedded git repositories
+tmux/plugins/
+
+# ignore fzf history
+fzf
