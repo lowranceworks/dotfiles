@@ -9,17 +9,17 @@
   ];
 
   home.file = {
-    ".skhdrc".source = "${dotfiles}/skhd/.skhdrc";
-    ".yabairc".source = "${dotfiles}/yabai/.yabairc";
-    ".config/starship.toml".source = "${dotfiles}/starship/starship.toml";
-    ".config/fish".source = "${dotfiles}/fish";
-    ".config/wezterm".source = "${dotfiles}/wezterm";
-    ".config/lazygit".source = "${dotfiles}/lazygit";
-    ".config/neofetch".source = "${dotfiles}/neofetch";
-    ".config/nvim".source = "${dotfiles}/nvim";
-    ".config/nix".source = "${dotfiles}/nix";
-    ".config/nix-darwin".source = "${dotfiles}/nix-darwin";
-    ".config/tmux".source = "${dotfiles}/tmux";
+    # ".skhdrc".source = "${dotfiles}/skhd/.skhdrc";
+    # ".yabairc".source = "${dotfiles}/yabai/.yabairc";
+    # ".config/starship.toml".source = "${dotfiles}/starship/starship.toml";
+    # ".config/fish".source = "${dotfiles}/fish";
+    # ".config/wezterm".source = "${dotfiles}/wezterm";
+    # ".config/lazygit".source = "${dotfiles}/lazygit";
+    # ".config/neofetch".source = "${dotfiles}/neofetch";
+    # ".config/nvim".source = "${dotfiles}/nvim";
+    # ".config/nix".source = "${dotfiles}/nix";
+    # ".config/nix-darwin".source = "${dotfiles}/nix-darwin";
+    # ".config/tmux".source = "${dotfiles}/tmux";
   };
 
   home.sessionVariables = {

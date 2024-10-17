@@ -1,4 +1,4 @@
- {
+{
   description = "My Darwin system flake";
 
   inputs = {
@@ -18,6 +18,7 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, dotfiles }:
   let
     configuration = { pkgs, ... }: {
+      ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
       environment.systemPackages = [
         pkgs.vim
         pkgs.direnv
@@ -312,8 +313,6 @@
         "zsh-vi-mode"
         "zstd"
         "federico-terzi/espanso/espanso"
-        "koekeishiya/formulae/skhd"
-        "koekeishiya/formulae/yabai"
         "minamijoyo/hcledit/hcledit"
       ];
     };
