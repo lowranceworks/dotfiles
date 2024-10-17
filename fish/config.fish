@@ -50,3 +50,12 @@ set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
 # api keys 
 # set -x OPENAI_API_KEY (read -s < ~/.keys/openai-chatgpt/api.key)
 set -x ANTHROPIC_API_KEY (read -s < ~/.keys/anthropic/claude/api.key)
+
+# nix
+if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+    source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+end
+
+set -x NIX_PATH $HOME/.nix-defexpr/channels $NIX_PATH
+set -x NIX_PATH darwin=$HOME/.nix-defexpr/channels/darwin $NIX_PATH
+set -x NIX_PATH darwin-config=$HOME/.nixpkgs/darwin-configuration.nix $NIX_PATH
