@@ -3,5 +3,5 @@
 ## Usage
 
 ```sh
-nix run nix-darwin --extra-experimental-features 'nix-command flakes' -- switch --flake .#"MacBook"
+nix run nix-darwin --extra-experimental-features 'nix-command flakes' -- switch --flake .#"LowranceWorks"
 ```
