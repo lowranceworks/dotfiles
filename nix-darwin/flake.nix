@@ -43,8 +43,19 @@
       nix.useDaemon = true;
 
       system.defaults = {
+        dock.orientation = "right";
         dock.autohide = true;
         dock.mru-spaces = false;
+        dock.persistent-apps = [
+          "/System/Applications/Launchpad.app/"
+          "/System/Applications/Calendar.app/"
+          "/Applications/Inkdrop.app"
+          "/Applications/WezTerm.app/"
+          "/Applications/Zen Browser.app/"
+          "/Applications/Bitwarden.app/"
+          "/Applications/draw.io.app/"
+          # "/System/Applications/Utilities/Terminal.app"
+        ];
         finder.AppleShowAllExtensions = true;
         finder.FXPreferredViewStyle = "clmv";
         loginwindow.LoginwindowText = "Joshua Lowrance";
@@ -67,8 +78,6 @@
         "google-chrome"
         "google-cloud-sdk"
         "inkdrop"
-        "iterm2"
-        "karabiner-elements"
         "keycastr"
         "logitech-options"
         "meetingbar"
@@ -87,6 +96,7 @@
         "stats"
         "utm"
         "wezterm"
+        "betterdisplay"
         "homebrew/cask-fonts/font-fontawesome"
         "homebrew/cask-fonts/font-hack-nerd-font"
       ];
