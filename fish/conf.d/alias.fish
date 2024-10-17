@@ -1,7 +1,7 @@
 alias python python3
 alias vim nvim
 alias v "nvim ."
-alias docker podman
+# alias docker podman
 
 alias ..="cd .."
 alias ...="cd ../.."
