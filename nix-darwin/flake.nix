@@ -159,7 +159,7 @@
     };
   in
   {
-    darwinConfigurations."Joshs-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."LowranceWorks" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
         configuration
@@ -172,6 +172,6 @@
       ];
     };
 
-    darwinPackages = self.darwinConfigurations."Joshs-MacBook-Pro".pkgs;
+    darwinPackages = self.darwinConfigurations."LowranceWorks".pkgs;
   };
 }
