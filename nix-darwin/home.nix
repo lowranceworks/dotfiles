@@ -37,9 +37,9 @@
     '';
   };
 
-  programs.fish.enable = true;
-  programs.starship.enable = true;
-  programs.tmux.enable = true;
+  # programs.fish.enable = true;
+  # programs.starship.enable = true;
+  # programs.tmux.enable = true;
 
   # Add other program configurations as needed
 }
