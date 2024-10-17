@@ -2,17 +2,32 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.opt.guicursor = ""
+-- Save undo history
+vim.o.undofile = true
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
+-- Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
+-- Decrease update time
+vim.o.updatetime = 250
+vim.wo.signcolumn = "yes"
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = "menuone,noselect"
+
+-- Indenting
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-
 vim.opt.smartindent = true
+
+-- Other settings
+vim.opt.guicursor = ""
+
+vim.opt.nu = true
+vim.opt.relativenumber = true
 
 vim.opt.wrap = false
 
@@ -36,4 +51,3 @@ vim.opt.updatetime = 50
 -- Many coding standards suggest keeping lines of code under a certain length.
 -- A common standard is 80 characters per line.
 -- This option provides a visual guideline to help you adhere to this standard.
-

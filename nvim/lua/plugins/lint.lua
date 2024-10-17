@@ -1,18 +1,29 @@
 return {
   "mfussenegger/nvim-lint",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
-    -- nvim-lint configuration goes here
-    require("lint").linters_by_ft = {
-      markdown = {}, -- Disables linting for Markdown files
-      -- Add configurations for other file types here
+    local lint = require("lint")
+
+    lint.linters_by_ft = {
+      javascript = { "eslint_d" },
+      typescript = { "eslint_d" },
+      javascriptreact = { "eslint_d" },
+      typescriptreact = { "eslint_d" },
+      svelte = { "eslint_d" },
+      python = { "pylint" },
     }
 
-    -- You can also set up autocommands to trigger linting, e.g.,
-    vim.cmd([[
-    augroup Linting
-      autocmd!
-      autocmd BufWritePost <buffer> lua require('lint').try_lint()
-    augroup END
-    ]])
+    local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+      group = lint_augroup,
+      callback = function()
+        lint.try_lint()
+      end,
+    })
+
+    vim.keymap.set("n", "<leader>l", function()
+      lint.try_lint()
+    end, { desc = "Trigger linting for current file" })
   end,
 }
