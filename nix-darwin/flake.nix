@@ -10,7 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dotfiles = {
-      url = "path:/Users/josh/projects/lowranceworks/dotfiles";
+      # TODO: find a way to do this without hardcoding the user
+      url = "path:/Users/joshua/projects/lowranceworks/dotfiles";
       flake = false;
     };
   };
