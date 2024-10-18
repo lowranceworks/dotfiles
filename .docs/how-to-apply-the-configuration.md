@@ -41,11 +41,11 @@ nix-shell -p git \
   --run 'git clone https://github.com/lowranceworks/dotfiles.git ~/projects/lowranceworks/dotfiles'
 ```
 
-### Apply the configuration
+### Apply the configuration in the nix-darwin directory
 
 ```zsh
 nix run nix-darwin \
   --extra-experimental-features 'nix-command flakes' \
   -- switch \
-  --flake .#"LowranceWorks"
+  --flake ~/projects/lowranceworks/dotfiles/nix-darwin/#"LowranceWorks"
 ```
