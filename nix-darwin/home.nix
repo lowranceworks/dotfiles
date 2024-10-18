@@ -38,8 +38,6 @@
     '';
   };
 
-  programs.zsh.enable = true;
-
   # TODO: add programs config for each one
   #
   # programs.fish.enable = true;
