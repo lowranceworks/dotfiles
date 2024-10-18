@@ -38,7 +38,7 @@
       system.stateVersion = 4;
       security.pam.enableSudoTouchIdAuth = true;
 
-      users.users.josh.home = "/Users/josh";
+      users.users.joshua.home = "/Users/joshua";
       home-manager.backupFileExtension = "backup";
       nix.configureBuildUsers = true;
       nix.useDaemon = true;
@@ -178,7 +178,7 @@
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.josh = import ./home.nix;
+          home-manager.users.joshua = import ./home.nix;
           home-manager.extraSpecialArgs = { inherit dotfiles; };
         }
       ];
