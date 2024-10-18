@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dotfiles = {
-      url = "path:/Users/josh/Projects/lowranceworks/dotfiles";
+      url = "path:/Users/josh/projects/lowranceworks/dotfiles";
       flake = false;
     };
   };
