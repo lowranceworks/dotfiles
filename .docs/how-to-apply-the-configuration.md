@@ -41,7 +41,9 @@ nix-shell -p git \
   --run 'git clone https://github.com/lowranceworks/dotfiles.git ~/projects/lowranceworks/dotfiles'
 ```
 
-### Apply the configuration in the nix-darwin directory
+### Apply the configuration
+
+This will take a long time to complete.
 
 ```zsh
 nix run nix-darwin \
