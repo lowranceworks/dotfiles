@@ -1,7 +1,8 @@
 { config, pkgs, dotfiles, ... }:
 {
-  home.username = "josh";
-  home.homeDirectory = "/Users/josh";
+  # TODO: find a way to do this without hardcoding the user
+  home.username = "joshua";
+  home.homeDirectory = "/Users/joshua";
   home.stateVersion = "23.05";
 
   home.packages = [
@@ -9,17 +10,17 @@
   ];
 
   home.file = {
-    # ".skhdrc".source = "${dotfiles}/skhd/.skhdrc";
-    # ".yabairc".source = "${dotfiles}/yabai/.yabairc";
-    # ".config/starship.toml".source = "${dotfiles}/starship/starship.toml";
-    # ".config/fish".source = "${dotfiles}/fish";
-    # ".config/wezterm".source = "${dotfiles}/wezterm";
-    # ".config/lazygit".source = "${dotfiles}/lazygit";
-    # ".config/neofetch".source = "${dotfiles}/neofetch";
-    # ".config/nvim".source = "${dotfiles}/nvim";
-    # ".config/nix".source = "${dotfiles}/nix";
-    # ".config/nix-darwin".source = "${dotfiles}/nix-darwin";
-    # ".config/tmux".source = "${dotfiles}/tmux";
+    ".skhdrc".source = "${dotfiles}/skhd/.skhdrc";
+    ".yabairc".source = "${dotfiles}/yabai/.yabairc";
+    ".config/starship.toml".source = "${dotfiles}/starship/starship.toml";
+    ".config/fish".source = "${dotfiles}/fish";
+    ".config/wezterm".source = "${dotfiles}/wezterm";
+    ".config/lazygit".source = "${dotfiles}/lazygit";
+    ".config/neofetch".source = "${dotfiles}/neofetch";
+    ".config/nvim".source = "${dotfiles}/nvim";
+    ".config/nix".source = "${dotfiles}/nix";
+    ".config/nix-darwin".source = "${dotfiles}/nix-darwin";
+    ".config/tmux".source = "${dotfiles}/tmux";
   };
 
   home.sessionVariables = {
@@ -37,9 +38,11 @@
     '';
   };
 
+  programs.zsh.enable = true;
+
+  # TODO: add programs config for each one
+  #
   # programs.fish.enable = true;
   # programs.starship.enable = true;
   # programs.tmux.enable = true;
-
-  # Add other program configurations as needed
 }
