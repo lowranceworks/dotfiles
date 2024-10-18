@@ -97,8 +97,9 @@
         "utm"
         "wezterm"
         "betterdisplay"
-        "homebrew/cask-fonts/font-fontawesome"
-        "homebrew/cask-fonts/font-hack-nerd-font"
+        # "homebrew/cask-fonts/font-fontawesome" # WARN: this fails to install because it is deprecated 
+        # "homebrew/cask-fonts/font-hack-nerd-font" # WARN: this fails to install because it is deprecated 
+
       ];
       homebrew.brews = [
         "act"
