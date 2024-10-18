@@ -90,7 +90,7 @@
         # "podman-desktop"
         # "rectangle-pro"
         # "sensiblesidebuttons"
-        "sf-symbols"
+        # "sf-symbols" # NOTE: commented out because it prompts for password
         "slack"
         "spacelauncher"
         "stats"
