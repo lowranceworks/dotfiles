@@ -20,15 +20,16 @@
   let
     configuration = { pkgs, ... }: {
       ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
-      environment.systemPackages = [
-        # pkgs.vim
-        # pkgs.direnv
-        # pkgs.age
-        # pkgs.sshs
-        # pkgs.atac
-        # pkgs.termshark
-        # pkgs.portal
-        # pkgs.glow
+      environment.systemPackages = with pkgs; [
+        wezterm
+        vim
+        direnv
+        # age
+        # sshs
+        # atac
+        # termshark
+        # portal
+        # glow
       ];
       services.nix-daemon.enable = true;
       nix.settings.experimental-features = "nix-command flakes";
