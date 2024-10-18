@@ -1,8 +1,8 @@
 { config, pkgs, dotfiles, ... }:
 {
   # TODO: find a way to do this without hardcoding the user
-  home.username = "josh";
-  home.homeDirectory = "/Users/josh";
+  home.username = "joshua";
+  home.homeDirectory = "/Users/joshua";
   home.stateVersion = "23.05";
 
   home.packages = [
