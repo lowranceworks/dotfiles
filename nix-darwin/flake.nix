@@ -21,7 +21,6 @@
     configuration = { pkgs, ... }: {
       ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
       environment.systemPackages = with pkgs; [
-        wezterm
         vim
         direnv
         # age
