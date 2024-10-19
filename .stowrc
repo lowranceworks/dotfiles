@@ -1,6 +1,8 @@
 --target=~/.config
 --ignore=.gitignore
 --ignore=.git
+--ignore=.docs
+--ignore=.legacy
 --ignore=README.md
 --ignore=.stowrc
 --ignore=DS_Store
