@@ -11,7 +11,7 @@
     };
     dotfiles = {
       # TODO: find a way to do this without hardcoding the user
-      url = "path:/Users/joshua/projects/lowranceworks/dotfiles";
+      url = "path:/Users/josh/projects/lowranceworks/dotfiles";
       flake = false;
     };
   };
@@ -39,7 +39,7 @@
       system.stateVersion = 4;
       security.pam.enableSudoTouchIdAuth = true;
 
-      users.users.joshua.home = "/Users/joshua";
+      users.users.josh.home = "/Users/josh";
       home-manager.backupFileExtension = "backup";
       nix.configureBuildUsers = true;
       nix.useDaemon = true;
@@ -179,7 +179,7 @@
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.joshua = import ./home.nix;
+          home-manager.users.josh = import ./home.nix;
           home-manager.extraSpecialArgs = { inherit dotfiles; };
         }
       ];
