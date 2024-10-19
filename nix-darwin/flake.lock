@@ -3,13 +3,13 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1729137975,
-        "narHash": "sha256-6oXgQUN/3ePYg18WUjRSIzHQ0EQ1fgXZM0+VSQtn8xQ=",
-        "path": "/Users/josh/Projects/lowranceworks/dotfiles",
+        "lastModified": 1729309452,
+        "narHash": "sha256-2V1V/qISvTP22KLsIbntQFIfNhYsyAQ41Z403yL2uq0=",
+        "path": "/Users/josh/projects/lowranceworks/dotfiles",
         "type": "path"
       },
       "original": {
-        "path": "/Users/josh/Projects/lowranceworks/dotfiles",
+        "path": "/Users/josh/projects/lowranceworks/dotfiles",
         "type": "path"
       }
     },
