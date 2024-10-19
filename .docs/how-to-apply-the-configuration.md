@@ -41,7 +41,7 @@ nix-shell -p git \
   --run 'git clone https://github.com/lowranceworks/dotfiles.git ~/projects/lowranceworks/dotfiles'
 ```
 
-### Apply the configuration
+### Apply the configuration (part 1)
 
 This will take a long time to complete.
 
@@ -50,4 +50,11 @@ nix run nix-darwin \
   --extra-experimental-features 'nix-command flakes' \
   -- switch \
   --flake ~/projects/lowranceworks/dotfiles/nix-darwin/#"LowranceWorks"
+```
+
+### Apply the configuration (part 2)
+
+```zsh
+cd ~/projects/lowranceworks/dotfiles
+stow .
 ```
