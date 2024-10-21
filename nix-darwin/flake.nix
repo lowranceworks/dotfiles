@@ -53,6 +53,7 @@
           "/Applications/Inkdrop.app"
           "/Applications/WezTerm.app/"
           "/Applications/Zen Browser.app/"
+          "/Applications/Arc Browser.app/"
           "/Applications/Bitwarden.app/"
           "/Applications/draw.io.app/"
           # "/System/Applications/Utilities/Terminal.app"
@@ -66,12 +67,12 @@
 
       homebrew.enable = true;
       homebrew.casks = [
-        "google-chrome"
+        "arc"
         "alfred"
         "bitwarden"
-        "brave-browser"
+        # "brave-browser"
         # "choosy"
-        "chromium"
+        # "chromium"
         "cleanshot"
         "contexts"
         "drawio"
