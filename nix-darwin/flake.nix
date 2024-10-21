@@ -59,7 +59,7 @@
         ];
         finder.AppleShowAllExtensions = true;
         finder.FXPreferredViewStyle = "clmv";
-        loginwindow.LoginwindowText = "Joshua Lowrance";
+        loginwindow.LoginwindowText = "DevOps Engineer";
         screencapture.location = "~/Pictures/screenshots";
         screensaver.askForPasswordDelay = 10;
       };
