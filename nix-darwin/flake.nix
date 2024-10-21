@@ -48,13 +48,13 @@
         dock.autohide = true;
         dock.mru-spaces = false;
         dock.persistent-apps = [
-          "/System/Applications/Launchpad.app/"
-          "/System/Applications/Calendar.app/"
-          "/Applications/Inkdrop.app"
           "/Applications/WezTerm.app/"
           "/Applications/Arc.app/"
+          "/Applications/Inkdrop.app"
+          "/System/Applications/Calendar.app/"
           "/Applications/Bitwarden.app/"
           "/Applications/draw.io.app/"
+          "/System/Applications/Launchpad.app/"
           # "/System/Applications/Utilities/Terminal.app"
         ];
         finder.AppleShowAllExtensions = true;
