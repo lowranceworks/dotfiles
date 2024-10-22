@@ -35,36 +35,9 @@
         services.nix-daemon.enable = true;
         nix.settings.experimental-features = "nix-command flakes";
 
-        # Set up TPM
-        system.activationScripts.postActivation.text = ''
-          mkdir -p ~/.tmux/plugins
-          ln -sfn ${config._module.args.tpm} ~/.tmux/plugins/tpm
-        '';
-
-        programs.zsh = {
-          enable = false;
-          shellInit = ''
-            # Optional initialization
-          '';
-        };
-
-        # TODO: figure out how to set fish as the default shell
-        programs.fish =  {
-          enable = true;
-          useBabelfish = true; # Use babelfish for better environment variable handling - Translate bash scripts to fish.
-          vendor = {
-            completions.enable = true;
-            config.enable = true;
-            functions.enable = true;
-          };
-          shellInit = ''
-            # Optional initialization
-            '';
-        };
-
         users.users.josh = {
           home = "/Users/josh";
-          shell = "/opt/homebrew/bin/fish"; # Set fish as the default shell (not working)
+          shell = "/opt/homebrew/bin/fish"; # Set fish as the default shell (not working) - WARN: not working
         };
 
         system.configurationRevision = self.rev or self.dirtyRev or null;
