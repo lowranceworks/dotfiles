@@ -62,33 +62,15 @@
         screencapture.location = "~/Pictures/screenshots";
         screensaver.askForPasswordDelay = 10;
 
-        # Whether to show the full POSIX filepath in the window title. The default is false.
-        finder._FXShowPosixPathInTitle = true;
+        finder.ShowPathbar = true # Show path breadcrumbs in finder windows.
+        finder.AppleShowAllFiles = true # Always show hidden files.
+        finder.FXPreferredViewStyle = "clmv" # Change the default finder view to Column view.
+        finder.AppleShowAllExtensions = true # Whether to always show file extensions. The default is false.
 
-        # Show path breadcrumbs in finder windows. The default is false.
-        finder.ShowPathbar = true;
-
-        # Whether to always show hidden files. The default is false
-        finder.AppleShowAllFiles = true;
-
-        # Change the default finder view. “icnv” = Icon view, “Nlsv” = List view, “clmv” = Column View, “Flwv” = Gallery View The default is icnv.
-        finder.FXPreferredViewStyle = "clmv";
-
-        # Whether to always show file extensions. The default is false.
-        finder.AppleShowAllExtensions = true;
-
-        # Set to ‘Dark’ to enable dark mode, or leave unset for normal mode.
-        NSGlobalDomain.AppleInterfaceStyle = "Dark";
-
-        # Whether to use 24-hour or 12-hour time. The default is based on region settings.
-        NSGlobalDomain.AppleICUForce24HourTime = false;
-
-        # This sets how long you must hold down the key before it starts repeating.
-        NSGlobalDomain.InitialKeyRepeat = 2;
-
-        # This sets how fast it repeats once it starts.
-        NSGlobalDomain.KeyRepeat = 2;
- 
+        NSGlobalDomain.AppleInterfaceStyle = "Dark" # Enable dark mode.
+        NSGlobalDomain.InitialKeyRepeat = 2 # How long you must hold down the key before it starts repeating.
+        NSGlobalDomain.KeyRepeat = 2; # How fast it repeats once it starts.
+        NSGlobalDomain._HIHideMenuBar = true; # Hide the menu bar.
       };
 
       homebrew.enable = true;
