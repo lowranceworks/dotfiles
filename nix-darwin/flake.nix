@@ -62,13 +62,13 @@
         screencapture.location = "~/Pictures/screenshots";
         screensaver.askForPasswordDelay = 10;
 
-        finder.ShowPathbar = true # Show path breadcrumbs in finder windows.
-        finder.AppleShowAllFiles = true # Always show hidden files.
-        finder.FXPreferredViewStyle = "clmv" # Change the default finder view to Column view.
-        finder.AppleShowAllExtensions = true # Whether to always show file extensions. The default is false.
+        finder.ShowPathbar = true; # Show path breadcrumbs in finder windows.
+        finder.AppleShowAllFiles = true; # Always show hidden files.
+        finder.FXPreferredViewStyle = "clmv"; # Change the default finder view to Column view.
+        finder.AppleShowAllExtensions = true; # Whether to always show file extensions. The default is false.
 
-        NSGlobalDomain.AppleInterfaceStyle = "Dark" # Enable dark mode.
-        NSGlobalDomain.InitialKeyRepeat = 2 # How long you must hold down the key before it starts repeating.
+        NSGlobalDomain.AppleInterfaceStyle = "Dark"; # Enable dark mode.
+        NSGlobalDomain.InitialKeyRepeat = 2; # How long you must hold down the key before it starts repeating.
         NSGlobalDomain.KeyRepeat = 2; # How fast it repeats once it starts.
         NSGlobalDomain._HIHideMenuBar = true; # Hide the menu bar.
       };
