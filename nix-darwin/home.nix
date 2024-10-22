@@ -6,7 +6,8 @@
   home.stateVersion = "23.05";
 
   home.packages = [
-    # Add any packages you want to install
+    # Packages you want to install
+    # pkgs.fish
   ];
 
   home.sessionVariables = {

@@ -20,34 +20,60 @@
   let
     configuration = { pkgs, ... }: {
       ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
+
+      # Add Fish to /etc/shells
+      environment.shells = [
+        "/opt/homebrew/bin/fish"
+      ];
+
+      environment.loginShell = "/opt/homebrew/bin/fish";  
       environment.systemPackages = with pkgs; [
         vim
         direnv
-        # age
-        # sshs
-        # atac
-        # termshark
-        # portal
-        # glow
       ];
       services.nix-daemon.enable = true;
       nix.settings.experimental-features = "nix-command flakes";
-      programs.zsh.enable = true;
-      programs.fish.enable = true;
+
+      programs.zsh = {
+        enable = false;
+        shellInit = ''
+          # Optional initialization
+        '';
+      };
+
+      # TODO: figure out how to set fish as the default shell
+      programs.fish =  {
+        enable = true;
+        useBabelfish = true; # Use babelfish for better environment variable handling - Translate bash scripts to fish.
+        vendor = {
+          completions.enable = true;
+          config.enable = true;
+          functions.enable = true;
+        };
+        shellInit = ''
+          # Optional initialization
+          '';
+      };
+
+
+      users.users.josh = {
+        home = "/Users/josh";
+        shell = "/opt/homebrew/bin/fish"; # Set fish as the default shell (not working)
+      };
+
       system.configurationRevision = self.rev or self.dirtyRev or null;
       system.stateVersion = 4;
       security.pam.enableSudoTouchIdAuth = true;
 
-      users.users.josh.home = "/Users/josh";
       home-manager.backupFileExtension = "backup";
       nix.configureBuildUsers = true;
       nix.useDaemon = true;
 
       system.defaults = {
-        dock.orientation = "right";
-        dock.autohide = true;
-        dock.mru-spaces = false;
-        dock.persistent-apps = [
+        dock.orientation = "right"; # Set the dock to the right side of the screen.
+        dock.autohide = true; # Automatically hide the dock.
+        dock.mru-spaces = false; # ?
+        dock.persistent-apps = [ # Applications that should always be in the dock.
           "/Applications/WezTerm.app/"
           "/Applications/Arc.app/"
           "/Applications/Inkdrop.app"
@@ -58,9 +84,8 @@
           # "/System/Applications/Utilities/Terminal.app"
         ];
 
-        loginwindow.LoginwindowText = "DevOps Engineer";
-        screencapture.location = "~/Pictures/screenshots";
-        screensaver.askForPasswordDelay = 10;
+        loginwindow.LoginwindowText = "Let's Go!";
+        screensaver.askForPasswordDelay = 10; # How long to wait before asking for a password.
 
         finder.ShowPathbar = true; # Show path breadcrumbs in finder windows.
         finder.AppleShowAllFiles = true; # Always show hidden files.
@@ -68,7 +93,7 @@
         finder.AppleShowAllExtensions = true; # Whether to always show file extensions. The default is false.
 
         NSGlobalDomain.AppleInterfaceStyle = "Dark"; # Enable dark mode.
-        NSGlobalDomain.InitialKeyRepeat = 2; # How long you must hold down the key before it starts repeating.
+        NSGlobalDomain.InitialKeyRepeat = 17; # How long you must hold down the key before it starts repeating.
         NSGlobalDomain.KeyRepeat = 2; # How fast it repeats once it starts.
         NSGlobalDomain._HIHideMenuBar = true; # Hide the menu bar.
       };
@@ -128,7 +153,7 @@
         "dtc"
         "fd"
         "fish"
-        "fisher"
+        # "fisher"
         "fontconfig"
         "fzf"
         "gh"
