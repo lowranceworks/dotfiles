@@ -74,7 +74,7 @@
           NSGlobalDomain.AppleInterfaceStyle = "Dark"; # Enable dark mode.
           NSGlobalDomain.InitialKeyRepeat = 17; # How long you must hold down the key before it starts repeating.
           NSGlobalDomain.KeyRepeat = 2; # How fast it repeats once it starts.
-          NSGlobalDomain._HIHideMenuBar = true; # Hide the menu bar.
+          NSGlobalDomain._HIHideMenuBar = false; # Do not hide the menu bar.
         };
 
         homebrew.enable = true;
