@@ -48,10 +48,13 @@ key-mapping.preset = 'qwerty'
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = [
-  'move-mouse window-lazy-center',
-] # Mouse lazily follows any focus (window or workspace)
+
+# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+#
+# # Mouse follows focus when focused window changes
+# on-focus-changed = [
+#   'move-mouse window-lazy-center',
+# ] 
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
