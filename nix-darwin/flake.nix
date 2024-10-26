@@ -54,7 +54,7 @@
           dock.mru-spaces = false; # ?
           dock.persistent-apps = [ # Applications that should always be in the dock.
             "/Applications/WezTerm.app/"
-            "/Applications/Arc.app/"
+            "/Applications/SigmaOS.app/"
             "/Applications/Inkdrop.app"
             "/System/Applications/Calendar.app/"
             "/Applications/Bitwarden.app/"
@@ -79,7 +79,7 @@
 
         homebrew.enable = true;
         homebrew.casks = [
-          "arc"
+          "SigmaOS"
           "alfred"
           "bitwarden"
           # "brave-browser"
