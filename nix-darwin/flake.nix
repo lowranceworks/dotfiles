@@ -191,8 +191,8 @@
           "zsh-fast-syntax-highlighting"
           "zsh-vi-mode"
           "zstd"
-          "federico-terzi/espanso/espanso" # not found, tap it and try again
-          "minamijoyo/hcledit/hcledit" # not found, tap it and try again
+          # "federico-terzi/espanso/espanso" # not found, tap it and try again
+          # "minamijoyo/hcledit/hcledit" # not found, tap it and try again
         ];
       };
   in
