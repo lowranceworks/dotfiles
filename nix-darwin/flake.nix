@@ -160,6 +160,7 @@
           "kustomize"
           "lazydocker"
           "lazygit"
+          "lsd"
           "lua"
           "make"
           "neofetch"
