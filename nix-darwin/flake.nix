@@ -31,6 +31,59 @@
           vim
           direnv
           nushell
+          google-cloud-sdk
+          act
+          ansible
+          argocd
+          # awscli2
+          # azure-cli
+          # bash
+          checkov
+          docker
+          docker-compose
+          fd
+          fish
+          fzf
+          gh
+          gnused
+          go
+          go-task
+          # helm
+          jq
+          kind
+          kubectl
+          kubectx
+          kustomize
+          lazydocker
+          lazygit
+          lsd
+          lua
+          gnumake
+          neofetch
+          neovim
+          nodejs
+          podman
+          pre-commit
+          # pyenv
+          qemu
+          ripgrep
+          sops
+          starship
+          stern
+          # telnet
+          terraform-docs
+          terragrunt
+          tflint
+          tfupdate
+          tldr
+          tmux
+          yq
+          yubikey-agent
+          zoxide
+          zsh-autosuggestions
+          zsh-syntax-highlighting
+          zsh-vi-mode
+          zstd
         ];
 
         services.nix-daemon.enable = true;
@@ -92,107 +145,33 @@
         };
 
         homebrew.casks = [
+          # Keep GUI applications in Homebrew
           "SigmaOS"
           "alfred"
           "bitwarden"
-          # "brave-browser"
-          # "choosy"
-          # "chromium"
           "cleanshot"
           "contexts"
           "drawio"
-          "fork"
           "google-chrome"
-          "google-cloud-sdk"
           "inkdrop"
           "keycastr"
-          # "logitech-options"
           "meetingbar"
-          # "microsoft-auto-update"
-          # "microsoft-excel"
-          # "microsoft-outlook"
-          # "microsoft-teams"
           "mission-control-plus"
           "paintbrush"
-          # "podman-desktop"
-          # "rectangle-pro"
-          # "sensiblesidebuttons"
-          # "sf-symbols" # NOTE: commented out because it prompts for password
           "slack"
           "spacelauncher"
           "stats"
-          "utm"
           "wezterm"
-          "betterdisplay"
-          # "homebrew/cask-fonts/font-fontawesome" # WARN: this fails to install because it is deprecated 
-          # "homebrew/cask-fonts/font-hack-nerd-font" # WARN: this fails to install because it is deprecated 
         ];
+
         homebrew.brews = [
-          "act"
-          "ansible"
-          "argocd"
-          "awscli"
-          "azure-cli"
-          "bash"
-          "checkov"
-          "cryptography"
-          "direnv"
-          "docker"
+          # Keep only what's not available or better managed through Homebrew
           "docker-completion"
-          "docker-compose"
-          "docutils"
-          "dtc"
-          "fd"
-          "fish"
-          # "fisher"
           "fontconfig"
-          "fzf"
-          "gh"
-          "gnu-sed"
-          "go"
-          "go-task"
-          "helm"
-          "jq"
-          "kind"
-          "krew"
-          "kubectx"
-          "kubernetes-cli"
-          "kustomize"
-          "lazydocker"
-          "lazygit"
-          "lsd"
-          "lua"
-          "make"
-          "neofetch"
-          "neovim"
-          "node"
-          "podman"
-          "pre-commit"
-          "pyenv"
-          "qemu"
-          "ripgrep"
-          "sops"
-          "starship"
-          "stern"
-          "telnet"
-          "terraform-docs"
-          "terragrunt"
-          "terrascan"
-          "tfenv"
-          "tflint"
-          "tfsec"
-          "tfupdate"
-          "tldr"
-          "tmux"
-          "yq"
-          "yubikey-agent"
-          "zoxide"
-          "zsh-autosuggestions"
-          "zsh-fast-syntax-highlighting"
-          "zsh-vi-mode"
-          "zstd"
-          # "federico-terzi/espanso/espanso" # not found, tap it and try again
-          # "minamijoyo/hcledit/hcledit" # not found, tap it and try again
+          "krew" # Kubectl plugin manager - better through Homebrew
+          "tfenv" # Better through Homebrew for version management
+          "terrascan" # Not in nixpkgs or better managed through Homebrew
+          "tfsec" # Not in nixpkgs or better managed through Homebrew
         ];
       };
   in
