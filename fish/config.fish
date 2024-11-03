@@ -33,7 +33,7 @@ set -x GOENV_ROOT "$HOME/.goenv"
 set -x PATH "$GOENV_ROOT/bin" $PATH
 
 # python
-pyenv init - | source
+# pyenv init - | source
 
 # custom scripts
 fish_add_path $HOME/.scripts
@@ -59,3 +59,5 @@ end
 set -x NIX_PATH $HOME/.nix-defexpr/channels $NIX_PATH
 set -x NIX_PATH darwin=$HOME/.nix-defexpr/channels/darwin $NIX_PATH
 set -x NIX_PATH darwin-config=$HOME/.nixpkgs/darwin-configuration.nix $NIX_PATH
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
