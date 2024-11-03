@@ -21,12 +21,17 @@
     configuration = { pkgs, ... }: {
         ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
 
-        # Add Fish to /etc/shells
         environment.shells = [
-          "/opt/homebrew/bin/fish"
+          "${pkgs.nushell}/bin/nu"
         ];
 
-        environment.loginShell = "/opt/homebrew/bin/fish";  
+        environment.loginShell = "${pkgs.nushell}/bin/nu";
+
+        users.users.josh = {
+          home = "/Users/josh";
+          shell = "${pkgs.nushell}/bin/nu";
+        };
+
         environment.systemPackages = with pkgs; [
           # awscli2
           # azure-cli
@@ -91,11 +96,6 @@
 
         services.nix-daemon.enable = true;
         nix.settings.experimental-features = "nix-command flakes";
-
-        users.users.josh = {
-          home = "/Users/josh";
-          shell = "/opt/homebrew/bin/fish"; # Set fish as the default shell (not working) - WARN: not working
-        };
 
         system.configurationRevision = self.rev or self.dirtyRev or null;
         system.stateVersion = 4;
