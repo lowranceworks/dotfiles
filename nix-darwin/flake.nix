@@ -28,27 +28,28 @@
 
         environment.loginShell = "/opt/homebrew/bin/fish";  
         environment.systemPackages = with pkgs; [
-          vim
-          direnv
-          nushell
-          google-cloud-sdk
-          act
-          ansible
-          argocd
           # awscli2
           # azure-cli
           # bash
+          # helm
+          # pyenv
+          # telnet
+          act
+          ansible
+          argocd
           checkov
+          direnv
           docker
           docker-compose
           fd
           fish
           fzf
           gh
+          gnumake
           gnused
           go
           go-task
-          # helm
+          google-cloud-sdk
           jq
           kind
           kubectl
@@ -58,25 +59,25 @@
           lazygit
           lsd
           lua
-          gnumake
           neofetch
           neovim
           nodejs
+          nushell
           podman
           pre-commit
-          # pyenv
           qemu
           ripgrep
           sops
           starship
           stern
-          # telnet
+          stow
           terraform-docs
           terragrunt
           tflint
           tfupdate
           tldr
           tmux
+          vim
           yq
           yubikey-agent
           zoxide
@@ -169,8 +170,8 @@
           "docker-completion"
           "fontconfig"
           "krew" # Kubectl plugin manager - better through Homebrew
-          "tfenv" # Better through Homebrew for version management
           "terrascan" # Not in nixpkgs or better managed through Homebrew
+          "tfenv" # Better through Homebrew for version management
           "tfsec" # Not in nixpkgs or better managed through Homebrew
         ];
       };
