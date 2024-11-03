@@ -38,6 +38,7 @@
           ansible
           argocd
           checkov
+          carapace # A multi-shell completion library and binary
           direnv
           docker
           docker-compose
