@@ -1,10 +1,11 @@
 .DS_Store
+.docs
 .git
 .gitconfig
+.gitignore
 .ssh/config
+.stowrc
 .wget-hsts
 Library
-.gitignore
 README.md
-.stowrc
 vimium
