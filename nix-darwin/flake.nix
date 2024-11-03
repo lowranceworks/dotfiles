@@ -30,6 +30,7 @@
         environment.systemPackages = with pkgs; [
           vim
           direnv
+          nushell
         ];
 
         services.nix-daemon.enable = true;
@@ -77,7 +78,19 @@
           NSGlobalDomain._HIHideMenuBar = false; # Do not hide the menu bar.
         };
 
-        homebrew.enable = true;
+        homebrew = {
+          enable = true;
+          onActivation = {
+            autoUpdate = true;
+            cleanup = "zap"; # Remove brew apps that are not defined here
+            upgrade = true;
+          };
+          global = {
+            brewfile = true;
+            lockfiles = true;
+          };
+        };
+
         homebrew.casks = [
           "SigmaOS"
           "alfred"
