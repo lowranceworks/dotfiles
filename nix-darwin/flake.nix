@@ -36,6 +36,7 @@
           # telnet
           act
           ansible
+          atuin
           argocd
           checkov
           carapace # A multi-shell completion library and binary
