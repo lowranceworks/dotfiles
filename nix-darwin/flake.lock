@@ -1,18 +1,5 @@
 {
   "nodes": {
-    "dotfiles": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1729309452,
-        "narHash": "sha256-2V1V/qISvTP22KLsIbntQFIfNhYsyAQ41Z403yL2uq0=",
-        "path": "/Users/josh/projects/lowranceworks/dotfiles",
-        "type": "path"
-      },
-      "original": {
-        "path": "/Users/josh/projects/lowranceworks/dotfiles",
-        "type": "path"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -71,7 +58,6 @@
     },
     "root": {
       "inputs": {
-        "dotfiles": "dotfiles",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs"
