@@ -66,3 +66,8 @@ set -x NIX_PATH darwin=$HOME/.nix-defexpr/channels/darwin $NIX_PATH
 set -x NIX_PATH darwin-config=$HOME/.nixpkgs/darwin-configuration.nix $NIX_PATH
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Load carapace shell completions
+if test -f ~/.config/fish/conf.d/carapace.fish
+    source ~/.config/fish/conf.d/carapace.fish
+end
