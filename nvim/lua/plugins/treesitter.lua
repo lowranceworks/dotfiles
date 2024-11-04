@@ -23,6 +23,7 @@ return {
       "svelte",
       "dockerfile",
       "gitignore",
+      "nix",
     },
 
     highlight = { enable = true },
