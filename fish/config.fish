@@ -15,6 +15,7 @@ eval (/opt/homebrew/bin/brew shellenv)
 starship init fish | source # https://starship.rs/
 zoxide init fish | source # 'ajeetdsouza/zoxide'
 direnv hook fish | source # https://direnv.net/
+
 set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every arrow-based directory change (default)
 
 set -U fish_greeting "" # disable the default fish greeting for a cleaner startup
@@ -38,10 +39,6 @@ set -x PATH "$GOENV_ROOT/bin" $PATH
 # custom scripts
 fish_add_path $HOME/.scripts
 
-# required for nix installed packages
-fish_add_path /run/current-system/sw/bin
-fish_add_path /nix/var/nix/profiles/default/bin
-
 # starship config
 set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
 
@@ -59,6 +56,10 @@ set -x ANTHROPIC_API_KEY (read -s < ~/.keys/anthropic/claude/api.key)
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
 end
+
+# required for nix installed packages
+fish_add_path /run/current-system/sw/bin
+fish_add_path /nix/var/nix/profiles/default/bin
 
 set -x NIX_PATH $HOME/.nix-defexpr/channels $NIX_PATH
 set -x NIX_PATH darwin=$HOME/.nix-defexpr/channels/darwin $NIX_PATH
