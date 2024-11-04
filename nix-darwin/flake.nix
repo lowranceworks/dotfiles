@@ -9,14 +9,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dotfiles = {
-      # TODO: find a way to do this without hardcoding the user
-      url = "path:/Users/josh/projects/lowranceworks/dotfiles";
-      flake = false;
-    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, dotfiles }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, ... }: {
         ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
@@ -186,8 +181,6 @@
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.josh = import ./home.nix;
-          home-manager.extraSpecialArgs = { inherit dotfiles; };
         }
       ];
     };
