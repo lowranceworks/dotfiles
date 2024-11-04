@@ -36,10 +36,10 @@
           # telnet
           act
           ansible
-          atuin
           argocd
-          checkov
+          atuin
           carapace # A multi-shell completion library and binary
+          checkov
           direnv
           docker
           docker-compose
@@ -64,6 +64,7 @@
           neofetch
           neovim
           nodejs
+          nushell
           nushell
           podman
           pre-commit
