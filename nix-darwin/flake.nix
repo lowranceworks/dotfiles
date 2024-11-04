@@ -22,14 +22,14 @@
         ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
 
         environment.shells = [
-          "${pkgs.nushell}/bin/nu"
+          "${pkgs.fish}/bin/fish"
         ];
 
-        environment.loginShell = "${pkgs.nushell}/bin/nu";
+        environment.loginShell = "${pkgs.fish}/bin/fish";
 
         users.users.josh = {
           home = "/Users/josh";
-          shell = "${pkgs.nushell}/bin/nu";
+          shell = "${pkgs.fish}/bin/fish";
         };
 
         environment.systemPackages = with pkgs; [
