@@ -38,6 +38,10 @@ set -x PATH "$GOENV_ROOT/bin" $PATH
 # custom scripts
 fish_add_path $HOME/.scripts
 
+# required for nix installed packages
+fish_add_path /run/current-system/sw/bin
+fish_add_path /nix/var/nix/profiles/default/bin
+
 # starship config
 set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
 
