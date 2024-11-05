@@ -33,9 +33,6 @@ set -Ux VISUAL nvim
 set -x GOENV_ROOT "$HOME/.goenv"
 set -x PATH "$GOENV_ROOT/bin" $PATH
 
-# python
-# pyenv init - | source
-
 # custom scripts
 fish_add_path $HOME/.scripts
 
