@@ -17,6 +17,7 @@ after-startup-command = []
 # Start AeroSpace at login
 start-at-login = true
 
+
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -35,7 +36,7 @@ default-root-container-layout = 'accordion'
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
 #               tall monitor (anything higher than wide) gets vertical orientation
-default-root-container-orientation = 'vertical'
+default-root-container-orientation = 'auto'
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -98,8 +99,9 @@ outer.right = 8
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = ['layout tiles', 'balance-sizes']
-alt-comma = ['layout accordion vertical', 'balance-sizes']
+# TODO: come up with a more intuitive keybinding for this?
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 # TODO: integrate with tmux vim navigation
@@ -109,11 +111,8 @@ alt-k = 'focus up'
 alt-l = 'focus right'
 alt-0 = 'balance-sizes'
 
-# Join with commands
-alt-shift-ctrl-h = 'join-with left'
-alt-shift-ctrl-j = 'join-with down'
-alt-shift-ctrl-k = 'join-with up'
-alt-shift-ctrl-l = 'join-with right'
+# TODO: is this helpful? How does it work?
+alt-shift-n = 'split opposite'
 alt-shift-ctrl-0 = 'flatten-workspace-tree'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
@@ -188,6 +187,11 @@ f = [
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
+# ctrl-alt-shift-h = ['join-with left', 'mode main']
+# ctrl-alt-shift-j = ['join-with down', 'mode main']
+# ctrl-alt-shift-k = ['join-with up', 'mode main']
+# ctrl-alt-shift-l = ['join-with right', 'mode main']
+
 [[on-window-detected]]
 if.app-id = 'info.pkpk.inkdrop'
 run = "move-node-to-workspace Q"
@@ -227,3 +231,20 @@ run = "move-node-to-workspace D"
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace D"
+
+# [[on-window-detected]]
+# if.app-id = ''
+# run = "move-node-to-workspace B"
+
+# [[on-window-detected]]
+# if.app-id = ''
+# run = "move-node-to-workspace B"
+
+# [[on-window-detected]]
+# if.app-id = ''
+# run = "move-node-to-workspace B"
+
+# [[on-window-detected]]
+# if.app-id = ''
+# run = "move-node-to-workspace B"
+
