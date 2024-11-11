@@ -213,7 +213,7 @@ if.app-id = 'com.bitwarden.desktop '
 run = "move-node-to-workspace S"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.Safari.WebApp.20FA0152-CF4C-4969-9135-F241452ACC45' # Claude
+if.app-id = 'com.anthropic.claudefordesktop'
 run = "move-node-to-workspace S"
 
 [[on-window-detected]]
