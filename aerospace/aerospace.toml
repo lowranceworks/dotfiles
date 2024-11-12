@@ -197,7 +197,7 @@ if.app-id = 'info.pkpk.inkdrop'
 run = "move-node-to-workspace Q"
 
 [[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
+if.app-id = 'com.google.Chrome'
 run = "move-node-to-workspace W"
 
 [[on-window-detected]]
