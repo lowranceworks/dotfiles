@@ -54,6 +54,11 @@ if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
 end
 
+# required for nix
+if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+    source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+end
+
 # required for nix installed packages
 fish_add_path /run/current-system/sw/bin
 fish_add_path /nix/var/nix/profiles/default/bin
