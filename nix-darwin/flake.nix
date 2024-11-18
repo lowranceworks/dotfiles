@@ -116,6 +116,8 @@
             # "/System/Applications/Utilities/Terminal.app"
           ];
 
+          spaces.spans-displays = false;  # This enables separate spaces for each display
+
           loginwindow.LoginwindowText = "Let's Go!";
           screensaver.askForPasswordDelay = 10; # How long to wait before asking for a password.
 
@@ -141,8 +143,11 @@
             brewfile = true;
             lockfiles = true;
           };
+          taps = [
+            "homebrew/services" # Required to run `brew services`
+            "FelixKratz/formulae"  # Required for sketchybar
+          ];
         };
-
         homebrew.casks = [
           # Keep GUI applications in Homebrew
           "SigmaOS"
@@ -162,10 +167,10 @@
           "stats"
           "wezterm"
         ];
-
         homebrew.brews = [
           # Keep only what's not available or better managed through Homebrew
           # "betterdisplay"
+          "sketchybar" # Neovim - better through homebrew
           "neovim" # Neovim - better through homebrew
           "docker-completion"
           "fontconfig"
