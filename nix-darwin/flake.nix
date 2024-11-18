@@ -134,7 +134,7 @@
           enable = true;
           onActivation = {
             autoUpdate = true;
-            cleanup = "zap"; # Remove brew apps that are not defined here
+            # cleanup = "zap"; # Remove brew apps that are not defined here
             upgrade = true;
           };
           global = {
@@ -165,7 +165,7 @@
 
         homebrew.brews = [
           # Keep only what's not available or better managed through Homebrew
-          "betterdisplay"
+          # "betterdisplay"
           "docker-completion"
           "fontconfig"
           "krew" # Kubectl plugin manager - better through Homebrew
