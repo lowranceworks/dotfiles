@@ -102,7 +102,7 @@
         nix.useDaemon = true;
 
         system.defaults = {
-          dock.orientation = "right"; # Set the dock to the right side of the screen.
+          dock.orientation = "bottom"; # Set the dock orientation.
           dock.autohide = true; # Automatically hide the dock.
           dock.mru-spaces = false; # ?
           dock.persistent-apps = [ # Applications that should always be in the dock.
