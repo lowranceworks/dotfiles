@@ -62,7 +62,7 @@
           lsd
           lua
           neofetch
-          neovim
+          # neovim
           nodejs
           nushell
           nushell
@@ -166,6 +166,7 @@
         homebrew.brews = [
           # Keep only what's not available or better managed through Homebrew
           # "betterdisplay"
+          "neovim" # Neovim - better through homebrew
           "docker-completion"
           "fontconfig"
           "krew" # Kubectl plugin manager - better through Homebrew
