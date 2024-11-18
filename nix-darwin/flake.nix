@@ -116,7 +116,7 @@
             # "/System/Applications/Utilities/Terminal.app"
           ];
 
-          spaces.spans-displays = false;  # This enables separate spaces for each display
+          spaces.spans-displays = true;  # This enables separate spaces for each display.
 
           loginwindow.LoginwindowText = "Let's Go!";
           screensaver.askForPasswordDelay = 10; # How long to wait before asking for a password.
@@ -129,7 +129,7 @@
           NSGlobalDomain.AppleInterfaceStyle = "Dark"; # Enable dark mode.
           NSGlobalDomain.InitialKeyRepeat = 17; # How long you must hold down the key before it starts repeating.
           NSGlobalDomain.KeyRepeat = 2; # How fast it repeats once it starts.
-          NSGlobalDomain._HIHideMenuBar = false; # Do not hide the menu bar.
+          NSGlobalDomain._HIHideMenuBar = true; # Hide the menu bar.
         };
 
         homebrew = {
