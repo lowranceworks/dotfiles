@@ -15,6 +15,28 @@
   let
     configuration = { pkgs, ... }: {
         ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
+        
+        # Enable Nix daemon and configuration
+        services.nix-daemon.enable = true;
+        services.activate-system.enable = true;
+        nix.settings.experimental-features = "nix-command flakes";
+        
+        # Add system-wide environment paths
+        environment.systemPath = [
+          "/opt/homebrew/bin"
+          "/usr/local/bin"
+          "/usr/bin"
+          "/bin"
+          "/usr/sbin"
+          "/sbin"
+        ];
+
+        # Add /etc/profiles/per-user/josh/bin to PATH
+        environment.profiles = [
+          "/nix/var/nix/profiles/default"
+          "/run/current-system/sw"
+          "/etc/profiles/per-user/josh"
+        ];
 
         environment.shells = [
           "${pkgs.fish}/bin/fish"
@@ -90,8 +112,6 @@
           zstd
         ];
 
-        services.nix-daemon.enable = true;
-        nix.settings.experimental-features = "nix-command flakes";
 
         system.configurationRevision = self.rev or self.dirtyRev or null;
         system.stateVersion = 4;
