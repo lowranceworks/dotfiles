@@ -12,9 +12,22 @@ fish_config theme choose "Catppuccin Mocha"
 
 eval (/opt/homebrew/bin/brew shellenv)
 
-starship init fish | source # https://starship.rs/
-zoxide init fish | source # 'ajeetdsouza/zoxide'
-direnv hook fish | source # https://direnv.net/
+# source tools
+if type -q starship
+    starship init fish | source # https://starship.rs/
+end
+
+if type -q zoxide
+    zoxide init fish | source # https://github.com/ajeetdsouza/zoxideend
+end
+
+if type -q direnv
+    direnv hook fish | source # https://direnv.net/
+end
+
+if type -q carapace
+    carapace _carapace | source # https://carapace.sh
+end
 
 set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every arrow-based directory change (default)
 
