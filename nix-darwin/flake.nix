@@ -14,14 +14,19 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, ... }: {
-        ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
-        
+        # ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
+ 
         # Enable Nix daemon and configuration
-        services.nix-daemon.enable = true;
-        services.activate-system.enable = true;
-        nix.settings.experimental-features = "nix-command flakes";
-        
-        # Add system-wide environment paths
+        # services.activate-system.enable = true;
+        # nix.settings.experimental-features = "nix-command flakes";
+
+        # Nix daemon configuration
+        # services.nix-daemon = {
+        #   enable = true;
+        #   enableSocketListener = true;
+        #   logFile = "/var/log/nix-daemon.log";
+        # };
+
         environment.systemPath = [
           "/opt/homebrew/bin"
           "/usr/local/bin"
@@ -31,7 +36,8 @@
           "/sbin"
         ];
 
-        # Add /etc/profiles/per-user/josh/bin to PATH
+        environment.pathsToLink = [ "/Applications" "/bin" ];
+
         environment.profiles = [
           "/nix/var/nix/profiles/default"
           "/run/current-system/sw"
