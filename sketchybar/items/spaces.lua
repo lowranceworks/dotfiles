@@ -5,7 +5,6 @@ local app_icons = require("helpers.app_icons")
 
 local spaces = {}
 
--- Add aerospace workspace change event
 sbar.exec("sketchybar --add event aerospace_workspace_change")
 
 -- Get all aerospace workspaces
@@ -13,8 +12,12 @@ local file = io.popen("aerospace list-workspaces --all")
 local result = file:read("*a")
 file:close()
 
+-- Get current workspace
+local current_workspace = io.popen("aerospace workspace current"):read("*a"):gsub("\n", "")
+
 -- Process each workspace
 for sid in result:gmatch("[^\n]+") do
+	local selected = current_workspace == sid
 	local space = sbar.add("space", "space." .. sid, {
 		position = "left",
 		icon = {
@@ -39,8 +42,19 @@ for sid in result:gmatch("[^\n]+") do
 			border_width = 1,
 			height = 26,
 			border_color = colors.black,
+			drawing = selected, -- Set initial state based on selection
 		},
 		popup = { background = { border_width = 5, border_color = colors.black } },
+	})
+
+	-- Initialize with correct highlight state
+	space:set({
+		icon = { highlight = selected },
+		label = { highlight = selected },
+		background = {
+			drawing = selected,
+			border_color = selected and colors.black or colors.bg2,
+		},
 	})
 
 	spaces[sid] = space
@@ -75,12 +89,17 @@ for sid in result:gmatch("[^\n]+") do
 	})
 
 	space:subscribe("aerospace_workspace_change", function(env)
-		local selected = env.FOCUSED_WORKSPACE == sid
-		local color = selected and colors.grey or colors.bg2
+		-- Get current workspace using --focused flag
+		local current_workspace = io.popen("aerospace list-workspaces --focused"):read("*a"):gsub("%s+", "")
+		local selected = current_workspace == sid
+
 		space:set({
 			icon = { highlight = selected },
 			label = { highlight = selected },
-			background = { border_color = selected and colors.black or colors.bg2 },
+			background = {
+				drawing = selected,
+				border_color = selected and colors.black or colors.bg2,
+			},
 		})
 		space_bracket:set({
 			background = { border_color = selected and colors.grey or colors.bg2 },
