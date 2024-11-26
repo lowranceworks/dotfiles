@@ -196,15 +196,31 @@ backspace = ['close-all-windows-but-current', 'mode main']
 # ctrl-alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'come.apple.systempreferences'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-id = 'info.pkpk.inkdrop'
 run = "move-node-to-workspace Q"
 
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome'
+if.app-id = 'company.thebrowser.Browser' # arc
 run = "move-node-to-workspace W"
 
 [[on-window-detected]]
-if.app-id = 'us.zoom.xos '
+if.app-id = 'us.zoom.xos'
+run = "move-node-to-workspace E"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal' # calendar
 run = "move-node-to-workspace E"
 
 [[on-window-detected]]
@@ -221,7 +237,7 @@ run = "move-node-to-workspace S"
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = "move-node-to-workspace S"
+run = "move-node-to-workspace D"
 
 [[on-window-detected]]
 if.app-id = 'org.whispersystems.signal-desktop'
