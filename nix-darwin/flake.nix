@@ -14,19 +14,6 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, ... }: {
-        # ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
- 
-        # Enable Nix daemon and configuration
-        # services.activate-system.enable = true;
-        # nix.settings.experimental-features = "nix-command flakes";
-
-        # Nix daemon configuration
-        # services.nix-daemon = {
-        #   enable = true;
-        #   enableSocketListener = true;
-        #   logFile = "/var/log/nix-daemon.log";
-        # };
-
         environment.systemPath = [
           "/opt/homebrew/bin"
           "/usr/local/bin"
@@ -55,70 +42,6 @@
           shell = "${pkgs.fish}/bin/fish";
         };
 
-        environment.systemPackages = with pkgs; [
-          # awscli2
-          # azure-cli
-          # bash
-          # helm
-          # pyenv
-          # telnet
-          act
-          ansible
-          argocd
-          atuin
-          carapace # A multi-shell completion library and binary
-          checkov
-          direnv
-          docker
-          docker-compose
-          fd
-          fish
-          fzf
-          gh
-          gnumake
-          gnused
-          go
-          go-task
-          google-cloud-sdk
-          jq
-          kind
-          kubectl
-          kubectx
-          kustomize
-          lazydocker
-          lazygit
-          lsd
-          lua
-          neofetch
-          # neovim
-          nodejs
-          nushell
-          nushell
-          podman
-          pre-commit
-          qemu
-          ripgrep
-          sops
-          starship
-          stern
-          stow
-          terraform-docs
-          terragrunt
-          tflint
-          tfupdate
-          tldr
-          tmux
-          vim
-          yq
-          yubikey-agent
-          zoxide
-          zsh-autosuggestions
-          zsh-syntax-highlighting
-          zsh-vi-mode
-          zstd
-        ];
-
-
         system.configurationRevision = self.rev or self.dirtyRev or null;
         system.stateVersion = 4;
         security.pam.enableSudoTouchIdAuth = true;
@@ -128,10 +51,10 @@
         nix.useDaemon = true;
 
         system.defaults = {
-          dock.orientation = "bottom"; # Set the dock orientation.
-          dock.autohide = true; # Automatically hide the dock.
-          dock.mru-spaces = false; # ?
-          dock.persistent-apps = [ # Applications that should always be in the dock.
+          dock.orientation = "bottom";
+          dock.autohide = true;
+          dock.mru-spaces = false;
+          dock.persistent-apps = [
             "/Applications/WezTerm.app/"
             "/Applications/SigmaOS.app/"
             "/Applications/Inkdrop.app"
@@ -139,30 +62,31 @@
             "/Applications/Bitwarden.app/"
             "/Applications/draw.io.app/"
             "/System/Applications/Launchpad.app/"
-            # "/System/Applications/Utilities/Terminal.app"
           ];
 
-          spaces.spans-displays = true;  # This enables separate spaces for each display.
-
+          spaces.spans-displays = true;
           loginwindow.LoginwindowText = "Let's Go!";
-          screensaver.askForPasswordDelay = 10; # How long to wait before asking for a password.
+          screensaver.askForPasswordDelay = 10;
 
-          finder.ShowPathbar = true; # Show path breadcrumbs in finder windows.
-          finder.AppleShowAllFiles = true; # Always show hidden files.
-          finder.FXPreferredViewStyle = "clmv"; # Change the default finder view to Column view.
-          finder.AppleShowAllExtensions = true; # Whether to always show file extensions. The default is false.
+          finder = {
+            ShowPathbar = true;
+            AppleShowAllFiles = true;
+            FXPreferredViewStyle = "clmv";
+            AppleShowAllExtensions = true;
+          };
 
-          NSGlobalDomain.AppleInterfaceStyle = "Dark"; # Enable dark mode.
-          NSGlobalDomain.InitialKeyRepeat = 17; # How long you must hold down the key before it starts repeating.
-          NSGlobalDomain.KeyRepeat = 2; # How fast it repeats once it starts.
-          NSGlobalDomain._HIHideMenuBar = true; # Hide the menu bar.
+          NSGlobalDomain = {
+            AppleInterfaceStyle = "Dark";
+            InitialKeyRepeat = 17;
+            KeyRepeat = 2;
+            _HIHideMenuBar = true;
+          };
         };
 
         homebrew = {
           enable = true;
           onActivation = {
             autoUpdate = true;
-            # cleanup = "zap"; # Remove brew apps that are not defined here
             upgrade = true;
           };
           global = {
@@ -170,41 +94,90 @@
             lockfiles = true;
           };
           taps = [
-            "homebrew/services" # Required to run `brew services`
-            "FelixKratz/formulae"  # Required for sketchybar
+            "homebrew/services"
+            "FelixKratz/formulae"
+          ];
+          brews = [
+            "act"
+            "ansible"
+            "argocd"
+            "atuin"
+            "carapace"
+            "checkov"
+            "direnv"
+            "docker"
+            "docker-completion"
+            "docker-compose"
+            "fd"
+            "fish"
+            "fontconfig"
+            "fzf"
+            "gh"
+            "gnumake"
+            "gnused"
+            "go"
+            "go-task"
+            "google-cloud-sdk"
+            "jq"
+            "kind"
+            "kubectl"
+            "kubectx"
+            "kustomize"
+            "krew"
+            "lazydocker"
+            "lazygit"
+            "lsd"
+            "lua"
+            "neofetch"
+            "neovim"
+            "nodejs"
+            "nushell"
+            "podman"
+            "pre-commit"
+            "qemu"
+            "ripgrep"
+            "sketchybar"
+            "sops"
+            "starship"
+            "stern"
+            "stow"
+            "terraform-docs"
+            "terragrunt"
+            "terrascan"
+            "tfenv"
+            "tflint"
+            "tfsec"
+            "tfupdate"
+            "tldr"
+            "tmux"
+            "vim"
+            "yq"
+            "yubikey-agent"
+            "zoxide"
+            "zsh-autosuggestions"
+            "zsh-syntax-highlighting"
+            "zsh-vi-mode"
+            "zstd"
+          ];
+          casks = [
+            "SigmaOS"
+            "alfred"
+            "bitwarden"
+            "cleanshot"
+            "contexts"
+            "drawio"
+            "google-chrome"
+            "inkdrop"
+            "keycastr"
+            "meetingbar"
+            "mission-control-plus"
+            "paintbrush"
+            "slack"
+            "spacelauncher"
+            "stats"
+            "wezterm"
           ];
         };
-        homebrew.casks = [
-          # Keep GUI applications in Homebrew
-          "SigmaOS"
-          "alfred"
-          "bitwarden"
-          "cleanshot"
-          "contexts"
-          "drawio"
-          "google-chrome"
-          "inkdrop"
-          "keycastr"
-          "meetingbar"
-          "mission-control-plus"
-          "paintbrush"
-          "slack"
-          "spacelauncher"
-          "stats"
-          "wezterm"
-        ];
-        homebrew.brews = [
-          # Keep only what's not available or better managed through Homebrew
-          # "betterdisplay"
-          "sketchybar" # Neovim - better through homebrew
-          "neovim" # Neovim - better through homebrew
-          "docker-completion"
-          "fontconfig"
-          "krew" # Kubectl plugin manager - better through Homebrew
-          "terrascan" # Not in nixpkgs or better managed through Homebrew
-          "tfenv" # Better through Homebrew for version management
-          "tfsec" # Not in nixpkgs or better managed through Homebrew
-        ];
       };
   in
   {
