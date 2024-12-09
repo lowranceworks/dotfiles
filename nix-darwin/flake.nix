@@ -144,6 +144,7 @@
         "tfupdate"
         "tldr"
         "tmux"
+        "tree"
         "yq"
         "yubikey-agent"
         "zoxide"
