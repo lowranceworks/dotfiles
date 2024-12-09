@@ -5,36 +5,24 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    dotfiles = {
-      # TODO: find a way to do this without hardcoding the user
-      url = "path:/Users/Joshua.lowrance/projects/lowranceworks/dotfiles";
-      flake = false;
-    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, dotfiles }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs }:
   let
     configuration = { pkgs, ... }: {
       ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
       environment.systemPackages = [
+        # NOTE: Install packages with homebrew as much as possible
         # pkgs.vim
-        # pkgs.direnv
-        # pkgs.age
-        # pkgs.sshs
-        # pkgs.atac
-        # pkgs.termshark
-        # pkgs.portal
-        # pkgs.glow
       ];
       services.nix-daemon.enable = true;
-      nix.settings.experimental-features = "nix-command flakes";
       programs.zsh.enable = true;
       programs.fish.enable = true;
       system.configurationRevision = self.rev or self.dirtyRev or null;
       system.stateVersion = 4;
       security.pam.enableSudoTouchIdAuth = true;
 
-      users.users.joshua.home = "/Users/Joshua.lowrance";
+      nix.settings.experimental-features = "nix-command flakes";
       nix.configureBuildUsers = true;
       nix.useDaemon = true;
 
@@ -152,8 +140,8 @@
         "zsh-fast-syntax-highlighting"
         "zsh-vi-mode"
         "zstd"
-        "federico-terzi/espanso/espanso" # not found, tap it and try again
-        "minamijoyo/hcledit/hcledit" # not found, tap it and try again
+        "federico-terzi/espanso/espanso"
+        "minamijoyo/hcledit/hcledit"
       ];
     };
   in
@@ -168,3 +156,4 @@
     darwinPackages = self.darwinConfigurations."LowranceWorks".pkgs;
   };
 }
+
