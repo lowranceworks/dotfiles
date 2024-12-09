@@ -140,8 +140,6 @@
         "zsh-fast-syntax-highlighting"
         "zsh-vi-mode"
         "zstd"
-        "federico-terzi/espanso/espanso"
-        "minamijoyo/hcledit/hcledit"
       ];
     };
   in
