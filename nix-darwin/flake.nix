@@ -80,11 +80,14 @@
           upgrade = true; # Upgrade outdated packages
         };
         casks = [
+          "aerospace"
           "alfred"
+          "arc"
           "betterdisplay"
           "bitwarden"
           "brave-browser"
           "chromium"
+          "google-chrome"
           "cleanshot"
           "contexts"
           "drawio"
@@ -105,6 +108,7 @@
           "act"
           "ansible"
           "argocd"
+          "atuin"
           "awscli"
           "azure-cli"
           "bash"
@@ -117,6 +121,7 @@
           "docker-compose"
           "docutils"
           "dtc"
+          # "espanso"
           "fd"
           "fish"
           "fisher"
@@ -126,6 +131,7 @@
           "gnu-sed"
           "go"
           "go-task"
+          # "hcledit"
           "helm"
           "jq"
           "kind"
@@ -135,6 +141,7 @@
           "kustomize"
           "lazydocker"
           "lazygit"
+          "lsd"
           "lua"
           "make"
           "neofetch"
@@ -149,6 +156,7 @@
           "sops"
           "starship"
           "stern"
+          "stow"
           "telnet"
           "terraform-docs"
           "terragrunt"
@@ -171,6 +179,9 @@
           ];
         taps = [
           "FelixKratz/formulae"
+          "homebrew/services"
+          "minamijoyo/hcledit"
+          "nikitabobko/tap"
         ];
       };
     };
