@@ -1,5 +1,3 @@
-# TODO: ask about auto-complete lsp support for this file name?
-
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
@@ -14,14 +12,21 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0', # Enables borders around windows (FelixKratz/JankyBorders)
+  'exec-and-forget sketchybar'
+]
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE', # Notify Sketchybar about workspace change
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0' # Enables borders around windows (FelixKratz/JankyBorders)
+]
 
 # Start AeroSpace at login
 start-at-login = true
 
-
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = false
+enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 # TODO: learn what is this?
@@ -48,10 +53,13 @@ key-mapping.preset = 'qwerty'
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Mouse follows focus when focused window changes
 on-focus-changed = [
   'move-mouse window-lazy-center',
-] # Mouse lazily follows any focus (window or workspace)
+] 
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -100,7 +108,7 @@ outer.right = 8
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 # TODO: come up with a more intuitive keybinding for this?
 alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
+alt-comma = 'layout accordion vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 # TODO: integrate with tmux vim navigation
@@ -109,10 +117,6 @@ alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 alt-0 = 'balance-sizes'
-
-# TODO: is this helpful? How does it work?
-alt-shift-n = 'split opposite'
-alt-shift-ctrl-0 = 'flatten-workspace-tree'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-shift-h = 'move left'
@@ -178,7 +182,7 @@ alt-shift-semicolon = 'mode service'
 # alt-shift-b = 'ctrl-node-to-workspace B'
 # alt-shift-c = 'move-node-to-workspace C'
 esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
+r = ['mode main']
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 f = [
   'layout floating tiling',
@@ -191,62 +195,78 @@ backspace = ['close-all-windows-but-current', 'mode main']
 # ctrl-alt-shift-k = ['join-with up', 'mode main']
 # ctrl-alt-shift-l = ['join-with right', 'mode main']
 
-# [[on-window-detected]]
-# if.app-id = 'com.github.wez.wezterm'
-# run = "move-node-to-workspace A"
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'come.apple.systempreferences'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'info.pkpk.inkdrop'
+run = "move-node-to-workspace Q"
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser' # arc
+run = "move-node-to-workspace W"
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = "move-node-to-workspace E"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal' # calendar
+run = "move-node-to-workspace E"
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace A"
 
-# [[on-window-detected]]
-# if.app-id = 'info.pkpk.inkdrop'
-# run = "move-node-to-workspace A"
-#
-# [[on-window-detected]]
-# if.app-id = 'com.sigmaos.sigmaos.macos'
-# run = "move-node-to-workspace S"
-#
-# [[on-window-detected]]
-# if.app-id = 'org.whispersystems.signal-desktop'
-# run = "move-node-to-workspace S"
-#
-# [[on-window-detected]]
-# if.app-id = 'com.microsoft.teams'
-# run = "move-node-to-workspace S"
-#
-# [[on-window-detected]]
-# if.app-id = 'com.tinyspeck.slackmacgap'
-# run = "move-node-to-workspace M"
-#
-# [[on-window-detected]]
-# if.app-id = 'com.bitwarden.desktop '
-# run = "move-node-to-workspace Q"
-#
-# [[on-window-detected]]
-# if.app-id = 'com.jgraph.drawio.desktop'
-# run = "move-node-to-workspace D"
-#
-# [[on-window-detected]]
-# if.app-id = 'com.microsoft.Outlook'
-# run = "move-node-to-workspace D"
-#
-# [[on-window-detected]]
-# if.app-id = 'us.zoom.xos '
-# run = "move-node-to-workspace Z"
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop '
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = "move-node-to-workspace D"
 
 # [[on-window-detected]]
 # if.app-id = ''
 # run = "move-node-to-workspace B"
-#
+
 # [[on-window-detected]]
 # if.app-id = ''
 # run = "move-node-to-workspace B"
-#
+
 # [[on-window-detected]]
 # if.app-id = ''
 # run = "move-node-to-workspace B"
-#
+
 # [[on-window-detected]]
 # if.app-id = ''
 # run = "move-node-to-workspace B"

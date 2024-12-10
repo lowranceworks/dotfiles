@@ -4,6 +4,10 @@ return {
   lazy = false,
   opts = {
     provider = "claude",
+    buffer = {
+      modifiable = true, -- Allow editing of the buffer
+      filetype = "Avante",
+    },
   },
   keys = {
     {
