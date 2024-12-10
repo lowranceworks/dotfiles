@@ -27,6 +27,7 @@
         orientation = "right";
         autohide = true;
         mru-spaces = false;
+        mineffect = "scale"; # Valid options are "genie", "scale", or "suck"
         persistent-apps = [
           "/System/Applications/Launchpad.app/"
           "/System/Applications/Calendar.app/"
@@ -48,105 +49,125 @@
       };
       screencapture.location = "~/Pictures/screenshots";
       screensaver.askForPasswordDelay = 10;
- 
+
       NSGlobalDomain = {
+        NSWindowResizeTime = 0.2; # Makes window resizing faster (default is 0.2)
+        NSAutomaticWindowAnimationsEnabled = true; # Disable window opening/closing animations
+        NSScrollAnimationEnabled = true; # Enable smooth scrolling
         AppleInterfaceStyle = "Dark";
         InitialKeyRepeat = 17;
         KeyRepeat = 2;
         _HIHideMenuBar = false;
       };
+
+      # NOTE: this is not working (Could not write domain com.apple.universalaccess; exiting)
+      # universalaccess = {
+      #   reduceMotion = true;
+      # };
     };
 
-      homebrew.enable = true;
-      homebrew.casks = [
-        "alfred"
-        "bitwarden"
-        "brave-browser"
-        "chromium"
-        "cleanshot"
-        "contexts"
-        "drawio"
-        "google-cloud-sdk"
-        "inkdrop"
-        "keycastr"
-        "meetingbar"
-        "mission-control-plus"
-        "paintbrush"
-        # "podman-desktop"
-        "slack"
-        "spacelauncher"
-        "stats"
-        "utm"
-        "wezterm"
-        "betterdisplay"
-      ];
-      homebrew.brews = [
-        "act"
-        "ansible"
-        "argocd"
-        "awscli"
-        "azure-cli"
-        "bash"
-        "checkov"
-        "cryptography"
-        "direnv"
-        "docker"
-        "docker-completion"
-        "docker-compose"
-        "docutils"
-        "dtc"
-        "fd"
-        "fish"
-        "fisher"
-        "fontconfig"
-        "fzf"
-        "gh"
-        "gnu-sed"
-        "go"
-        "go-task"
-        "helm"
-        "jq"
-        "kind"
-        "krew"
-        "kubectx"
-        "kubernetes-cli"
-        "kustomize"
-        "lazydocker"
-        "lazygit"
-        "lua"
-        "make"
-        "neofetch"
-        "neovim"
-        "node"
-        "oci-cli"
-        "podman"
-        "pre-commit"
-        "pyenv"
-        "qemu"
-        "ripgrep"
-        "sops"
-        "starship"
-        "stern"
-        "telnet"
-        "terraform-docs"
-        "terragrunt"
-        "terrascan"
-        "tfenv"
-        "tflint"
-        "tfsec"
-        "tfupdate"
-        "tldr"
-        "tmux"
-        "tree"
-        "watch"
-        "yq"
-        "yubikey-agent"
-        "zoxide"
-        "zsh-autosuggestions"
-        "zsh-fast-syntax-highlighting"
-        "zsh-vi-mode"
-        "zstd"
-      ];
+    # NOTE: workaround for universalaccess.reduceMotion
+    system.activationScripts.extraActivation.text = ''
+      # Need to run this with sudo because universal access requires elevated privileges
+      sudo defaults write com.apple.universalaccess reduceMotion -bool true
+    '';
+
+      homebrew = {
+        enable = true;
+        casks = [
+          "alfred"
+          "betterdisplay"
+          "bitwarden"
+          "brave-browser"
+          "chromium"
+          "cleanshot"
+          "contexts"
+          "drawio"
+          "google-cloud-sdk"
+          "inkdrop"
+          "keycastr"
+          "meetingbar"
+          "mission-control-plus"
+          "paintbrush"
+          "slack"
+          "spacelauncher"
+          "stats"
+          "utm"
+          "wezterm"
+          # "podman-desktop"
+        ];
+        brews = [
+          "act"
+          "ansible"
+          "argocd"
+          "awscli"
+          "azure-cli"
+          "bash"
+          "borders"
+          "checkov"
+          "cryptography"
+          "direnv"
+          "docker"
+          "docker-completion"
+          "docker-compose"
+          "docutils"
+          "dtc"
+          "fd"
+          "fish"
+          "fisher"
+          "fontconfig"
+          "fzf"
+          "gh"
+          "gnu-sed"
+          "go"
+          "go-task"
+          "helm"
+          "jq"
+          "kind"
+          "krew"
+          "kubectx"
+          "kubernetes-cli"
+          "kustomize"
+          "lazydocker"
+          "lazygit"
+          "lua"
+          "make"
+          "neofetch"
+          "neovim"
+          "node"
+          "oci-cli"
+          "podman"
+          "pre-commit"
+          "pyenv"
+          "qemu"
+          "ripgrep"
+          "sops"
+          "starship"
+          "stern"
+          "telnet"
+          "terraform-docs"
+          "terragrunt"
+          "terrascan"
+          "tfenv"
+          "tflint"
+          "tfsec"
+          "tfupdate"
+          "tldr"
+          "tmux"
+          "tree"
+          "watch"
+          "yq"
+          "yubikey-agent"
+          "zoxide"
+          "zsh-autosuggestions"
+          "zsh-fast-syntax-highlighting"
+          "zsh-vi-mode"
+          "zstd"
+          ];
+        taps = [
+          "FelixKratz/formulae"
+        ];
+      };
     };
   in
   {
