@@ -91,6 +91,7 @@
           "cleanshot"
           "contexts"
           "drawio"
+          "font-commit-mono"
           "google-cloud-sdk"
           "inkdrop"
           "keycastr"
