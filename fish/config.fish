@@ -12,9 +12,23 @@ fish_config theme choose "Catppuccin Mocha"
 
 eval (/opt/homebrew/bin/brew shellenv)
 
-starship init fish | source # https://starship.rs/
-zoxide init fish | source # 'ajeetdsouza/zoxide'
-direnv hook fish | source # https://direnv.net/
+# source tools
+if type -q starship
+    starship init fish | source # https://starship.rs/
+end
+
+if type -q zoxide
+    zoxide init fish | source # https://github.com/ajeetdsouza/zoxideend
+end
+
+if type -q direnv
+    direnv hook fish | source # https://direnv.net/
+end
+
+if type -q carapace
+    carapace _carapace | source # https://carapace.sh
+end
+
 set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every arrow-based directory change (default)
 
 set -U fish_greeting "" # disable the default fish greeting for a cleaner startup
@@ -31,9 +45,6 @@ set -Ux VISUAL nvim
 # golang
 set -x GOENV_ROOT "$HOME/.goenv"
 set -x PATH "$GOENV_ROOT/bin" $PATH
-
-# python
-pyenv init - | source
 
 # custom scripts
 fish_add_path $HOME/.scripts
@@ -56,6 +67,22 @@ if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
 end
 
+# required for nix
+if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+    source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+end
+
+# required for nix installed packages
+fish_add_path /run/current-system/sw/bin
+fish_add_path /nix/var/nix/profiles/default/bin
+
 set -x NIX_PATH $HOME/.nix-defexpr/channels $NIX_PATH
 set -x NIX_PATH darwin=$HOME/.nix-defexpr/channels/darwin $NIX_PATH
 set -x NIX_PATH darwin-config=$HOME/.nixpkgs/darwin-configuration.nix $NIX_PATH
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Load carapace shell completions
+if test -f ~/.config/fish/conf.d/carapace.fish
+    source ~/.config/fish/conf.d/carapace.fish
+end

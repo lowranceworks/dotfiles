@@ -9,6 +9,10 @@ palette = "catppuccin_mocha"
 'Music' = ' '
 'Pictures' = ' '
 
+[nix_shell]
+disabled = true
+format = ""
+
 [kubernetes]
 symbol = '☸ '
 disabled = false
