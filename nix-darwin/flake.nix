@@ -74,6 +74,11 @@
 
       homebrew = {
         enable = true;
+        onActivation = {
+          autoUpdate = true; # Auto update packages
+          cleanup = "zap"; # Uninstall packages not defined
+          upgrade = true; # Upgrade outdated packages
+        };
         casks = [
           "alfred"
           "betterdisplay"
