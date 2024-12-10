@@ -25,10 +25,6 @@ if type -q direnv
     direnv hook fish | source # https://direnv.net/
 end
 
-if type -q carapace
-    carapace _carapace | source # https://carapace.sh
-end
-
 set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every arrow-based directory change (default)
 
 set -U fish_greeting "" # disable the default fish greeting for a cleaner startup
