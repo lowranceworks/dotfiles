@@ -10,11 +10,7 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs }:
   let
     configuration = { pkgs, ... }: {
-      ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
-      environment.systemPackages = [
-        # NOTE: Install packages with homebrew as much as possible
-        # pkgs.vim
-      ];
+      ids.gids.nixbld = 350; # NOTE: required for macOS
       services.nix-daemon.enable = true;
       programs.zsh.enable = true;
       programs.fish.enable = true;
@@ -26,11 +22,12 @@
       nix.configureBuildUsers = true;
       nix.useDaemon = true;
 
-      system.defaults = {
-        dock.orientation = "right";
-        dock.autohide = true;
-        dock.mru-spaces = false;
-        dock.persistent-apps = [
+    system.defaults = {
+      dock = {
+        orientation = "right";
+        autohide = true;
+        mru-spaces = false;
+        persistent-apps = [
           "/System/Applications/Launchpad.app/"
           "/System/Applications/Calendar.app/"
           "/Applications/Inkdrop.app"
@@ -39,12 +36,26 @@
           "/Applications/Bitwarden.app/"
           "/Applications/draw.io.app/"
         ];
-        finder.AppleShowAllExtensions = true;
-        finder.FXPreferredViewStyle = "clmv";
-        loginwindow.LoginwindowText = "Joshua Lowrance";
-        screencapture.location = "~/Pictures/screenshots";
-        screensaver.askForPasswordDelay = 10;
       };
+      finder = {
+        AppleShowAllExtensions = true;
+        FXPreferredViewStyle = "clmv";
+        ShowPathbar = true;
+        AppleShowAllFiles = true;
+      };
+      loginwindow = {
+        LoginwindowText = "Let's Go!";
+      };
+      screencapture.location = "~/Pictures/screenshots";
+      screensaver.askForPasswordDelay = 10;
+ 
+      NSGlobalDomain = {
+        AppleInterfaceStyle = "Dark";
+        InitialKeyRepeat = 17;
+        KeyRepeat = 2;
+        _HIHideMenuBar = false;
+      };
+    };
 
       homebrew.enable = true;
       homebrew.casks = [
@@ -55,7 +66,6 @@
         "cleanshot"
         "contexts"
         "drawio"
-        # "fork"
         "google-cloud-sdk"
         "inkdrop"
         "keycastr"
@@ -63,18 +73,12 @@
         "mission-control-plus"
         "paintbrush"
         # "podman-desktop"
-        # "rectangle-pro"
-        # "sensiblesidebuttons"
-        # "sf-symbols" # NOTE: commented out because it prompts for password
         "slack"
         "spacelauncher"
         "stats"
         "utm"
         "wezterm"
         "betterdisplay"
-        # "homebrew/cask-fonts/font-fontawesome" # WARN: this fails to install because it is deprecated 
-        # "homebrew/cask-fonts/font-hack-nerd-font" # WARN: this fails to install because it is deprecated 
-
       ];
       homebrew.brews = [
         "act"
