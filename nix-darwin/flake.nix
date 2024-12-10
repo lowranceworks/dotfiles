@@ -5,102 +5,80 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dotfiles = {
-      # TODO: find a way to do this without hardcoding the user
-      url = "path:/Users/josh/projects/lowranceworks/dotfiles";
-      flake = false;
-    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, dotfiles }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs }:
   let
     configuration = { pkgs, ... }: {
-      ids.gids.nixbld = 350; # NOTE: this is required on my personal MacBook
-      environment.systemPackages = with pkgs; [
-        vim
-        direnv
-        # age
-        # sshs
-        # atac
-        # termshark
-        # portal
-        # glow
-      ];
+      ids.gids.nixbld = 350; # NOTE: required for macOS
       services.nix-daemon.enable = true;
-      nix.settings.experimental-features = "nix-command flakes";
       programs.zsh.enable = true;
       programs.fish.enable = true;
       system.configurationRevision = self.rev or self.dirtyRev or null;
       system.stateVersion = 4;
       security.pam.enableSudoTouchIdAuth = true;
 
-      users.users.josh.home = "/Users/josh";
-      home-manager.backupFileExtension = "backup";
+      nix.settings.experimental-features = "nix-command flakes";
       nix.configureBuildUsers = true;
       nix.useDaemon = true;
 
-      system.defaults = {
-        dock.orientation = "right";
-        dock.autohide = true;
-        dock.mru-spaces = false;
-        dock.persistent-apps = [
+    system.defaults = {
+      dock = {
+        orientation = "right";
+        autohide = true;
+        mru-spaces = false;
+        persistent-apps = [
           "/System/Applications/Launchpad.app/"
           "/System/Applications/Calendar.app/"
           "/Applications/Inkdrop.app"
           "/Applications/WezTerm.app/"
-          "/Applications/Zen Browser.app/"
+          "/Applications/Arc.app/"
           "/Applications/Bitwarden.app/"
           "/Applications/draw.io.app/"
-          # "/System/Applications/Utilities/Terminal.app"
         ];
-        finder.AppleShowAllExtensions = true;
-        finder.FXPreferredViewStyle = "clmv";
-        loginwindow.LoginwindowText = "Joshua Lowrance";
-        screencapture.location = "~/Pictures/screenshots";
-        screensaver.askForPasswordDelay = 10;
       };
+      finder = {
+        AppleShowAllExtensions = true;
+        FXPreferredViewStyle = "clmv";
+        ShowPathbar = true;
+        AppleShowAllFiles = true;
+      };
+      loginwindow = {
+        LoginwindowText = "Let's Go!";
+      };
+      screencapture.location = "~/Pictures/screenshots";
+      screensaver.askForPasswordDelay = 10;
+ 
+      NSGlobalDomain = {
+        AppleInterfaceStyle = "Dark";
+        InitialKeyRepeat = 17;
+        KeyRepeat = 2;
+        _HIHideMenuBar = false;
+      };
+    };
 
       homebrew.enable = true;
       homebrew.casks = [
-        "google-chrome"
         "alfred"
         "bitwarden"
         "brave-browser"
-        # "choosy"
         "chromium"
         "cleanshot"
         "contexts"
         "drawio"
-        "fork"
-        "google-chrome"
         "google-cloud-sdk"
         "inkdrop"
         "keycastr"
-        # "logitech-options"
         "meetingbar"
-        # "microsoft-auto-update"
-        # "microsoft-excel"
-        # "microsoft-outlook"
-        # "microsoft-teams"
         "mission-control-plus"
         "paintbrush"
         # "podman-desktop"
-        # "rectangle-pro"
-        # "sensiblesidebuttons"
-        # "sf-symbols" # NOTE: commented out because it prompts for password
         "slack"
         "spacelauncher"
         "stats"
         "utm"
         "wezterm"
         "betterdisplay"
-        # "homebrew/cask-fonts/font-fontawesome" # WARN: this fails to install because it is deprecated 
-        # "homebrew/cask-fonts/font-hack-nerd-font" # WARN: this fails to install because it is deprecated 
-
       ];
       homebrew.brews = [
         "act"
@@ -140,6 +118,7 @@
         "neofetch"
         "neovim"
         "node"
+        "oci-cli"
         "podman"
         "pre-commit"
         "pyenv"
@@ -158,6 +137,8 @@
         "tfupdate"
         "tldr"
         "tmux"
+        "tree"
+        "watch"
         "yq"
         "yubikey-agent"
         "zoxide"
@@ -165,8 +146,6 @@
         "zsh-fast-syntax-highlighting"
         "zsh-vi-mode"
         "zstd"
-        "federico-terzi/espanso/espanso" # not found, tap it and try again
-        "minamijoyo/hcledit/hcledit" # not found, tap it and try again
       ];
     };
   in
@@ -175,15 +154,10 @@
       system = "aarch64-darwin";
       modules = [
         configuration
-        home-manager.darwinModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.josh = import ./home.nix;
-          home-manager.extraSpecialArgs = { inherit dotfiles; };
-        }
       ];
     };
 
     darwinPackages = self.darwinConfigurations."LowranceWorks".pkgs;
   };
 }
+
