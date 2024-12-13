@@ -28,7 +28,7 @@
     system.defaults = {
       ".GlobalPreferences" = {
         # "com.apple.mouse.scaling" = -1.0;  # Disables mouse acceleration
-        "com.apple.mouse.scaling" = 2.0;  # Fast mouse speed
+        # "com.apple.mouse.scaling" = 2.0;  # Fast mouse speed
       };
       dock = {
         orientation = "right";
