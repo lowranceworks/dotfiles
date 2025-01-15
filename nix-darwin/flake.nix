@@ -140,7 +140,6 @@
           "gnu-sed"
           "go"
           "go-task"
-          "google-cloud-sdk-gke-gcloud-auth-plugin" 
           # "hcledit"
           "helm"
           "jq"
