@@ -157,6 +157,7 @@
           "neovim"
           "node"
           "oci-cli"
+          "packer"
           "podman"
           "pre-commit"
           "pyenv"
