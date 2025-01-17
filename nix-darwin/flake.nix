@@ -127,6 +127,7 @@
           "docker"
           "docker-completion"
           "docker-compose"
+          "docker-credential-helper"
           "docutils"
           "dtc"
           "earthly"
