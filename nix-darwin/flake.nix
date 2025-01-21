@@ -145,6 +145,7 @@
           "krew"
           "kubebuilder"
           "kubectx"
+          "kubent"
           "kubernetes-cli"
           "kustomize"
           "lazydocker"
