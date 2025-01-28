@@ -137,7 +137,6 @@
           "gh"
           "git-filter-repo"
           "gnu-sed"
-          "go"
           "go-task"
           "goenv"
           "helm"
@@ -194,6 +193,7 @@
           # "docker-completion"
           # "docker-compose"
           # "docker-credential-helper"
+          # "go" # use goenv instead
           ];
         taps = [
           "FelixKratz/formulae"
