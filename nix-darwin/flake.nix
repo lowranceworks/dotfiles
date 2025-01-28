@@ -110,7 +110,7 @@
           "stats"
           "utm"
           "wezterm"
-          # "podman-desktop"
+          "podman-desktop"
         ];
         brews = [
           "act"
@@ -124,10 +124,6 @@
           "checkov"
           "cryptography"
           "direnv"
-          "docker"
-          "docker-completion"
-          "docker-compose"
-          "docker-credential-helper"
           "docutils"
           "dotenvx"
           "dtc"
@@ -147,6 +143,7 @@
           "jq"
           "kind"
           "krew"
+          "kubebuilder"
           "kubectx"
           "kubernetes-cli"
           "kustomize"
@@ -191,6 +188,10 @@
           # "espanso"
           # "hcledit"
           # "sketchybar"
+          # "docker"
+          # "docker-completion"
+          # "docker-compose"
+          # "docker-credential-helper"
           ];
         taps = [
           "FelixKratz/formulae"
