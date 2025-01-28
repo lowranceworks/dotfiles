@@ -122,6 +122,7 @@
           "bash"
           "borders"
           "checkov"
+          "crossplane"
           "cryptography"
           "direnv"
           "docutils"
