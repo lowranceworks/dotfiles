@@ -40,9 +40,10 @@ set -Ux VISUAL nvim
 
 # go configuration with goenv
 set -gx GOENV_ROOT $HOME/.goenv
-set -gx PATH $GOENV_ROOT/bin $PATH
-set -gx PATH $GOENV_ROOT/shims $PATH
-status --is-interactive; and source (goenv init -|psub)
+set -gx PATH $HOME/go/bin $PATH # User's Go workspace binaries
+set -gx PATH $GOENV_ROOT/shims $PATH # goenv shims
+set -gx PATH $GOENV_ROOT/bin $PATH # goenv command itself
+status --is-interactive; and source (goenv init -|psub) # Without this line, goenv wouldn't be able to properly manage different Go versions - you'd have the goenv command available, but it wouldn't actually be able to switch between Go versions effectively.
 
 # custom scripts
 fish_add_path $HOME/.scripts
