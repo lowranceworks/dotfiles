@@ -38,9 +38,11 @@ set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git'" # Use fd for fzf, showing hidden f
 
 set -Ux VISUAL nvim
 
-# golang
-set -x GOENV_ROOT "$HOME/.goenv"
-set -x PATH "$GOENV_ROOT/bin" $PATH
+# go configuration with goenv
+set -gx GOENV_ROOT $HOME/.goenv
+set -gx PATH $GOENV_ROOT/bin $PATH
+set -gx PATH $GOENV_ROOT/shims $PATH
+status --is-interactive; and source (goenv init -|psub)
 
 # custom scripts
 fish_add_path $HOME/.scripts
