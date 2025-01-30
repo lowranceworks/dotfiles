@@ -25,10 +25,6 @@ if type -q direnv
     direnv hook fish | source # https://direnv.net/
 end
 
-if type -q carapace
-    carapace _carapace | source # https://carapace.sh
-end
-
 set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every arrow-based directory change (default)
 
 set -U fish_greeting "" # disable the default fish greeting for a cleaner startup
@@ -42,9 +38,12 @@ set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git'" # Use fd for fzf, showing hidden f
 
 set -Ux VISUAL nvim
 
-# golang
-set -x GOENV_ROOT "$HOME/.goenv"
-set -x PATH "$GOENV_ROOT/bin" $PATH
+# go configuration with goenv
+set -gx GOENV_ROOT $HOME/.goenv
+set -gx PATH $HOME/go/bin $PATH # User's Go workspace binaries
+set -gx PATH $GOENV_ROOT/shims $PATH # goenv shims
+set -gx PATH $GOENV_ROOT/bin $PATH # goenv command itself
+# status --is-interactive; and source (goenv init -|psub) # Without this line, goenv wouldn't be able to properly manage different Go versions - you'd have the goenv command available, but it wouldn't actually be able to switch between Go versions effectively.
 
 # custom scripts
 fish_add_path $HOME/.scripts
