@@ -85,3 +85,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 if test -f ~/.config/fish/conf.d/carapace.fish
     source ~/.config/fish/conf.d/carapace.fish
 end
+
+# Created by `pipx` on 2025-02-03 15:15:55
+set PATH $PATH /Users/Joshua.lowrance/.local/bin
