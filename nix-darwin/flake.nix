@@ -159,6 +159,7 @@
           "oci-cli"
           "podman"
           "pre-commit"
+          "protobuf"
           "pyenv"
           "qemu"
           "ripgrep"
