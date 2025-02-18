@@ -140,6 +140,7 @@
           "go-task"
           "goenv"
           "helm"
+          "jfrog-cli"
           "jq"
           "kind"
           "krew"
