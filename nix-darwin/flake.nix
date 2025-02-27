@@ -161,6 +161,8 @@
           "podman"
           "pre-commit"
           "protobuf"
+          "proton-mail"
+          "proton-drive"
           "pyenv"
           "qemu"
           "ripgrep"
