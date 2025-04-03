@@ -168,6 +168,7 @@
           "starship"
           "stern"
           "stow"
+          "talos"
           "telnet"
           "terraform-docs"
           "terragrunt"
