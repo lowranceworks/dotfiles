@@ -166,6 +166,7 @@
           "pyenv"
           "qemu"
           "ripgrep"
+          "sesh"
           "sops"
           "starship"
           "stern"
