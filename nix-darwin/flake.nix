@@ -12,18 +12,15 @@
     configuration = { pkgs, ... }: {
 
       ids.gids.nixbld = 350; # NOTE: required for macOS
-      services.nix-daemon.enable = true;
       programs.zsh.enable = true;
       programs.fish.enable = true;
       system.keyboard.enableKeyMapping = true;
       system.keyboard.remapCapsLockToControl = false; # No longer needed with programmable keyboard
       system.configurationRevision = self.rev or self.dirtyRev or null;
       system.stateVersion = 4;
-      security.pam.enableSudoTouchIdAuth = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
 
       nix.settings.experimental-features = "nix-command flakes";
-      nix.configureBuildUsers = true;
-      nix.useDaemon = true;
 
     system.defaults = {
       ".GlobalPreferences" = {
