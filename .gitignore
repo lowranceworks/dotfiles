@@ -26,8 +26,8 @@ fish_variables
 ./fish
 
 # ignore nvim lock/json files
-./nvim/lazy-lock.json
-./nvim/lazyvim.json
+nvim/lazy-lock.json
+nvim/lazyvim.json
 
 # ignore tmux plugins with embedded git repositories
 tmux/plugins/
