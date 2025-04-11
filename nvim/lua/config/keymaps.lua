@@ -8,5 +8,8 @@
 --  NOTE: You can find this in init.lua
 
 -- navigation
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- navigation
+vim.keymap.set("n", "<C-u>", "<C-u>zz") -- Center view when scrolling half-page up
+vim.keymap.set("n", "<C-d>", "<C-d>zz") -- Center view when scrolling half-page down
+vim.keymap.set("n", "#", "#zz") -- Center view when searching backward for word under cursor
+vim.keymap.set("n", "*", "*zz") -- Center view when searching forward for word under cursor
