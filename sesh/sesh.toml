@@ -1,0 +1,58 @@
+#  ███████╗███████╗███████╗██╗  ██╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗ 
+#  ██╔════╝██╔════╝██╔════╝██║  ██║    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝ 
+#  ███████╗█████╗  ███████╗███████║    ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+#  ╚════██║██╔══╝  ╚════██║██╔══██║    ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+#  ███████║███████╗███████║██║  ██║    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+#  ╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝ 
+#
+#  Smart session manager for the terminal
+#  https://github.com/joshmedeski/sesh
+
+blacklist = ["scratch"]
+
+# default
+[default_session]
+startup_command = "nvim +GoToFile"
+startup_command_ignore_dirs = ["~/projects"]
+preview_command = "eza --all --git --icons --color=always {}"
+
+# common
+
+[[session]]
+name = "Downloads"
+path = "~/Downloads"
+startup_command = "yazi"
+
+[[session]]
+name = "dotfiles"
+path = "~/projects/lowranceworks/dotfiles"
+startup_command = "nvim ."
+
+[[session]]
+name = "aerospace config"
+path = "~/projects/lowranceworks/dotfiles/aerospace"
+
+[[session]]
+name = "nix-dawrin config"
+path = "~/projects/lowranceworks/dotfiles/nix-darwin/"
+startup_command = "nvim flake.nix"
+
+[[session]]
+name = "wezterm config"
+path = "~/projects/lowranceworks/dotfiles/wezterm"
+startup_command = "nvim wezterm.lua"
+
+[[session]]
+name = "neovim config"
+path = "~/projects/lowranceworks/dotfiles/nvim"
+startup_command = "nvim ."
+
+[[session]]
+name = "fish config"
+path = "~/projects/lowranceworks/dotfiles/fish"
+startup_command = "nvim ."
+
+[[session]]
+name = "tmux config"
+path = "~/projects/lowranceworks/dotfiles/tmux"
+startup_command = "nvim ."
