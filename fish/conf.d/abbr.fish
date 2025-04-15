@@ -97,11 +97,11 @@ abbr kl "kubectl logs -f"
 abbr ke "kubectl exec -it"
 abbr kcns "kubectl config set-context --current --namespace"
 
-abbr l "lsd  --group-dirs first -A"
+abbr l "eza --group-directories-first -Al"
 abbr ld lazydocker
 abbr lg lazygit
-# abbr ll "lsd  --group-dirs first -Al"
-abbr lt "lsd  --group-dirs last -A --tree"
+abbr ll "eza --all --git --icons --color=always --group-directories-first -Al"
+abbr lt "eza --group-directories-last -A --tree"
 
 abbr mt "man tmux"
 abbr mf "man fzf"
