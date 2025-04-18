@@ -12,8 +12,7 @@ blacklist = ["scratch"]
 
 # default
 [default_session]
-startup_command = "nvim ."
-startup_command_ignore_dirs = ["~/projects"]
+startup_command = "tmux new-window -n shell && tmux select-window -t 1 && nvim ."
 preview_command = "eza --all --git --icons --color=always {}"
 
 # common
@@ -26,7 +25,6 @@ startup_command = "yazi"
 [[session]]
 name = "dotfiles"
 path = "~/projects/lowranceworks/dotfiles"
-startup_command = "nvim ."
 
 [[session]]
 name = "aerospace config"
