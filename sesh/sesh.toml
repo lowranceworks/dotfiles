@@ -12,7 +12,7 @@ blacklist = ["scratch"]
 
 # default
 [default_session]
-startup_command = "tmux new-window -n shell && tmux select-window -t 1 && nvim ."
+startup_command = "tmux new-window && tmux select-window -t 1 && nvim ."
 preview_command = "eza --all --git --icons --color=always {}"
 
 # common
