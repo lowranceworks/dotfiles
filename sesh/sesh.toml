@@ -12,7 +12,7 @@ blacklist = ["scratch"]
 
 # default
 [default_session]
-startup_command = "nvim +GoToFile"
+startup_command = "nvim ."
 startup_command_ignore_dirs = ["~/projects"]
 preview_command = "eza --all --git --icons --color=always {}"
 
