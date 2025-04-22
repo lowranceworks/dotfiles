@@ -14,6 +14,7 @@ blacklist = ["scratch"]
 [default_session]
 startup_command = "tmux new-window && tmux select-window -t 1 && nvim ."
 preview_command = "eza --all --git --icons --color=always {}"
+startup_command_ignore_dirs = ["~/projects/lowranceworks/dotfiles"]
 
 # common
 
