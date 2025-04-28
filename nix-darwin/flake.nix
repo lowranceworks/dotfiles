@@ -84,6 +84,7 @@
           upgrade = true; # Upgrade outdated packages
         };
         casks = [
+          "1password-cli"
           "aerospace"
           "alfred"
           "arc"
@@ -118,6 +119,7 @@
           "azure-cli"
           "bash"
           "borders"
+          "bitwarden-cli"
           "checkov"
           "crossplane"
           "cryptography"
