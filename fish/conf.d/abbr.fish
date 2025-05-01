@@ -2,6 +2,8 @@
 # NOTE: manage fish abbreviations
 # https://fishshell.com/docs/current/cmds/abbr.html
 
+abbr da "direnv allow"
+
 abbr bi "brew install"
 abbr bic "brew install --cask"
 abbr bin "brew info"
@@ -135,7 +137,9 @@ abbr tt "touch .t && chmod +x .t && echo -e '#!/usr/bin/env bash\n' > .t && nvim
 
 abbr tf terraform
 abbr tfa "terraform apply"
+abbr tfaa "terraform apply --auto-apply"
 abbr tfd "terraform destroy"
+abbr tfda "terraform destroy --auto-apply"
 abbr tff "terraform fmt"
 abbr tfi "terraform init"
 abbr tfm "terraform format"
@@ -143,8 +147,8 @@ abbr tfo "terraform output"
 abbr tfp "terraform plan"
 abbr tfr "terraform refresh"
 abbr tfs "terraform state"
-abbr tfsl "terraform state list"
 abbr tfss "terraform state show"
+abbr tfsl "terraform state list"
 abbr tfv "terraform validate"
 
 abbr tg terragrunt
