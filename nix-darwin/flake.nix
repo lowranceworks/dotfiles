@@ -118,7 +118,7 @@
           "awscli"
           "azure-cli"
           "bash"
-          "borders"
+          # "borders"
           "bitwarden-cli"
           "checkov"
           "crossplane"
