@@ -141,6 +141,7 @@
           "goenv"
           "helm"
           "jfrog-cli"
+          "jj"
           "jq"
           "kind"
           "krew"
