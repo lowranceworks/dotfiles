@@ -122,6 +122,7 @@ abbr nt "npm run test"
 abbr o "open ."
 
 abbr p podman
+abbr pfr "pip3 freeze > ./requirements.txt"
 
 abbr rmr "rm -rf"
 
@@ -157,6 +158,7 @@ abbr tg terragrunt
 
 abbr vim nvim
 abbr v "nvim ."
+abbr venv "python3 -m venv .venv && source .venv/bin/activate.fish"
 
 abbr za "zoxide add"
 abbr ze "zoxide edit"
