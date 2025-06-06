@@ -2,6 +2,8 @@
 # NOTE: manage fish abbreviations
 # https://fishshell.com/docs/current/cmds/abbr.html
 
+abbr da "direnv allow"
+
 abbr bi "brew install"
 abbr bic "brew install --cask"
 abbr bin "brew info"
@@ -16,6 +18,8 @@ abbr cl clear
 abbr claer clear
 abbr clera clear
 abbr cx "chmod +x"
+
+abbr da "direnv allow"
 
 abbr dc "docker compose"
 abbr dcd "docker compose down"
@@ -34,38 +38,39 @@ abbr g git
 abbr ga "git add ."
 abbr gaa "git add --all"
 abbr gb "git branch -v"
+abbr gbD "git branch -D"
+abbr gbd "git branch -d"
 abbr gc "git commit"
-abbr gcmsg "git commit --message"
 abbr gca "git commit -av"
-abbr gcl "git clone"
-abbr gco "git checkout"
 abbr gcb "git checkout -b"
+abbr gcl "git clone"
+abbr gcmsg "git commit --message"
+abbr gco "git checkout"
 abbr gcom "git checkout main"
 abbr gd "git diff"
 abbr gds "git diff --staged"
-abbr gbD "git branch -D"
-abbr gbd "git branch -d"
 abbr gf "git fetch --all"
+abbr gi "git init"
 abbr gl "git pull"
-abbr glr "git pull --rebase"
 abbr glog "git log --oneline --decorate --graph"
+abbr glr "git pull --rebase"
 abbr gma "git merge --abort"
 abbr gmc "git merge --continue"
 abbr gp "git push"
-abbr gpsup "git push --set-upstream origin (git rev-parse --abbrev-ref HEAD)"
 abbr gpom "git pull origin main"
 abbr gpr "gh pr create"
+abbr gpsup "git push --set-upstream origin (git rev-parse --abbrev-ref HEAD)"
 abbr gpum "git pull upstream master"
 abbr gr "git remote"
+abbr gra "git rebase abort"
+abbr grao "git remote add origin"
+abbr grau "git remote add upstream"
+abbr grc "git rebase --continue"
+abbr grhh "git reset --hard"
+abbr grhs "git reset --soft"
+abbr grro "git remote remove origin"
 abbr grs "git restore"
 abbr grst "git restore --staged"
-abbr grhs "git reset --soft"
-abbr grhh "git reset --hard"
-abbr gra "git remote add"
-abbr grc "git rebase --continue"
-abbr grao "git remote add origin"
-abbr grro "git remote remove origin"
-abbr grau "git remote add upstream"
 abbr grv "git remote -v"
 abbr gs "git status"
 abbr gst "git status"
@@ -97,11 +102,13 @@ abbr kl "kubectl logs -f"
 abbr ke "kubectl exec -it"
 abbr kcns "kubectl config set-context --current --namespace"
 
-abbr l "lsd  --group-dirs first -A"
+abbr l "eza --group-directories-first -Al"
 abbr ld lazydocker
 abbr lg lazygit
-# abbr ll "lsd  --group-dirs first -Al"
-abbr lt "lsd  --group-dirs last -A --tree"
+abbr ll "eza --all --git --icons --color=always --group-directories-first -Al"
+abbr lt "eza --group-directories-last --tree"
+abbr lta "eza --group-directories-last --tree --all"
+abbr ltd "eza --group-directories-last --tree --only-dirs"
 
 abbr mt "man tmux"
 abbr mf "man fzf"
@@ -117,6 +124,7 @@ abbr nt "npm run test"
 abbr o "open ."
 
 abbr p podman
+abbr pfr "pip3 freeze > ./requirements.txt"
 
 abbr rmr "rm -rf"
 
@@ -134,7 +142,9 @@ abbr tt "touch .t && chmod +x .t && echo -e '#!/usr/bin/env bash\n' > .t && nvim
 
 abbr tf terraform
 abbr tfa "terraform apply"
+abbr tfaa "terraform apply --auto-approve"
 abbr tfd "terraform destroy"
+abbr tfda "terraform destroy --auto-approve"
 abbr tff "terraform fmt"
 abbr tfi "terraform init"
 abbr tfm "terraform format"
@@ -142,14 +152,15 @@ abbr tfo "terraform output"
 abbr tfp "terraform plan"
 abbr tfr "terraform refresh"
 abbr tfs "terraform state"
-abbr tfsl "terraform state list"
 abbr tfss "terraform state show"
+abbr tfsl "terraform state list"
 abbr tfv "terraform validate"
 
 abbr tg terragrunt
 
 abbr vim nvim
 abbr v "nvim ."
+abbr venv "python3 -m venv .venv && source .venv/bin/activate.fish"
 
 abbr za "zoxide add"
 abbr ze "zoxide edit"

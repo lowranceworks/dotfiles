@@ -88,3 +88,6 @@ end
 
 # Created by `pipx` on 2025-02-03 15:15:55
 set PATH $PATH /Users/Joshua.lowrance/.local/bin
+
+# Required for pandox/xelatex
+set -x PATH $PATH /Library/TeX/texbin
