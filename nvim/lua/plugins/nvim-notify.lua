@@ -1,6 +1,6 @@
 return {
   "rcarriga/nvim-notify",
-  lazy = false, -- This can be set to true if you want to load it on-demand
+  lazy = false, -- Load at startup (needed for immediate access)
   config = function()
     require("notify").setup({
       background_colour = "#000000",

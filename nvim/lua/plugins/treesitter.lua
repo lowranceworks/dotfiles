@@ -3,6 +3,7 @@ return {
   -- See `:help nvim-treesitter`
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false, -- Load at startup (needed for immediate access)
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },

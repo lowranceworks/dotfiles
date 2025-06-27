@@ -7,4 +7,5 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=jso
 
 return {
   "neovim/nvim-lspconfig",
+  lazy = false, -- Load at startup (needed for immediate access)
 }

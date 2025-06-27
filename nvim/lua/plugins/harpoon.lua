@@ -1,6 +1,6 @@
 return {
   "ThePrimeagen/harpoon",
-  lazy = false,
+  lazy = true, -- Load when keymaps are triggered (saves startup time)
   dependencies = {
     "nvim-lua/plenary.nvim",
   },

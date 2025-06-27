@@ -1,5 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  lazy = false, -- Load at startup (needed for immediate access)
   keys = {},
   opts = function(_, opts)
     opts = vim.tbl_deep_extend("force", opts, {

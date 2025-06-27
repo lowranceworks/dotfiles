@@ -6,6 +6,7 @@
 return {
   {
     "folke/flash.nvim",
+    lazy = false, -- Load at startup (needed for immediate access)
     opts = {
       modes = {
         search = {
