@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  lazy = false, -- Load at startup (needed for immediate access)
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     formatters_by_ft = {

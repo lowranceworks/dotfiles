@@ -1,6 +1,6 @@
 return {
   "mbbill/undotree",
-  lazy = false,
+  lazy = true, -- Load when keymaps are triggered (saves startup time)
   config = function()
     -- Configuration settings for undotree go here
     -- If undotree has specific setup or configuration options,

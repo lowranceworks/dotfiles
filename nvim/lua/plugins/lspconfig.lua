@@ -1,5 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
+  lazy = false, -- Load at startup (needed for immediate access)
   config = function()
     -- Auto-commands for Terraform and HCL filetypes
     vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])

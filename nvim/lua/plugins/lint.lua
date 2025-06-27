@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
+  lazy = false, -- Load at startup (needed for immediate access)
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local lint = require("lint")

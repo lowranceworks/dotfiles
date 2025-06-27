@@ -1,6 +1,6 @@
 return {
   "catppuccin/nvim",
-  lazy = false, -- Adjust based on your loading preference
+  lazy = false, -- Load at startup (needed for immediate access)
   priority = 1000,
   config = function()
     require("catppuccin").setup({
