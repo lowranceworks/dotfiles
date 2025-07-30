@@ -86,7 +86,6 @@
         casks = [
           "1password-cli"
           "aerospace"
-          "alfred"
           "arc"
           "betterdisplay"
           "bitwarden"
@@ -103,12 +102,13 @@
           "meetingbar"
           "mission-control-plus"
           "paintbrush"
+          "podman-desktop"
+          "raycast"
           "slack"
           "spacelauncher"
           "stats"
           "utm"
           "wezterm"
-          "podman-desktop"
         ];
         brews = [
           "act"
@@ -118,7 +118,6 @@
           "awscli"
           "azure-cli"
           "bash"
-          "basictex"
           # "borders"
           "bitwarden-cli"
           "checkov"
@@ -160,7 +159,6 @@
           "neovim"
           "node"
           "oci-cli"
-          "pandoc"
           "podman"
           "pre-commit"
           "protobuf"
