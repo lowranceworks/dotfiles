@@ -20,6 +20,7 @@
       system.stateVersion = 4;
       security.pam.services.sudo_local.touchIdAuth = true;
 
+      system.primaryUser = builtins.getEnv "USER";
       nix.settings.experimental-features = "nix-command flakes";
 
     system.defaults = {
