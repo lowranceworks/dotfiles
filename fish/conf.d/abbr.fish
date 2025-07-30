@@ -88,19 +88,18 @@ abbr gcsp "gcloud config set project"
 abbr hd "history delete --exact --case-sensitive \'(history | fzf-tmux -p -m)\'"
 
 abbr k kubectl
-abbr kc kubectx
 abbr ka "kubectl apply -f"
-abbr kg "kubectl get"
+abbr kc kubectx
+abbr kcns "kubectl config set-context --current --namespace"
 abbr kd "kubectl describe"
 abbr kdel "kubectl delete"
-abbr kl "kubectl logs"
-abbr kgpo "kubectl get pod"
-abbr kgd "kubectl get deployments"
-abbr kc kubectx
-abbr kns kubens
-abbr kl "kubectl logs -f"
 abbr ke "kubectl exec -it"
-abbr kcns "kubectl config set-context --current --namespace"
+abbr kg "kubectl get"
+abbr kgd "kubectl get deployments"
+abbr kgpo "kubectl get pod"
+abbr kl "kubectl logs -f"
+abbr kl "kubectl logs"
+abbr kns kubens
 
 abbr l "eza --group-directories-first -Al"
 abbr ld lazydocker
@@ -155,10 +154,9 @@ abbr tfp "terraform plan"
 abbr tfpr "terraform plan --refresh-only"
 abbr tfr "terraform refresh"
 abbr tfs "terraform state"
-abbr tfss "terraform state show"
 abbr tfsl "terraform state list"
+abbr tfss "terraform state show"
 abbr tfv "terraform validate"
-
 abbr tg terragrunt
 abbr tgaa "terragrunt run-all apply"
 abbr tgaaa "terragrunt run-all apply --auto-approve"
