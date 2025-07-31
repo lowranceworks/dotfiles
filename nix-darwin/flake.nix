@@ -21,7 +21,10 @@
       security.pam.services.sudo_local.touchIdAuth = true;
 
       system.primaryUser = builtins.getEnv "USER";
-      nix.settings.experimental-features = "nix-command flakes";
+
+      nix.settings = {
+        experimental-features = "nix-command flakes";
+      };
 
     system.defaults = {
       ".GlobalPreferences" = {
@@ -163,8 +166,6 @@
           "podman"
           "pre-commit"
           "protobuf"
-          "proton-mail"
-          "proton-drive"
           "pyenv"
           "qemu"
           "ripgrep"
@@ -173,7 +174,6 @@
           "starship"
           "stern"
           "stow"
-          "talos"
           "telnet"
           "terraform-docs"
           "terragrunt"
