@@ -33,3 +33,6 @@ tmux/plugins/
 
 # ignore fzf history
 fzf
+
+# ignore raycast extensions
+raycast/extensions
