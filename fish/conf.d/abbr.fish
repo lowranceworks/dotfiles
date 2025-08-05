@@ -125,6 +125,7 @@ abbr o "open ."
 abbr p podman
 abbr pfr "pip3 freeze > ./requirements.txt"
 
+abbr rgi "rg -i"
 abbr rmr "rm -rf"
 
 abbr sf "source ~/.config/fish/config.fish"
