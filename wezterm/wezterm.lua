@@ -60,6 +60,7 @@ local config = {
 		{ mods = "CMD", key = "Backspace", action = wezterm.action.SendKey({ mods = "CTRL", key = "u" }) },
 
 		k.cmd_key("q", k.multiple_actions(":qa!")),
+		{ key = "t", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
 	},
 }
 
