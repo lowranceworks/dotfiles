@@ -20,6 +20,7 @@ abbr clera clear
 abbr cx "chmod +x"
 
 abbr da "direnv allow"
+abbr dr "direnv reload"
 
 abbr dc "docker compose"
 abbr dcd "docker compose down"
