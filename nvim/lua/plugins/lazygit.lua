@@ -1,6 +1,5 @@
 return {
   "kdheepak/lazygit.nvim",
-  lazy = true,
   cmd = {
     "LazyGit",
     "LazyGitConfig",
@@ -8,13 +7,14 @@ return {
     "LazyGitFilter",
     "LazyGitFilterCurrentFile",
   },
-  -- optional for floating window border decoration
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  -- setting the keybinding for LazyGit with 'keys' is recommended in
-  -- order to load the plugin when the command is run for the first time
   keys = {
-    { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    { "<leader>gb", "<cmd>LazyGitFilter<cr>", desc = "Git Blame" },
+    { "<leader>gc", "<cmd>LazyGitFilterCurrentFile<cr>", 
+      desc = "Git Commits" },
+    { "<leader>gl", "<cmd>LazyGitFilter<cr>", desc = "Git Log" },
   },
 }
