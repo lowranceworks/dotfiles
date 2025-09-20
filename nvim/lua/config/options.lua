@@ -2,6 +2,9 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Sync clipboard between OS and Neovim
+vim.opt.clipboard = "unnamedplus"
+
 -- Save undo history
 vim.o.undofile = true
 
