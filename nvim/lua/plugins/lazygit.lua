@@ -1,5 +1,6 @@
 return {
   "kdheepak/lazygit.nvim",
+  lazy = false, -- Load at startup (needed for immediate access)
   cmd = {
     "LazyGit",
     "LazyGitConfig",
