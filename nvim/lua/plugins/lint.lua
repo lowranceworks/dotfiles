@@ -16,7 +16,7 @@ return {
       terraform = { "tflint" },
       tf = { "tflint" },
       yaml = { "yamllint" },
-      json = { "jsonlint" },
+      json = { "jq" },
       dockerfile = { "hadolint" },
       sh = { "shellcheck" },
       bash = { "shellcheck" },
