@@ -19,6 +19,9 @@ vim.wo.signcolumn = "yes"
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
+-- Enable virtual text (needed for hlslens to show counts next to matches)
+vim.opt.virtualedit = "block"
+
 -- Indenting
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -39,7 +42,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
