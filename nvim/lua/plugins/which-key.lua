@@ -1,5 +1,6 @@
 return {
   "folke/which-key.nvim",
+  lazy = false, -- Load at startup (needed for immediate access)
   event = "VeryLazy",
   dependencies = {
     "echasnovski/mini.icons",

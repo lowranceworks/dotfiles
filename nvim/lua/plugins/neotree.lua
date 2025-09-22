@@ -1,8 +1,7 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  lazy = false, -- Load at startup (needed for immediate access)
   branch = "v3.x",
-  lazy = false, -- Load immediately instead of on keypress
-  priority = 1000, -- Load early
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",

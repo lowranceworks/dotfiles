@@ -1,5 +1,6 @@
 return {
   "numToStr/Comment.nvim",
+  lazy = true, -- Load when keymaps are triggered (saves startup time)
   config = function()
     require("Comment").setup({
       ---Add a space b/w comment and the line

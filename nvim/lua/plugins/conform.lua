@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  lazy = true, -- Load when keymaps are triggered (saves startup time)
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     formatters_by_ft = {

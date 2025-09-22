@@ -1,5 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
+  lazy = false, -- Load at startup (needed for immediate access)
   dependencies = { "nvim-lua/plenary.nvim" },
   keys = {
     { "<leader><leader>", "<cmd>Telescope find_files<cr>", 
