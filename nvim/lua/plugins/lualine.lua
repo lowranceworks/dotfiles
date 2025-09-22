@@ -1,5 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
+  lazy = true, -- Load when keymaps are triggered (saves startup time)
   dependencies = { "nvim-tree/nvim-web-devicons" },
   event = "VeryLazy",
   config = function()
