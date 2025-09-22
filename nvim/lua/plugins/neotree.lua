@@ -19,29 +19,12 @@ return {
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
-      default_component_configs = {
-        container = {
-          enable_character_fade = true
-        },
-        indent = {
-          indent_size = 2,
-          padding = 1,
-          with_markers = true,
-          indent_marker = "│",
-          last_indent_marker = "└",
-          highlight = "NeoTreeIndentMarker",
-          with_expanders = nil,
-          expander_collapsed = "",
-          expander_expanded = "",
-          expander_highlight = "NeoTreeExpander",
-        },
-      },
       window = {
         position = "left",
-        width = 55, -- Make neo-tree wider (default is 25)
-        mapping_options = {
-          noremap = true,
-          nowait = true,
+        width = 55,
+        mappings = {
+          ["f"] = "filter_as_you_type", -- Enable live filtering
+          ["F"] = "clear_filter",
         },
       },
       filesystem = {
