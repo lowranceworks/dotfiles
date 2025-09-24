@@ -22,6 +22,24 @@ vim.o.completeopt = "menuone,noselect"
 -- Enable virtual text (needed for hlslens to show counts next to matches)
 vim.opt.virtualedit = "block"
 
+-- Enable transparency
+vim.opt.termguicolors = true
+if vim.fn.has("nvim-0.10") == 1 then
+  vim.opt.pumblend = 10 -- Popup menu transparency
+end
+
+-- Set transparent background for floating windows
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+  end,
+})
+
+-- Apply immediately if colorscheme is already loaded
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+
 -- Indenting
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
