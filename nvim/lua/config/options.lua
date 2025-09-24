@@ -5,6 +5,10 @@
 -- Sync clipboard between OS and Neovim
 vim.opt.clipboard = "unnamedplus"
 
+-- Highlight current line
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "both" -- Highlight both line and number
+
 -- Save undo history
 vim.o.undofile = true
 
