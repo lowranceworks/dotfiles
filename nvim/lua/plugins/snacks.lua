@@ -64,7 +64,16 @@ return {
     bigfile = { enabled = true },
     dashboard = { enabled = true },
     explorer = { enabled = true },
-    indent = { enabled = true },
+    indent = { 
+      enabled = true,
+      char = "│", -- Visible indent character
+      scope = {
+        enabled = true,
+        char = "│",
+        underline = false,
+        highlight = "CatppuccinGreen", -- Use your colorscheme's green
+      },
+    },
     input = { enabled = true },
     
     -- Buffer management (replacing BufferLine)

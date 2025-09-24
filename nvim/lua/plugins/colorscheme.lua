@@ -47,6 +47,13 @@ return {
           indentscope_color = "",
         },
       },
+      custom_highlights = function(colors)
+        return {
+          CursorLine = { bg = colors.surface1 }, -- More prominent line highlighting
+          CursorLineNr = { fg = colors.green, style = { "bold" } }, -- Green line number
+          LineNr = { fg = colors.overlay1 }, -- Dimmer line numbers
+        }
+      end,
     })
 
     -- Load the colorscheme
