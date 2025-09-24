@@ -95,6 +95,14 @@ return {
       }
     },
     
+    scratch = { 
+      enabled = false,
+      win = {
+        -- Hide scratch indicators
+        wo = { statusline = "" }
+      }
+    },
+
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
