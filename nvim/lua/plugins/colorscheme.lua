@@ -43,7 +43,7 @@ return {
       notify = true,
       mini = {
         enabled = true,
-        indentscope_color = "",
+        indentscope_color = "mauve",
       },
       native_lsp = {
         enabled = true,
