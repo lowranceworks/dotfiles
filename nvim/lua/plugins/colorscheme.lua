@@ -1,6 +1,6 @@
 return {
   "catppuccin/nvim",
-  lazy = false, -- Adjust based on your loading preference
+  lazy = false, -- Load at startup (needed for immediate access)
   priority = 1000,
   config = function()
     require("catppuccin").setup({
@@ -47,6 +47,13 @@ return {
           indentscope_color = "",
         },
       },
+      custom_highlights = function(colors)
+        return {
+          CursorLine = { bg = colors.surface1 }, -- More prominent line highlighting
+          CursorLineNr = { fg = colors.green, style = { "bold" } }, -- Green line number
+          LineNr = { fg = colors.overlay1 }, -- Dimmer line numbers
+        }
+      end,
     })
 
     -- Load the colorscheme

@@ -1,5 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
+  lazy = false, -- Load at startup (needed for immediate access)
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     local lint = require("lint")
@@ -10,7 +11,16 @@ return {
       javascriptreact = { "eslint_d" },
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
-      python = { "pylint" },
+      python = { "pylint", "flake8" },
+      go = { "golangcilint" },
+      terraform = { "tflint" },
+      tf = { "tflint" },
+      yaml = { "yamllint" },
+      json = { "jq" },
+      dockerfile = { "hadolint" },
+      sh = { "shellcheck" },
+      bash = { "shellcheck" },
+      zsh = { "shellcheck" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
