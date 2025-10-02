@@ -44,3 +44,16 @@ require("lazy").setup({
     },
   },
 })
+
+-- Load configurations with error handling (silent for missing files)
+local function safe_require(module)
+  local ok, _ = pcall(require, module)
+  if not ok then
+    -- Silently skip missing config files
+    vim.notify("Config file not found: " .. module, vim.log.levels.WARN)
+  end
+end
+
+safe_require("config.options")
+safe_require("config.keymaps")
+safe_require("config.autocmds")
