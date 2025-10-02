@@ -1,5 +1,6 @@
 return {
   "christoomey/vim-tmux-navigator",
+  lazy = true, -- Load when keymaps are triggered (saves startup time)
   cmd = {
     "TmuxNavigateLeft",
     "TmuxNavigateDown",

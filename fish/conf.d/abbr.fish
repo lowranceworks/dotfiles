@@ -20,6 +20,7 @@ abbr clera clear
 abbr cx "chmod +x"
 
 abbr da "direnv allow"
+abbr dr "direnv reload"
 
 abbr dc "docker compose"
 abbr dcd "docker compose down"
@@ -88,19 +89,18 @@ abbr gcsp "gcloud config set project"
 abbr hd "history delete --exact --case-sensitive \'(history | fzf-tmux -p -m)\'"
 
 abbr k kubectl
-abbr kc kubectx
 abbr ka "kubectl apply -f"
-abbr kg "kubectl get"
+abbr kc kubectx
+abbr kcns "kubectl config set-context --current --namespace"
 abbr kd "kubectl describe"
 abbr kdel "kubectl delete"
-abbr kl "kubectl logs"
-abbr kgpo "kubectl get pod"
-abbr kgd "kubectl get deployments"
-abbr kc kubectx
-abbr kns kubens
-abbr kl "kubectl logs -f"
 abbr ke "kubectl exec -it"
-abbr kcns "kubectl config set-context --current --namespace"
+abbr kg "kubectl get"
+abbr kgd "kubectl get deployments"
+abbr kgpo "kubectl get pod"
+abbr kl "kubectl logs -f"
+abbr kl "kubectl logs"
+abbr kns kubens
 
 abbr l "eza --group-directories-first -Al"
 abbr ld lazydocker
@@ -126,6 +126,7 @@ abbr o "open ."
 abbr p podman
 abbr pfr "pip3 freeze > ./requirements.txt"
 
+abbr rgi "rg -i"
 abbr rmr "rm -rf"
 
 abbr sf "source ~/.config/fish/config.fish"
@@ -146,17 +147,28 @@ abbr tfaa "terraform apply --auto-approve"
 abbr tfd "terraform destroy"
 abbr tfda "terraform destroy --auto-approve"
 abbr tff "terraform fmt"
+abbr tffr "terraform fmt --recursive"
 abbr tfi "terraform init"
+abbr tfiu "terraform init --upgrade"
 abbr tfm "terraform format"
 abbr tfo "terraform output"
 abbr tfp "terraform plan"
+abbr tfpr "terraform plan --refresh-only"
 abbr tfr "terraform refresh"
 abbr tfs "terraform state"
-abbr tfss "terraform state show"
 abbr tfsl "terraform state list"
+abbr tfss "terraform state show"
 abbr tfv "terraform validate"
-
 abbr tg terragrunt
+abbr tgaa "terragrunt run-all apply"
+abbr tgaaa "terragrunt run-all apply --auto-approve"
+abbr tgad "terragrunt run-all destroy"
+abbr tgada "terragrunt run-all destroy --auto-approve"
+abbr tgaf "terragrunt run-all fmt"
+abbr tgai "terragrunt run-all init"
+abbr tgaiu "terragrunt run-all init --upgrade"
+abbr tgap "terragrunt run-all plan"
+abbr tgav "terragrunt run-all validate"
 
 abbr vim nvim
 abbr v "nvim ."
@@ -170,5 +182,5 @@ abbr :GoToFile "nvim +GoToFile"
 abbr :SmartGoTo "nvim +SmartGoTo"
 abbr :Grep "nvim +Grep"
 abbr :bd exit
-abbr :q "tmux kill-server"
-abbr :qa! "tmux kill-server"
+# abbr :q "tmux kill-server"
+# abbr :qa! "tmux kill-server"
