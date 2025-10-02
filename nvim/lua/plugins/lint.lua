@@ -11,6 +11,14 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "pylint" },
+      go = { "golangcilint" },
+      terraform = { "tflint" },
+      yaml = { "yamllint" },
+      json = { "jsonlint" },
+      dockerfile = { "hadolint" },
+      sh = { "shellcheck" },
+      bash = { "shellcheck" },
+      zsh = { "shellcheck" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

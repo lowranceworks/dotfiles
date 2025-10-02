@@ -63,11 +63,7 @@ set -x ANTHROPIC_API_KEY (read -s < ~/.keys/anthropic/claude/api.key)
 
 # nix
 if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
-    source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
-end
-
-# required for nix
-if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+    set -gx PATH $HOME/.nix-profile/bin $PATH
     source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
 end
 
@@ -90,4 +86,4 @@ end
 set PATH $PATH /Users/Joshua.lowrance/.local/bin
 
 # Required for pandox/xelatex
-set -x PATH $PATH /Library/TeX/texbin
+set -x PATH $PATH /Library/TeX/texbin:$PATH

@@ -20,7 +20,11 @@
       system.stateVersion = 4;
       security.pam.services.sudo_local.touchIdAuth = true;
 
-      nix.settings.experimental-features = "nix-command flakes";
+      system.primaryUser = builtins.getEnv "USER";
+
+      nix.settings = {
+        experimental-features = "nix-command flakes";
+      };
 
     system.defaults = {
       ".GlobalPreferences" = {
@@ -86,7 +90,6 @@
         casks = [
           "1password-cli"
           "aerospace"
-          "alfred"
           "arc"
           "betterdisplay"
           "bitwarden"
@@ -103,12 +106,13 @@
           "meetingbar"
           "mission-control-plus"
           "paintbrush"
+          "podman-desktop"
+          "raycast"
           "slack"
           "spacelauncher"
           "stats"
           "utm"
           "wezterm"
-          "podman-desktop"
         ];
         brews = [
           "act"
@@ -118,7 +122,6 @@
           "awscli"
           "azure-cli"
           "bash"
-          "basictex"
           # "borders"
           "bitwarden-cli"
           "checkov"
@@ -160,12 +163,9 @@
           "neovim"
           "node"
           "oci-cli"
-          "pandoc"
           "podman"
           "pre-commit"
           "protobuf"
-          "proton-mail"
-          "proton-drive"
           "pyenv"
           "qemu"
           "ripgrep"
@@ -174,7 +174,6 @@
           "starship"
           "stern"
           "stow"
-          "talos"
           "telnet"
           "terraform-docs"
           "terragrunt"

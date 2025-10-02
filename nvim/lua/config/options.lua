@@ -2,6 +2,13 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Sync clipboard between OS and Neovim
+vim.opt.clipboard = "unnamedplus"
+
+-- Highlight current line
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "both" -- Highlight both line and number
+
 -- Save undo history
 vim.o.undofile = true
 
@@ -15,6 +22,27 @@ vim.wo.signcolumn = "yes"
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
+
+-- Enable virtual text (needed for hlslens to show counts next to matches)
+vim.opt.virtualedit = "block"
+
+-- Enable transparency
+vim.opt.termguicolors = true
+if vim.fn.has("nvim-0.10") == 1 then
+  vim.opt.pumblend = 10 -- Popup menu transparency
+end
+
+-- Set transparent background for floating windows
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+  end,
+})
+
+-- Apply immediately if colorscheme is already loaded
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
 
 -- Indenting
 vim.opt.tabstop = 2
@@ -36,7 +64,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -47,7 +75,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
--- vim.opt.colorcolumn = "80"
 -- Many coding standards suggest keeping lines of code under a certain length.
 -- A common standard is 80 characters per line.
 -- This option provides a visual guideline to help you adhere to this standard.
+vim.opt.colorcolumn = "80"
