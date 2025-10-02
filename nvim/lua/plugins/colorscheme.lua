@@ -1,62 +1,88 @@
 return {
   "catppuccin/nvim",
-  lazy = false, -- Load at startup (needed for immediate access)
+  name = "catppuccin",
+  lazy = false,
   priority = 1000,
-  config = function()
-    require("catppuccin").setup({
-      flavour = "mocha", -- latte, frappe, macchiato, mocha
-      background = { -- :h background
-        light = "latte",
-        dark = "mocha",
+  opts = {
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = {
+      light = "latte",
+      dark = "mocha",
+    },
+    transparent_background = true,
+    show_end_of_buffer = false,
+    term_colors = true,
+    dim_inactive = {
+      enabled = false,
+      shade = "dark",
+      percentage = 0.15,
+    },
+    no_italic = false,
+    no_bold = false,
+    no_underline = false,
+    styles = {
+      comments = { "italic" },
+      conditionals = { "italic" },
+      loops = {},
+      functions = {},
+      keywords = {},
+      strings = {},
+      variables = {},
+      numbers = {},
+      booleans = {},
+      properties = {},
+      types = {},
+      operators = {},
+    },
+    color_overrides = {},
+    integrations = {
+      cmp = true,
+      gitsigns = true,
+      nvimtree = true,
+      treesitter = true,
+      notify = true,
+      mini = {
+        enabled = true,
+        indentscope_color = "",
       },
-      transparent_background = true, -- disables setting the background color.
-      show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-      term_colors = true, -- sets terminal colors (e.g., `g:terminal_color_0`)
-      dim_inactive = {
-        enabled = false, -- dims the background color of inactive window
-        shade = "dark",
-        percentage = 0.15, -- percentage of the shade to apply to the inactive window
-      },
-      no_italic = false, -- Force no italic
-      no_bold = false, -- Force no bold
-      no_underline = false, -- Force no underline
-      styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-        comments = { "italic" }, -- Change the style of comments
-        conditionals = { "italic" },
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
-      },
-      color_overrides = {},
-      -- custom_highlights = {},
-      integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        treesitter = true,
-        notify = false,
-        mini = {
-          enabled = true,
-          indentscope_color = "",
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = { "italic" },
+          hints = { "italic" },
+          warnings = { "italic" },
+          information = { "italic" },
+        },
+        underlines = {
+          errors = { "underline" },
+          hints = { "underline" },
+          warnings = { "underline" },
+          information = { "underline" },
+        },
+        inlay_hints = {
+          background = true,
         },
       },
-      custom_highlights = function(colors)
-        return {
-          CursorLine = { bg = colors.surface1 }, -- More prominent line highlighting
-          CursorLineNr = { fg = colors.green, style = { "bold" } }, -- Green line number
-          LineNr = { fg = colors.overlay1 }, -- Dimmer line numbers
-        }
-      end,
-    })
-
-    -- Load the colorscheme
-    vim.cmd("colorscheme catppuccin")
+      telescope = {
+        enabled = true,
+      },
+      which_key = true,
+      -- Add Snacks integration if you're using it
+      snacks = true,
+    },
+    custom_highlights = function(colors)
+      return {
+        CursorLine = { bg = colors.surface1 },
+        CursorLineNr = { fg = colors.green, style = { "bold" } },
+        LineNr = { fg = colors.overlay1 },
+        -- Better floating window backgrounds
+        NormalFloat = { bg = colors.base },
+        FloatBorder = { fg = colors.blue, bg = colors.base },
+      }
+    end,
+  },
+  config = function(_, opts)
+    require("catppuccin").setup(opts)
+    vim.cmd.colorscheme("catppuccin")
   end,
 }
