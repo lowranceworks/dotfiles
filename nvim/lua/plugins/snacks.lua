@@ -188,7 +188,7 @@ return {
         enabled = true,
         char = "│",
         underline = false,
-        highlight = "CatppuccinGreen", -- Use your colorscheme's green
+        highlight = "CatppuccinMauve", -- Change from Green to Mauve for accent
       },
     },
     input = { enabled = true },
