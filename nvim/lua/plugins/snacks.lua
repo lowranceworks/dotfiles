@@ -236,11 +236,6 @@ return {
     words = { enabled = true },
   },
   init = function()
-    -- Set up vim.notify to use Snacks (replacing nvim-notify)
-    vim.notify = function(msg, level, opts)
-      return Snacks.notifier.notify(msg, level, opts)
-    end
-
     -- Buffer navigation commands for BufferLine replacement
     vim.api.nvim_create_user_command("BufferCloseOthers", function()
       local current = vim.api.nvim_get_current_buf()
