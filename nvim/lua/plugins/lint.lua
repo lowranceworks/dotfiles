@@ -11,7 +11,7 @@ return {
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         svelte = { "eslint_d" },
-        python = { "pylint" },
+        python = { "ruff" },
         go = { "golangcilint" },
         terraform = { "tflint" },
         yaml = { "yamllint" },
@@ -20,11 +20,6 @@ return {
         sh = { "shellcheck" },
         bash = { "shellcheck" },
         zsh = { "shellcheck" },
-      }
-
-      -- Configure pylint to ignore import errors
-      lint.linters.pylint.args = {
-        "--disable=import-error,no-name-in-module",
       }
 
       local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
