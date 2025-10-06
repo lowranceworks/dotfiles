@@ -222,7 +222,7 @@ return {
           hidden = true,
           layout = {
             layout = {
-              width = 32,
+              width = 40,
               position = "left",
             },
           },
