@@ -87,3 +87,6 @@ set PATH $PATH /Users/Joshua.lowrance/.local/bin
 
 # Required for pandox/xelatex
 set -x PATH $PATH /Library/TeX/texbin:$PATH
+
+# Required for pyenv
+status is-interactive; and pyenv init - | source
