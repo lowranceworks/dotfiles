@@ -78,4 +78,4 @@ vim.opt.updatetime = 50
 -- Many coding standards suggest keeping lines of code under a certain length.
 -- A common standard is 80 characters per line.
 -- This option provides a visual guideline to help you adhere to this standard.
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"

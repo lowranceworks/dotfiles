@@ -13,3 +13,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Keep visual selection when indenting
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
+
+-- Show diagnostic error
+vim.keymap.set("n", "<leader>E", vim.diagnostic.open_float, { desc = "Show diagnostic error" })

@@ -107,7 +107,7 @@ abbr ld lazydocker
 abbr lg lazygit
 abbr ll "eza --all --git --icons --color=always --group-directories-first -Al"
 abbr lt "eza --group-directories-last --tree"
-abbr lta "eza --group-directories-last --tree --all"
+abbr lta "eza --group-directories-last --tree --all --ignore-glob='.git|node_modules|.venv'"
 abbr ltd "eza --group-directories-last --tree --only-dirs"
 
 abbr mt "man tmux"
@@ -124,6 +124,15 @@ abbr nt "npm run test"
 abbr o "open ."
 
 abbr p podman
+abbr pc pre-commit
+abbr pcc "pre-commit clean"
+abbr pci "pre-commit install"
+abbr pcr "pre-commit run"
+abbr pcra "pre-commit run --all-files"
+abbr pcrf "pre-commit run --files"
+abbr pcrv "pre-commit run --verbose"
+abbr pcu "pre-commit uninstall"
+abbr pcup "pre-commit autoupdate"
 abbr pfr "pip3 freeze > ./requirements.txt"
 
 abbr rgi "rg -i"
