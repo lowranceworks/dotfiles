@@ -1,0 +1,13 @@
+name: Semver Label Check
+on:
+  pull_request:
+    types: [opened, labeled, unlabeled, synchronize]
+
+jobs:
+  check-semver-label:
+    name: Semantic Version Label Check
+    uses: lowranceworks/common-workflows/.github/workflows/semver-label.yaml@v1.0.0
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: read

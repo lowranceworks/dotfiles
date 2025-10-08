@@ -206,14 +206,23 @@ return {
       style = "compact",
     },
 
-    -- Picker (replacing Telescope)
     picker = {
       enabled = true,
+      hidden = true, -- Show hidden files by default
+      follow = false, -- Don't follow symlinks
       sources = {
+        grep = {
+          hidden = true,
+          follow = false,
+        },
+        files = {
+          hidden = true,
+        },
         explorer = {
+          hidden = true,
           layout = {
             layout = {
-              width = 55,
+              width = 40,
               position = "left",
             },
           },
