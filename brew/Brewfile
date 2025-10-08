@@ -1,14 +1,14 @@
 # Brewfile - Homebrew Bundle configuration
 
-# Taps
-tap "FelixKratz/formulae"
-tap "dotenvx/brew"
-tap "hashicorp/tap"
-tap "homebrew/services"
-tap "minamijoyo/hcledit"
-tap "nikitabobko/tap"
+# --- Taps ---
+tap "FelixKratz/formulae"                     # SketchyBar and related tools
+tap "dotenvx/brew"                            # dotenvx environment variable manager
+tap "hashicorp/tap"                           # HashiCorp tools (Terraform, Vault, etc.)
+tap "homebrew/services"                       # Manage services with Homebrew
+tap "minamijoyo/hcledit"                      # HCL configuration editor
+tap "nikitabobko/tap"                         # AeroSpace window manager
 
-# Formulae (brews)
+# --- Formulae (brews) ---
 # brew "borders"                              # macOS window borders (archived/unmaintained)
 # brew "docker"                               # Using podman instead
 # brew "docker-completion"                    # Docker shell completion
@@ -109,29 +109,29 @@ brew "zsh-fast-syntax-highlighting"           # Syntax highlighting for zsh
 brew "zsh-vi-mode"                            # Vi mode for zsh
 brew "zstd"                                   # Zstandard compression
 
-# Casks
-cask "1password-cli"
-cask "aerospace"
-cask "arc"
-cask "betterdisplay"
-cask "bitwarden"
-cask "brave-browser"
-cask "chromium"
-cask "cleanshot"
-cask "contexts"
-cask "drawio"
-cask "font-commit-mono"
-cask "google-chrome"
-cask "google-cloud-sdk"
-cask "inkdrop"
-cask "keycastr"
-cask "meetingbar"
-cask "mission-control-plus"
-cask "paintbrush"
-cask "podman-desktop"
-cask "raycast"
-cask "slack"
-cask "spacelauncher"
-cask "stats"
-cask "utm"
-cask "wezterm"
+# --- Casks ---
+cask "1password-cli"                          # 1Password command-line tool
+cask "aerospace"                              # Tiling window manager for macOS
+cask "arc"                                    # Arc browser
+cask "betterdisplay"                          # Display management tool
+cask "bitwarden"                              # Password manager
+cask "brave-browser"                          # Privacy-focused web browser
+cask "chromium"                               # Open-source web browser
+cask "cleanshot"                              # Screenshot and screen recording tool
+cask "contexts"                               # Window switcher
+cask "drawio"                                 # Diagram and flowchart editor
+cask "font-commit-mono"                       # Monospace font for coding
+cask "google-chrome"                          # Google Chrome browser
+cask "google-cloud-sdk"                       # Google Cloud Platform CLI
+cask "inkdrop"                                # Markdown note-taking app
+cask "keycastr"                               # Keystroke visualizer
+cask "meetingbar"                             # Menu bar calendar meetings
+cask "mission-control-plus"                   # Enhanced Mission Control
+cask "paintbrush"                             # Simple paint application
+cask "podman-desktop"                         # Container management GUI
+cask "raycast"                                # Productivity launcher
+cask "slack"                                  # Team communication platform
+cask "spacelauncher"                          # Keyboard-driven app launcher
+cask "stats"                                  # System monitor in menu bar
+cask "utm"                                    # Virtual machine manager
+cask "wezterm"                                # GPU-accelerated terminal emulator
