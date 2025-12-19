@@ -8,6 +8,8 @@ tap "homebrew/services"                       # Manage services with Homebrew
 tap "minamijoyo/hcledit"                      # HCL configuration editor
 tap "nikitabobko/tap"                         # AeroSpace window manager
 
+brew install --cask 
+
 # --- Formulae (brews) ---
 # brew "borders"                              # macOS window borders (archived/unmaintained)
 # brew "docker"                               # Using podman instead
@@ -121,6 +123,7 @@ cask "cleanshot"                              # Screenshot and screen recording 
 cask "contexts"                               # Window switcher
 cask "drawio"                                 # Diagram and flowchart editor
 cask "font-commit-mono"                       # Monospace font for coding
+cask "font-sf-pro"                            # Required for SketchyBar"
 cask "google-chrome"                          # Google Chrome browser
 cask "google-cloud-sdk"                       # Google Cloud Platform CLI
 cask "inkdrop"                                # Markdown note-taking app
