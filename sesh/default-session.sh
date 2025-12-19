@@ -9,7 +9,6 @@ tmux new-window -n fish
 
 # Send commands to each window
 tmux send-keys -t 1 'nvim .' Enter
-tmux send-keys -t opencode 'opencode' Enter
 tmux send-keys -t lazygit 'lazygit' Enter
 tmux send-keys -t fish 'eza --group-directories-last --tree' Enter
 
