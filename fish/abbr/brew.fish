@@ -1,0 +1,8 @@
+abbr bi "brew install"
+abbr bic "brew install --cask"
+abbr bin "brew info"
+abbr binc "brew info --cask"
+abbr bl "brew leaves"
+abbr blr "brew leaves --installed-on-request"
+abbr blp "brew leaves --installed-as-dependency"
+abbr bs "brew search"
