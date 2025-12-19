@@ -3,7 +3,6 @@
 tmux rename-window -t 1 nvim
 
 # Create additional windows with names
-tmux new-window -n opencode
 tmux new-window -n lazygit
 tmux new-window -n fish
 
