@@ -18,7 +18,8 @@ POPUP_CORNER_RADIUS=11
 SHADOW=on
 
 # Setting up the general bar appearance and default values
-sketchybar --bar \
+sketchybar \
+  --bar \
   height=30 \
   color=$BAR_COLOR \
   shadow=$SHADOW \
@@ -30,7 +31,9 @@ sketchybar --bar \
   y_offset=10 \
   margin=10 \
   blur_radius=20 \
-  --default updates=when_shown \
+  \
+  --default \
+  updates=when_shown \
   icon.font="$FONT:Bold:14.0" \
   icon.color=$ICON_COLOR \
   icon.padding_left=$PADDINGS \
