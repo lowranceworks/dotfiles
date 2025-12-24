@@ -1,21 +1,21 @@
 #!/usr/bin/env sh
 
-# Color Palette
-BLACK=0xff181926
-WHITE=0xffcad3f5
-RED=0xffed8796
-GREEN=0xffa6da95
-BLUE=0xff8aadf4
-YELLOW=0xffeed49f
-ORANGE=0xfff5a97f
-MAGENTA=0xffc6a0f6
-GREY=0xff939ab7
+# Color Palette - Catppuccin Mocha
+BLACK=0xff11111b      # Crust
+WHITE=0xffcdd6f4      # Text
+RED=0xfff38ba8        # Red
+GREEN=0xffa6e3a1      # Green
+BLUE=0xff89b4fa       # Blue
+YELLOW=0xfff9e2af     # Yellow
+ORANGE=0xfffab387     # Peach
+MAGENTA=0xffcba6f7    # Mauve
+GREY=0xff9399b2       # Overlay 2
 TRANSPARENT=0x00000000
 
 # General bar colors
-BAR_COLOR=0xcc24273a #$GREY # Grey bar
-ICON_COLOR=$WHITE # Color of all icons
-LABEL_COLOR=$WHITE # Color of all labels
+BAR_COLOR=0xcc1e1e2e  # Base with transparency
+ICON_COLOR=$WHITE    # Color of all icons
+LABEL_COLOR=$WHITE   # Color of all labels
 
 POPUP_BACKGROUND_COLOR=$BLACK
 POPUP_BORDER_COLOR=$WHITE
