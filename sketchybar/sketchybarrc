@@ -52,7 +52,7 @@ sketchybar \
 
 # Left
 source "$ITEM_DIR/apple.sh"
-source "$ITEM_DIR/aerospace.sh"
+# source "$ITEM_DIR/aerospace.sh"
 
 # Center
 # source "$ITEM_DIR/spotify.sh"
