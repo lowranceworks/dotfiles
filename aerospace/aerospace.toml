@@ -204,7 +204,11 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'info.pkpk.inkdrop'
-run = "move-node-to-workspace Q"
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = "move-node-to-worespace Q"
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser' # arc
