@@ -46,6 +46,7 @@ brew "fisher"                                 # Fish plugin manager
 brew "fontconfig"                             # Font configuration library
 brew "fzf"                                    # Fuzzy finder
 brew "gh"                                     # GitHub CLI
+brew "gemini-cli"                             # Gemini CLI
 brew "git-filter-repo"                        # Git history rewriting
 brew "gnu-sed"                                # GNU sed (non-BSD version)
 brew "go-task"                                # Task runner / Make alternative
