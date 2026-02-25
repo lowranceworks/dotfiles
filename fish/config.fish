@@ -90,6 +90,6 @@ set -x PATH $PATH /Library/TeX/texbin:$PATH
 
 # Required for pyenv
 set -gx PYENV_ROOT $HOME/.pyenv
-fish_add_path --universal $PYENV_ROOT/bin
-fish_add_path --universal $PYENV_ROOT/shims
-pyenv init - | source
+# fish_add_path --universal $PYENV_ROOT/bin
+# fish_add_path --universal $PYENV_ROOT/shims
+# pyenv init - | source
