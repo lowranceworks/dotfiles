@@ -82,14 +82,14 @@ if test -f ~/.config/fish/conf.d/carapace.fish
     source ~/.config/fish/conf.d/carapace.fish
 end
 
-# Created by `pipx` on 2025-02-03 15:15:55
-set PATH $PATH /Users/Joshua.lowrance/.local/bin
+# Portable PATH configuration (works across machines)
+# Using fish_add_path instead of setting PATH directly ensures deduplication
+fish_add_path $HOME/.local/bin  # pipx installations
+fish_add_path /Library/TeX/texbin  # pandoc/xelatex
+fish_add_path $HOME/.nix-profile/bin  # nix user profile
 
-# Required for pandox/xelatex
-set -x PATH $PATH /Library/TeX/texbin:$PATH
-
-# Required for pyenv
+# Required for pyenv (disabled by default - uncomment to enable)
 set -gx PYENV_ROOT $HOME/.pyenv
-# fish_add_path --universal $PYENV_ROOT/bin
-# fish_add_path --universal $PYENV_ROOT/shims
+# fish_add_path $PYENV_ROOT/bin
+# fish_add_path $PYENV_ROOT/shims
 # pyenv init - | source
