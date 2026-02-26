@@ -43,10 +43,13 @@ local config = {
 	native_macos_fullscreen_mode = false,
 	window_close_confirmation = "NeverPrompt",
 	window_decorations = "RESIZE",
-	
+	scroll_to_bottom_on_input = true,
+	scrollback_lines = 3500,
+	enable_scroll_bar = true,
+
 	-- Enable hyperlink support
 	hyperlink_rules = wezterm.default_hyperlink_rules(),
-	
+
 	-- Allow Shift to bypass tmux mouse reporting so hyperlinks work
 	bypass_mouse_reporting_modifiers = "SHIFT",
 
@@ -61,15 +64,24 @@ local config = {
 
 		k.cmd_key("q", k.multiple_actions(":qa!")),
 		{ key = "t", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
+		
+		-- Scroll to bottom when needed
+		{ key = "End", mods = "SHIFT", action = wezterm.action.ScrollToBottom },
 	},
 
 	-- mouse bindings for opening links
 	-- Shift+Click to open hyperlinks (bypasses tmux mouse reporting)
 	mouse_bindings = {
 		{
-			event = { Down = { streak = 1, button = "Left" } },
+			event = { Up = { streak = 1, button = "Left" } },
 			mods = "SHIFT",
 			action = wezterm.action.OpenLinkAtMouseCursor,
+		},
+		-- Disable the Down event to avoid issues with tmux
+		{
+			event = { Down = { streak = 1, button = "Left" } },
+			mods = "SHIFT",
+			action = wezterm.action.Nop,
 		},
 	},
 }
