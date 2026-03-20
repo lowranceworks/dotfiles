@@ -72,11 +72,12 @@ end
 fish_add_path $HOME/.local/bin # pipx installations
 fish_add_path /Library/TeX/texbin # pandoc/xelatex
 
-# Required for pyenv (disabled by default - uncomment to enable)
+# pyenv configuration
 set -gx PYENV_ROOT $HOME/.pyenv
-# fish_add_path $PYENV_ROOT/bin
-# fish_add_path $PYENV_ROOT/shims
-# pyenv init - | source
+fish_add_path $PYENV_ROOT/bin
+if type -q pyenv
+    pyenv init - fish | source
+end
 
 # Set environment variable to override K9s config directory
 set -gx K9S_CONFIG_DIR ~/.config/k9s
