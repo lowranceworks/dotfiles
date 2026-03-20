@@ -8,8 +8,6 @@ tap "homebrew/services"                       # Manage services with Homebrew
 tap "minamijoyo/hcledit"                      # HCL configuration editor
 tap "nikitabobko/tap"                         # AeroSpace window manager
 
-brew install --cask 
-
 # --- Formulae (brews) ---
 # brew "borders"                              # macOS window borders (archived/unmaintained)
 # brew "docker"                               # Using podman instead
