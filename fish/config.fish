@@ -57,9 +57,8 @@ set -x YABAI_CONFIG "$HOME/.config/yabai/yabairc"
 # skhd config
 set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
 
-# api keys 
-# set -x OPENAI_API_KEY (read -s < ~/.keys/openai-chatgpt/api.key)
-set -x ANTHROPIC_API_KEY (read -s < ~/.keys/anthropic/claude/api.key)
+# api keys
+set -x CLAUDE_CODE_OAUTH_TOKEN (read -s < ~/.keys/anthropic/claude/api.key)
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
