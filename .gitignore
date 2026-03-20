@@ -36,3 +36,9 @@ fzf
 
 # ignore raycast extensions
 raycast/extensions
+
+# k9s
+k9s/aliases.yaml
+k9s/benchmarks/
+k9s/clusters/
+k9s/screen-dumps/

@@ -1,0 +1,12 @@
+{
+  "body": {
+    "ctrl-j": "core:open-next-note",
+    "ctrl-k": "core:open-prev-note",
+    "ctrl-l": "editor:focus"
+  },
+  ".CodeMirror textarea": {
+    "ctrl-j": "editor:go-line-down",
+    "ctrl-k": "editor:go-line-up",
+    "ctrl-h": "core:focus-note-list-bar"
+  }
+}
