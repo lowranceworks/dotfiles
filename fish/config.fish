@@ -78,3 +78,6 @@ set -gx PYENV_ROOT $HOME/.pyenv
 # fish_add_path $PYENV_ROOT/bin
 # fish_add_path $PYENV_ROOT/shims
 # pyenv init - | source
+
+# Set environment variable to override K9s config directory
+set -gx K9S_CONFIG_DIR ~/.config/k9s
