@@ -61,20 +61,6 @@ set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
 # set -x OPENAI_API_KEY (read -s < ~/.keys/openai-chatgpt/api.key)
 set -x ANTHROPIC_API_KEY (read -s < ~/.keys/anthropic/claude/api.key)
 
-# nix
-if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
-    set -gx PATH $HOME/.nix-profile/bin $PATH
-    source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
-end
-
-# required for nix installed packages
-fish_add_path /run/current-system/sw/bin
-fish_add_path /nix/var/nix/profiles/default/bin
-
-set -x NIX_PATH $HOME/.nix-defexpr/channels $NIX_PATH
-set -x NIX_PATH darwin=$HOME/.nix-defexpr/channels/darwin $NIX_PATH
-set -x NIX_PATH darwin-config=$HOME/.nixpkgs/darwin-configuration.nix $NIX_PATH
-
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Load carapace shell completions
@@ -84,9 +70,8 @@ end
 
 # Portable PATH configuration (works across machines)
 # Using fish_add_path instead of setting PATH directly ensures deduplication
-fish_add_path $HOME/.local/bin  # pipx installations
-fish_add_path /Library/TeX/texbin  # pandoc/xelatex
-fish_add_path $HOME/.nix-profile/bin  # nix user profile
+fish_add_path $HOME/.local/bin # pipx installations
+fish_add_path /Library/TeX/texbin # pandoc/xelatex
 
 # Required for pyenv (disabled by default - uncomment to enable)
 set -gx PYENV_ROOT $HOME/.pyenv
