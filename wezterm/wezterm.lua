@@ -8,15 +8,10 @@
 -- A GPU-accelerated cross-platform terminal emulator
 -- https://wezfurlong.org/wezterm/
 
-local cs = require("utils/color_scheme")
-local f = require("utils/font")
-local h = require("utils/helpers")
 local k = require("utils/keys")
 local w = require("utils/wallpaper")
-local b = require("utils/background")
 
 local wezterm = require("wezterm")
-local act = wezterm.action
 
 local config = {
 	window_background_opacity = 0.9,
@@ -43,37 +38,61 @@ local config = {
 		-- THEME_FLAVOUR = "mocha",
 	},
 
-	adjust_window_size_when_changing_font_size = false,
 	debug_key_events = false,
 	enable_tab_bar = false,
 	native_macos_fullscreen_mode = false,
 	window_close_confirmation = "NeverPrompt",
 	window_decorations = "RESIZE",
+	scroll_to_bottom_on_input = true,
+	scrollback_lines = 3500,
+	enable_scroll_bar = true,
+
+	-- Enable hyperlink support
+	hyperlink_rules = wezterm.default_hyperlink_rules(),
+
+	-- Allow Shift to bypass tmux mouse reporting so hyperlinks work
+	bypass_mouse_reporting_modifiers = "SHIFT",
 
 	-- keys
 	keys = {
 		-- enable natural text editing
 		{ mods = "OPT", key = "LeftArrow", action = wezterm.action.SendKey({ mods = "ALT", key = "b" }) },
 		{ mods = "OPT", key = "RightArrow", action = wezterm.action.SendKey({ mods = "ALT", key = "f" }) },
-		-- { mods  "CMD", key = "LeftArrow", action = wezterm.action.SendKey({ mods = "CTRL", key = "a" }) }, -- this is disabled because it shares the same hexcode as C-a (which is my tmux prefix)
+		-- { mods = "CMD", key = "LeftArrow", action = wezterm.action.SendKey({ mods = "CTRL", key = "a" }) }, -- this is disabled because it shares the same hexcode as C-a (which is my tmux prefix)
 		{ mods = "CMD", key = "RightArrow", action = wezterm.action.SendKey({ mods = "CTRL", key = "e" }) },
 		{ mods = "CMD", key = "Backspace", action = wezterm.action.SendKey({ mods = "CTRL", key = "u" }) },
 
 		k.cmd_key("q", k.multiple_actions(":qa!")),
 		{ key = "t", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
+		
+		-- Scroll to bottom when needed
+		{ key = "End", mods = "SHIFT", action = wezterm.action.ScrollToBottom },
+	},
+
+	-- mouse bindings for opening links
+	-- Shift+Click to open hyperlinks (bypasses tmux mouse reporting)
+	mouse_bindings = {
+		{
+			event = { Up = { streak = 1, button = "Left" } },
+			mods = "SHIFT",
+			action = wezterm.action.OpenLinkAtMouseCursor,
+		},
+		-- Disable the Down event to avoid issues with tmux
+		{
+			event = { Down = { streak = 1, button = "Left" } },
+			mods = "SHIFT",
+			action = wezterm.action.Nop,
+		},
 	},
 }
 
 wezterm.on("user-var-changed", function(window, pane, name, value)
-	-- local appearance = window:get_appearance()
-	-- local is_dark = appearance:find("Dark")
 	local overrides = window:get_config_overrides() or {}
 	wezterm.log_info("name", name)
 	wezterm.log_info("value", value)
 
 	if name == "T_SESSION" then
-		local session = value
-		wezterm.log_info("is session", session)
+		wezterm.log_info("is session", value)
 		overrides.background = {
 			w.set_tmux_session_wallpaper(value),
 			{
@@ -104,6 +123,7 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 			overrides.font_size = number_value
 		end
 	end
+
 	if name == "DIFF_VIEW" then
 		local incremental = value:find("+")
 		local number_value = tonumber(value)
@@ -134,6 +154,7 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 			overrides.font_size = number_value
 		end
 	end
+
 	window:set_config_overrides(overrides)
 end)
 

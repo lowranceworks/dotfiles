@@ -57,23 +57,8 @@ set -x YABAI_CONFIG "$HOME/.config/yabai/yabairc"
 # skhd config
 set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
 
-# api keys 
-# set -x OPENAI_API_KEY (read -s < ~/.keys/openai-chatgpt/api.key)
-set -x ANTHROPIC_API_KEY (read -s < ~/.keys/anthropic/claude/api.key)
-
-# nix
-if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
-    set -gx PATH $HOME/.nix-profile/bin $PATH
-    source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
-end
-
-# required for nix installed packages
-fish_add_path /run/current-system/sw/bin
-fish_add_path /nix/var/nix/profiles/default/bin
-
-set -x NIX_PATH $HOME/.nix-defexpr/channels $NIX_PATH
-set -x NIX_PATH darwin=$HOME/.nix-defexpr/channels/darwin $NIX_PATH
-set -x NIX_PATH darwin-config=$HOME/.nixpkgs/darwin-configuration.nix $NIX_PATH
+# api keys
+set -x CLAUDE_CODE_OAUTH_TOKEN (read -s < ~/.keys/anthropic/claude/api.key)
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -82,11 +67,17 @@ if test -f ~/.config/fish/conf.d/carapace.fish
     source ~/.config/fish/conf.d/carapace.fish
 end
 
-# Created by `pipx` on 2025-02-03 15:15:55
-set PATH $PATH /Users/Joshua.lowrance/.local/bin
+# Portable PATH configuration (works across machines)
+# Using fish_add_path instead of setting PATH directly ensures deduplication
+fish_add_path $HOME/.local/bin # pipx installations
+fish_add_path /Library/TeX/texbin # pandoc/xelatex
 
-# Required for pandox/xelatex
-set -x PATH $PATH /Library/TeX/texbin:$PATH
+# pyenv configuration
+set -gx PYENV_ROOT $HOME/.pyenv
+fish_add_path $PYENV_ROOT/bin
+if type -q pyenv
+    pyenv init - fish | source
+end
 
-# Required for pyenv
-status is-interactive; and pyenv init - | source
+# Set environment variable to override K9s config directory
+set -gx K9S_CONFIG_DIR ~/.config/k9s

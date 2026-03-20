@@ -44,6 +44,7 @@ brew "fisher"                                 # Fish plugin manager
 brew "fontconfig"                             # Font configuration library
 brew "fzf"                                    # Fuzzy finder
 brew "gh"                                     # GitHub CLI
+brew "gemini-cli"                             # Gemini CLI
 brew "git-filter-repo"                        # Git history rewriting
 brew "gnu-sed"                                # GNU sed (non-BSD version)
 brew "go-task"                                # Task runner / Make alternative
@@ -121,6 +122,8 @@ cask "cleanshot"                              # Screenshot and screen recording 
 cask "contexts"                               # Window switcher
 cask "drawio"                                 # Diagram and flowchart editor
 cask "font-commit-mono"                       # Monospace font for coding
+cask "font-sf-pro"                            # Required for SketchyBar"
+cask "font-symbols-only-nerd-font"            # Required for icons in Obsidian Terminal
 cask "google-chrome"                          # Google Chrome browser
 cask "google-cloud-sdk"                       # Google Cloud Platform CLI
 cask "inkdrop"                                # Markdown note-taking app
