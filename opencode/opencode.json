@@ -3,6 +3,6 @@
   "model": "anthropic/claude-opus-4-6",
   "autoupdate": true,
   "plugin": [
-    "opencode-anthropic-user-agent-plugin"
+    "opencode-claude-auth"
   ]
 }
