@@ -58,7 +58,11 @@ set -x YABAI_CONFIG "$HOME/.config/yabai/yabairc"
 set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
 
 # api keys
-set -x CLAUDE_CODE_OAUTH_TOKEN (read -s < ~/.keys/anthropic/claude/api.key)
+# set -x CLAUDE_CODE_OAUTH_TOKEN (read -s < ~/.keys/anthropic/claude/api.key)
+
+# TODO: find out where these are coming from and remove these commands
+set -eU CLAUDE_CODE_OAUTH_TOKEN
+set -eU ANTHROPIC_API_KEY
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
