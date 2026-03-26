@@ -63,6 +63,8 @@ set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
 # TODO: find out where these are coming from and remove these commands
 set -eU CLAUDE_CODE_OAUTH_TOKEN
 set -eU ANTHROPIC_API_KEY
+set -eg ANTHROPIC_API_KEY
+set -eg CLAUDE_CODE_OAUTH_TOKEN
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
