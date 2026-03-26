@@ -229,10 +229,26 @@ return {
           win = {
             list = {
               keys = {
-                ["<C-h>"] = { "<cmd>TmuxNavigateLeft<cr>", mode = { "n", "i" } },
-                ["<C-j>"] = { "<cmd>TmuxNavigateDown<cr>", mode = { "n", "i" } },
-                ["<C-k>"] = { "<cmd>TmuxNavigateUp<cr>", mode = { "n", "i" } },
-                ["<C-l>"] = { "<cmd>TmuxNavigateRight<cr>", mode = { "n", "i" } },
+                ["<C-h>"] = {
+                  function() vim.cmd("TmuxNavigateLeft") end,
+                  mode = { "n", "i" },
+                  desc = "Navigate left (tmux)",
+                },
+                ["<C-j>"] = {
+                  function() vim.cmd("TmuxNavigateDown") end,
+                  mode = { "n", "i" },
+                  desc = "Navigate down (tmux)",
+                },
+                ["<C-k>"] = {
+                  function() vim.cmd("TmuxNavigateUp") end,
+                  mode = { "n", "i" },
+                  desc = "Navigate up (tmux)",
+                },
+                ["<C-l>"] = {
+                  function() vim.cmd("TmuxNavigateRight") end,
+                  mode = { "n", "i" },
+                  desc = "Navigate right (tmux)",
+                },
               },
             },
           },
