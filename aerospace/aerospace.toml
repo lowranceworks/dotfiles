@@ -228,11 +228,11 @@ run = "move-node-to-workspace A"
 
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop '
-run = "move-node-to-workspace S"
+run = ["move-node-to-workspace S", "layout v_tiles"]
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
-run = "move-node-to-workspace S"
+run = ["move-node-to-workspace S", "layout v_tiles"]
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
