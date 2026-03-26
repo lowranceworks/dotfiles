@@ -208,7 +208,7 @@ run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = "move-node-to-workspace Q"
+run = ["move-node-to-workspace Q", "layout v_tiles"]
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser' # arc
