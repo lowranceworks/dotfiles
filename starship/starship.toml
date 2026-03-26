@@ -1,17 +1,54 @@
-# right_format = """$all"""
-
 # sets user-defined palette (theme)
 palette = "catppuccin_mocha"
 
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$kubernetes\
+$terraform\
+$python\
+$golang\
+$nodejs\
+$rust\
+$lua\
+$cmd_duration\
+$line_break\
+$character"""
+
+[directory]
+style = "bold green"
+
 [directory.substitutions]
 'Documents' = '󰈙'
-'Downloads' = ' '
-'Music' = ' '
-'Pictures' = ' '
+'Downloads' = ' '
+'Music' = ' '
+'Pictures' = ' '
 
-[nix_shell]
-disabled = true
-format = ""
+[character]
+error_symbol = "[󰩈](bold red)"
+success_symbol = "[](bold green)"
+vicmd_symbol = "[](bold teal)"
+
+[cmd_duration]
+style = "bold yellow"
+min_time = 2_000
+
+[git_branch]
+symbol = ' '
+format = '[on](white) [$symbol$branch ]($style)'
+
+[git_status]
+format = '([$ahead_behind$modified$staged$untracked]($style) )'
+style = "bold peach"
+modified = "~${count}"
+staged = "+${count}"
+untracked = "?${count}"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇡${ahead_count}⇣${behind_count}"
 
 [kubernetes]
 symbol = '☸ '
@@ -20,83 +57,58 @@ detect_files = ['Dockerfile']
 format = '[$context(\[$namespace\])]($style) '
 
 [kubernetes.context_aliases]
-# 'arn:ws:eks:us-west-2:577926974532:cluster/gal-kub-demo-cluster' = 'gal'
 
-[docker_context]
-disabled = true
-symbol = ' '
-style = 'fg:#06969A'
-format = '[$symbol]($style) $path'
-detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
-detect_extensions = ['Dockerfile']
-
-[gcloud]
-disabled = true
-format = 'on [$symbol($profile )(\($region\) )]($style)'
-style = "bold #ffb86c"
-symbol = "  "
-
-[aws]
-disabled = true
-format = 'on [$symbol($profile )(\($region\) )]($style)'
-style = "bold #ffb86c"
-symbol = "  "
-
-[azure]
-disabled = true
-format = 'on [$symbol($profile )(\($region\) )]($style)'
-style = "bold #ffb86c"
-symbol = "  "
-
-[character]
-error_symbol = "[󰩈](bold #f38ba8)"
-success_symbol = "[](bold #a6e3a1)"
-vicmd_symbol = "[](bold #94e2d5)"
-
-[cmd_duration]
-style = "bold #f1fa8c"
-
-[directory]
-style = "bold #50fa7b"
-
-[git_branch]
-symbol = ' '
-format = '[on](white) [$symbol$branch ]($style)'
-
-[git_status]
-disabled = true
-# format = '([$all_status$ahead_behind]($style) )'
+[terraform]
+symbol = '󱁢 '
+style = 'bold lavender'
+format = '[$symbol$workspace]($style) '
 
 [python]
 style = 'teal'
-symbol = ' '
+symbol = ' '
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 pyenv_prefix = ''
 
-[lua]
-symbol = ' '
+[golang]
+style = 'blue'
+symbol = ' '
 
 [nodejs]
 style = 'blue'
-symbol = ' '
+symbol = ' '
 
-[golang]
-style = 'blue'
-symbol = ' '
+[lua]
+symbol = ' '
+
+[rust]
+style = 'peach'
+symbol = ' '
 
 [haskell]
 style = 'blue'
-symbol = ' '
-
-[rust]
-style = 'orange'
-symbol = ' '
-
-[hostname]
+symbol = ' '
 
 [username]
 format = "[$user]($style) "
+
+[hostname]
+
+[nix_shell]
+disabled = true
+format = ""
+
+[docker_context]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
