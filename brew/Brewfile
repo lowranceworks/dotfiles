@@ -77,7 +77,6 @@ brew "pre-commit"                             # Git hooks framework
 brew "protobuf"                               # Protocol buffers
 brew "proton-drive"                           # Proton Drive CLI
 brew "proton-mail"                            # Proton Mail CLI
-brew "pyenv"                                  # Python version manager
 brew "pytest"                                 # Python testing framework
 brew "qemu"                                   # Machine emulator
 brew "ripgrep"                                # Fast grep alternative

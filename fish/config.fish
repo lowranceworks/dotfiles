@@ -8,7 +8,8 @@
 # A smart and user-friendly command line
 # https://fishshell.com/
 
-fish_config theme choose "Catppuccin Mocha"
+# Theme is set once via: fish_config theme choose "Catppuccin Mocha"
+# Do not run fish_config on every startup -- it writes universal variables.
 
 eval (/opt/homebrew/bin/brew shellenv)
 
@@ -27,16 +28,16 @@ end
 
 set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every arrow-based directory change (default)
 
-set -U fish_greeting "" # disable the default fish greeting for a cleaner startup
-set -U fish_key_bindings fish_vi_key_bindings
-set -Ux LANG en_US.UTF-8
-set -Ux LC_ALL en_US.UTF-8
+set -g fish_greeting "" # disable the default fish greeting for a cleaner startup
+set -g fish_key_bindings fish_vi_key_bindings
+set -gx LANG en_US.UTF-8
+set -gx LC_ALL en_US.UTF-8
 
-# set -Ux BAT_THEME Catppuccin-latte # 'sharkdp/bat' cat clone
-set -Ux EDITOR nvim # 'neovim/neovim' text editor
-set -Ux FZF_DEFAULT_COMMAND "fd -H -E '.git'" # Use fd for fzf, showing hidden files but excluding .git
+# set -gx BAT_THEME Catppuccin-latte # 'sharkdp/bat' cat clone
+set -gx EDITOR nvim # 'neovim/neovim' text editor
+set -gx FZF_DEFAULT_COMMAND "fd -H -E '.git'" # Use fd for fzf, showing hidden files but excluding .git
 
-set -Ux VISUAL nvim
+set -gx VISUAL nvim
 
 # go configuration with goenv
 set -gx GOENV_ROOT $HOME/.goenv
@@ -60,13 +61,9 @@ set -x SKHD_CONFIG "$HOME/.config/skhd/skhdrc"
 # api keys
 # set -x CLAUDE_CODE_OAUTH_TOKEN (read -s < ~/.keys/anthropic/claude/api.key)
 
-# TODO: find out where these are coming from and remove these commands
-set -eU CLAUDE_CODE_OAUTH_TOKEN
-set -eU ANTHROPIC_API_KEY
+# Erase leaked API keys from environment (global only; universal cleanup done once manually)
 set -eg ANTHROPIC_API_KEY
 set -eg CLAUDE_CODE_OAUTH_TOKEN
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Load carapace shell completions
 if test -f ~/.config/fish/conf.d/carapace.fish
@@ -77,13 +74,6 @@ end
 # Using fish_add_path instead of setting PATH directly ensures deduplication
 fish_add_path $HOME/.local/bin # pipx installations
 fish_add_path /Library/TeX/texbin # pandoc/xelatex
-
-# pyenv configuration
-set -gx PYENV_ROOT $HOME/.pyenv
-fish_add_path $PYENV_ROOT/bin
-if type -q pyenv
-    pyenv init - fish | source
-end
 
 # Set environment variable to override K9s config directory
 set -gx K9S_CONFIG_DIR ~/.config/k9s
