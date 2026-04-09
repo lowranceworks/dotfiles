@@ -6,6 +6,7 @@ $username\
 $hostname\
 $directory\
 $git_branch\
+$git_commit\
 $git_status\
 $kubernetes\
 $terraform\
@@ -37,8 +38,14 @@ style = "bold yellow"
 min_time = 2_000
 
 [git_branch]
-symbol = ' '
-format = '[on](white) [$symbol$branch ]($style)'
+symbol = ''
+format = '[on](white) [$symbol$branch]($style) '
+
+[git_commit]
+only_detached = true
+tag_disabled = false
+tag_symbol = ''
+format = '[$tag]($style)'
 
 [git_status]
 format = '([$ahead_behind$modified$staged$untracked]($style) )'
