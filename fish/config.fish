@@ -77,3 +77,6 @@ fish_add_path /Library/TeX/texbin # pandoc/xelatex
 
 # Set environment variable to override K9s config directory
 set -gx K9S_CONFIG_DIR ~/.config/k9s
+
+# Added by Radicle.
+export PATH="$PATH:/Users/josh/.radicle/bin"
