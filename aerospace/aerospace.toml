@@ -247,12 +247,20 @@ if.app-id = 'com.microsoft.teams'
 run = "move-node-to-workspace D"
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.Outlook'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.electron.keet'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = "move-node-to-workspace E"
 
 # [[on-window-detected]]
 # if.app-id = ''
