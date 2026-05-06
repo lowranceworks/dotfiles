@@ -3,6 +3,7 @@
   "model": "anthropic/claude-sonnet-4-6",
   "autoupdate": true,
   "plugin": [
-    "opencode-mem"
+    "opencode-mem",
+    "superpowers@git+https://github.com/obra/superpowers.git"
   ]
 }
