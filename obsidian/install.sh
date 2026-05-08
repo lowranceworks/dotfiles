@@ -14,6 +14,31 @@ for vault in "$VAULTS_DIR"/*/; do
   done
 done
 
+# Merge hotkeys into each vault's hotkeys.json
+if [ -f "$DOTFILES_OBSIDIAN/hotkeys.json" ]; then
+  echo ""
+  for vault in "$VAULTS_DIR"/*/; do
+    vault_hotkeys="$vault.obsidian/hotkeys.json"
+    mkdir -p "$vault.obsidian"
+    if [ -f "$vault_hotkeys" ]; then
+      # Merge: dotfiles hotkeys take precedence over existing vault hotkeys
+      python3 -c "
+import json
+with open('$vault_hotkeys') as f:
+    existing = json.load(f)
+with open('$DOTFILES_OBSIDIAN/hotkeys.json') as f:
+    dotfile = json.load(f)
+existing.update(dotfile)
+with open('$vault_hotkeys', 'w') as f:
+    json.dump(existing, f, indent=2)
+" 2>/dev/null
+    else
+      cp "$DOTFILES_OBSIDIAN/hotkeys.json" "$vault_hotkeys"
+    fi
+    echo "hotkeys: $(basename "$vault")"
+  done
+fi
+
 # Install plugins from plugins.txt into each vault
 plugin_list="$DOTFILES_OBSIDIAN/plugins.txt"
 if [ ! -f "$plugin_list" ]; then
