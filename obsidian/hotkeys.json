@@ -1,8 +1,2 @@
 {
-  "workspace:previous-tab": [
-    { "modifiers": ["Shift"], "key": "H" }
-  ],
-  "workspace:next-tab": [
-    { "modifiers": ["Shift"], "key": "L" }
-  ]
 }
