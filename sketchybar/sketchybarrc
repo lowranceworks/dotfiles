@@ -59,6 +59,7 @@ source "$ITEM_DIR/apple.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
+source "$ITEM_DIR/network.sh"
 
 ############## FINALIZING THE SETUP ##############
 sketchybar --update
