@@ -24,7 +24,11 @@ local config = {
 	cursor_blink_ease_out = "Constant",
 
 	color_scheme = "Catppuccin Mocha",
-	font = wezterm.font("CommitMono"),
+	font = wezterm.font_with_fallback({
+		"CommitMono",
+		"Apple Symbols",
+		"Symbols Nerd Font Mono",
+	}),
 	font_size = 16,
 
 	window_padding = {
