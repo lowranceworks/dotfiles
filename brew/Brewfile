@@ -64,6 +64,7 @@ brew "kustomize"                              # Kubernetes config customization
 brew "lazydocker"                             # Docker TUI
 brew "lazygit"                                # Git TUI
 brew "lsd"                                    # Modern ls with icons
+brew "imagemagick"                            # Image manipulation library
 brew "lua"                                    # Lua programming language
 brew "make"                                   # Build automation
 brew "mypy"                                   # Python type checker
