@@ -4,6 +4,33 @@ CACHE=/tmp/sketchybar_network_quality.json
 LOCK=/tmp/sketchybar_network_quality.lock
 MAX_AGE=300 # re-test every 5 minutes
 
+WIFI_ICON=󰖩
+WIRED_ICON=󰈀
+OFFLINE_ICON=󰤭
+
+# Determine the active physical uplink independent of any VPN on top.
+# The network service order is priority-sorted (Ethernet above Wi-Fi by
+# default); the first service whose device has an active link and an IP is the
+# real uplink. Wi-Fi port -> wireless, anything else -> wired.
+detect_connection() {
+  local line port dev
+  while IFS= read -r line; do
+    port=$(echo "$line" | sed -E 's/.*Hardware Port: (.*), Device:.*/\1/')
+    dev=$(echo "$line" | sed -E 's/.*Device: (en[0-9]+).*/\1/')
+    [ -z "$dev" ] && continue
+    if ifconfig "$dev" 2>/dev/null | grep -q "status: active" &&
+      ifconfig "$dev" 2>/dev/null | grep -q "inet "; then
+      if [ "$port" = "Wi-Fi" ]; then
+        echo "wifi"
+      else
+        echo "wired"
+      fi
+      return
+    fi
+  done < <(networksetup -listnetworkserviceorder 2>/dev/null | grep -E "Device: en[0-9]+")
+  echo "offline"
+}
+
 run_test() {
   if [ -f "$LOCK" ]; then
     return
@@ -13,6 +40,21 @@ run_test() {
   networkQuality -c -s 2>/dev/null > "${CACHE}.tmp" && mv "${CACHE}.tmp" "$CACHE"
   rm -f "$LOCK"
 }
+
+CONNECTION=$(detect_connection)
+
+if [ "$CONNECTION" = "wired" ]; then
+  ICON=$WIRED_ICON
+else
+  ICON=$WIFI_ICON
+fi
+
+# No physical uplink: show offline and don't bother testing.
+if [ "$CONNECTION" = "offline" ]; then
+  sketchybar --set "$NAME" icon="$OFFLINE_ICON" label="Offline" \
+    label.color=0xfff38ba8 icon.color=0xfff38ba8
+  exit 0
+fi
 
 # Check if we need a fresh test
 NEED_TEST=false
@@ -46,10 +88,11 @@ if [ -f "$CACHE" ]; then
       COLOR=0xfff38ba8 # red
     fi
 
-    sketchybar --set "$NAME" label="↓${DL_MBPS} ↑${UL_MBPS} Mbps" label.color="$COLOR" icon.color="$COLOR"
+    sketchybar --set "$NAME" icon="$ICON" label="↓${DL_MBPS} ↑${UL_MBPS} Mbps" \
+      label.color="$COLOR" icon.color="$COLOR"
   else
-    sketchybar --set "$NAME" label="Testing…"
+    sketchybar --set "$NAME" icon="$ICON" label="Testing…"
   fi
 else
-  sketchybar --set "$NAME" label="Testing…"
+  sketchybar --set "$NAME" icon="$ICON" label="Testing…"
 fi
