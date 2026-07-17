@@ -193,6 +193,14 @@ return {
     },
     input = { enabled = true },
 
+    -- Disable snacks' image viewer. Its picker preview renders into a
+    -- floating window, and tmux can't position terminal-graphics images
+    -- inside floats (they splatter at the terminal origin). With this
+    -- off, the picker falls back to a plain "binary file" text preview.
+    -- Actual image/markdown files still render via image.nvim in normal
+    -- (non-floating) windows, which works fine under tmux.
+    image = { enabled = false },
+
     -- Buffer management (replacing BufferLine)
     bufdelete = { enabled = true },
 
