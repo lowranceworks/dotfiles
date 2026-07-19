@@ -1,3 +1,17 @@
+-- Hide image.nvim's images *before* a floating picker builds its layout.
+-- Snacks' on_show hook fires after the float is created, leaving a one-frame
+-- window where the image re-renders at a shifted position (the flicker). By
+-- clearing here first, the picker opens with no image on screen; on_close
+-- restores it.
+local function pick(fn)
+  return function()
+    if package.loaded["image"] then
+      require("image").disable()
+    end
+    fn()
+  end
+end
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -22,65 +36,65 @@ return {
     -- File/Search operations (replacing Telescope)
     {
       "<leader><leader>",
-      function()
+      pick(function()
         Snacks.picker.files()
-      end,
+      end),
       desc = "Find files",
     },
     {
       "<leader>/",
-      function()
+      pick(function()
         Snacks.picker.grep()
-      end,
+      end),
       desc = "Live grep",
     },
     {
       "<leader>ff",
-      function()
+      pick(function()
         Snacks.picker.files()
-      end,
+      end),
       desc = "Find files",
     },
     {
       "<leader>fg",
-      function()
+      pick(function()
         Snacks.picker.grep()
-      end,
+      end),
       desc = "Live grep",
     },
     {
       "<leader>fb",
-      function()
+      pick(function()
         Snacks.picker.buffers()
-      end,
+      end),
       desc = "Find buffers",
     },
     {
       "<leader>fh",
-      function()
+      pick(function()
         Snacks.picker.help()
-      end,
+      end),
       desc = "Help tags",
     },
     {
       "<leader>fr",
-      function()
+      pick(function()
         Snacks.picker.recent()
-      end,
+      end),
       desc = "Recent files",
     },
     {
       "<leader>fc",
-      function()
+      pick(function()
         Snacks.picker.commands()
-      end,
+      end),
       desc = "Commands",
     },
     {
       "<leader>fk",
-      function()
+      pick(function()
         Snacks.picker.keymaps()
-      end,
+      end),
       desc = "Keymaps",
     },
 
@@ -131,32 +145,32 @@ return {
     },
     {
       "<leader>gb",
-      function()
+      pick(function()
         Snacks.picker.git_log_line()
-      end,
+      end),
       desc = "Git Blame",
     },
     {
       "<leader>gc",
-      function()
+      pick(function()
         Snacks.picker.git_log_file()
-      end,
+      end),
       desc = "Git Commits",
     },
     {
       "<leader>gl",
-      function()
+      pick(function()
         Snacks.picker.git_log()
-      end,
+      end),
       desc = "Git Log",
     },
 
     -- Undo history (replacing undotree)
     {
       "<leader>u",
-      function()
+      pick(function()
         Snacks.picker.undo()
-      end,
+      end),
       desc = "Undo History",
     },
 
@@ -218,6 +232,22 @@ return {
       enabled = true,
       hidden = true, -- Show hidden files by default
       follow = false, -- Don't follow symlinks
+      -- Under tmux, terminal-graphics images render on top of floating
+      -- windows, so a PNG open in a background window bleeds through the
+      -- grep/files picker float. Overlap-masking doesn't survive tmux's
+      -- passthrough, so instead fully hide image.nvim's images while a
+      -- floating picker is open and restore them on close. Skip the
+      -- explorer: it's a persistent sidebar, not a float over the image.
+      on_show = function(picker)
+        if picker.opts.source ~= "explorer" and package.loaded["image"] then
+          require("image").disable()
+        end
+      end,
+      on_close = function(picker)
+        if picker.opts.source ~= "explorer" and package.loaded["image"] then
+          require("image").enable()
+        end
+      end,
       sources = {
         grep = {
           hidden = true,
