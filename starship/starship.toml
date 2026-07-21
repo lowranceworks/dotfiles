@@ -60,7 +60,7 @@ diverged = "⇡${ahead_count}⇣${behind_count}"
 [kubernetes]
 symbol = '☸ '
 disabled = false
-detect_files = ['Dockerfile']
+detect_files = ['Dockerfile', '.cluster']
 format = '[$context(\[$namespace\])]($style) '
 
 [kubernetes.context_aliases]
