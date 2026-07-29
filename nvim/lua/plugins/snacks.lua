@@ -246,6 +246,44 @@ return {
           vim.fn.setreg("+", path)
           Snacks.notify("Yanked full path:\n" .. path, { title = "Snacks Picker" })
         end,
+        -- <o>: open the current item on GitHub in the browser at
+        -- https://github.com/{org}/{repo}/blob/{branch}/{path}. org/repo and
+        -- branch come from git in the item's directory; the path is resolved
+        -- relative to the repo root (not cwd) so it works from the explorer,
+        -- files, and grep pickers alike.
+        open_in_github = function(picker)
+          local item = picker:current()
+          local path = item and Snacks.picker.util.path(item)
+          if not path then
+            return
+          end
+          local dir = vim.fs.dirname(path)
+          local function git(...)
+            local out = vim.fn.systemlist({ "git", "-C", dir, ... })
+            if vim.v.shell_error ~= 0 then
+              return nil
+            end
+            return vim.trim(out[1] or "")
+          end
+          local root = git("rev-parse", "--show-toplevel")
+          local remote = git("remote", "get-url", "origin")
+          local branch = git("rev-parse", "--abbrev-ref", "HEAD")
+          if not (root and remote and branch) then
+            Snacks.notify.error("Not a git repo with a GitHub 'origin' remote", { title = "Open in GitHub" })
+            return
+          end
+          -- Parse org/repo from either SSH (git@github.com:org/repo.git) or
+          -- HTTPS (https://github.com/org/repo.git) remotes.
+          local org_repo = remote:match("github%.com[:/](.-)%.git$") or remote:match("github%.com[:/](.+)$")
+          if not org_repo then
+            Snacks.notify.error("origin remote is not on github.com:\n" .. remote, { title = "Open in GitHub" })
+            return
+          end
+          local rel = path:sub(#root + 2) -- strip "root/" prefix
+          local url = ("https://github.com/%s/blob/%s/%s"):format(org_repo, branch, rel)
+          vim.ui.open(url)
+          Snacks.notify("Opening:\n" .. url, { title = "Open in GitHub" })
+        end,
       },
       win = {
         -- Bind in both the input window (files/grep, where the prompt is
@@ -255,11 +293,14 @@ return {
         input = {
           keys = {
             ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
+            -- Normal mode only: in the prompt, insert-mode <o> must still type "o".
+            ["o"] = { "open_in_github", mode = { "n" }, desc = "Open in GitHub" },
           },
         },
         list = {
           keys = {
             ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
+            ["o"] = { "open_in_github", mode = { "n" }, desc = "Open in GitHub" },
           },
         },
       },
@@ -299,6 +340,7 @@ return {
             list = {
               keys = {
                 ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
+                ["o"] = { "open_in_github", mode = { "n" }, desc = "Open in GitHub" },
                 ["<C-h>"] = {
                   function() vim.cmd("TmuxNavigateLeft") end,
                   mode = { "n", "i" },
