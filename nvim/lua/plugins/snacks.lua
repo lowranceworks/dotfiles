@@ -232,6 +232,37 @@ return {
       enabled = true,
       hidden = true, -- Show hidden files by default
       follow = false, -- Don't follow symlinks
+      -- <C-y>: yank the current item's *full absolute* path to the system
+      -- clipboard. Snacks' built-in `yank` copies item.text (relative) to the
+      -- unnamed register and isn't bound to <C-y> in files/grep, so define our
+      -- own using util.path() which returns the normalized absolute path.
+      actions = {
+        yank_full_path = function(picker)
+          local item = picker:current()
+          local path = item and Snacks.picker.util.path(item)
+          if not path then
+            return
+          end
+          vim.fn.setreg("+", path)
+          Snacks.notify("Yanked full path:\n" .. path, { title = "Snacks Picker" })
+        end,
+      },
+      win = {
+        -- Bind in both the input window (files/grep, where the prompt is
+        -- focused) and the list window (explorer/tree, where the list is
+        -- focused). Without the list binding, <C-y> in the Explorer sidebar
+        -- falls through to Vim's default scroll-up.
+        input = {
+          keys = {
+            ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
+          },
+        },
+        list = {
+          keys = {
+            ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
+          },
+        },
+      },
       -- Under tmux, terminal-graphics images render on top of floating
       -- windows, so a PNG open in a background window bleeds through the
       -- grep/files picker float. Overlap-masking doesn't survive tmux's
@@ -267,6 +298,7 @@ return {
           win = {
             list = {
               keys = {
+                ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
                 ["<C-h>"] = {
                   function() vim.cmd("TmuxNavigateLeft") end,
                   mode = { "n", "i" },
