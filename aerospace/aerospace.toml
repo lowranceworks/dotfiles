@@ -227,8 +227,12 @@ if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace A"
 
 [[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop '
-run = ["move-node-to-workspace S", "layout v_tiles"]
+if.app-id = 'com.1password.1password'
+run = ["move-node-to-workspace V", "layout v_tiles"]
+
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+run = ["move-node-to-workspace V", "layout v_tiles"]
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
