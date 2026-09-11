@@ -284,6 +284,30 @@ return {
           vim.ui.open(url)
           Snacks.notify("Opening:\n" .. url, { title = "Open in GitHub" })
         end,
+        -- <b>: open the current item with its default macOS app. On macOS
+        -- vim.ui.open() shells out to `open <path>`, so an .html opens in the
+        -- browser, images in Preview, etc. Use this for the *file itself*
+        -- (vs. <o> which opens the GitHub page for it).
+        open_in_browser = function(picker)
+          local item = picker:current()
+          local path = item and Snacks.picker.util.path(item)
+          if not path then
+            return
+          end
+          vim.ui.open(path)
+          Snacks.notify("Opening:\n" .. path, { title = "Snacks Picker" })
+        end,
+        -- <F>: reveal the current item in Finder. `open -R` selects the file
+        -- in a Finder window rather than opening it.
+        open_in_finder = function(picker)
+          local item = picker:current()
+          local path = item and Snacks.picker.util.path(item)
+          if not path then
+            return
+          end
+          vim.system({ "open", "-R", path })
+          Snacks.notify("Revealing in Finder:\n" .. path, { title = "Snacks Picker" })
+        end,
       },
       win = {
         -- Bind in both the input window (files/grep, where the prompt is
@@ -293,14 +317,19 @@ return {
         input = {
           keys = {
             ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
-            -- Normal mode only: in the prompt, insert-mode <o> must still type "o".
+            -- Normal mode only: in the prompt, insert-mode <o>/<b>/<F> must
+            -- still type their literal characters.
             ["o"] = { "open_in_github", mode = { "n" }, desc = "Open in GitHub" },
+            ["b"] = { "open_in_browser", mode = { "n" }, desc = "Open in browser" },
+            ["F"] = { "open_in_finder", mode = { "n" }, desc = "Reveal in Finder" },
           },
         },
         list = {
           keys = {
             ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
             ["o"] = { "open_in_github", mode = { "n" }, desc = "Open in GitHub" },
+            ["b"] = { "open_in_browser", mode = { "n" }, desc = "Open in browser" },
+            ["F"] = { "open_in_finder", mode = { "n" }, desc = "Reveal in Finder" },
           },
         },
       },
@@ -341,6 +370,8 @@ return {
               keys = {
                 ["<c-y>"] = { "yank_full_path", mode = { "n", "i" }, desc = "Yank full path" },
                 ["o"] = { "open_in_github", mode = { "n" }, desc = "Open in GitHub" },
+                ["b"] = { "open_in_browser", mode = { "n" }, desc = "Open in browser" },
+                ["F"] = { "open_in_finder", mode = { "n" }, desc = "Reveal in Finder" },
                 ["<C-h>"] = {
                   function() vim.cmd("TmuxNavigateLeft") end,
                   mode = { "n", "i" },
