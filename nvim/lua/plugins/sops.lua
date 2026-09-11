@@ -1,11 +1,10 @@
 return {
   {
-    "lucidph3nx/nvim-sops",
-    event = { "BufEnter" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
+    "lemarsu/sops.nvim",
+    opts = {},
+    config = function(_, opts)
+      require("sops").setup(opts)
+      vim.cmd("cabbrev sops Sops")
+    end,
   },
 }

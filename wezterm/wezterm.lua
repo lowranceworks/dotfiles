@@ -24,7 +24,11 @@ local config = {
 	cursor_blink_ease_out = "Constant",
 
 	color_scheme = "Catppuccin Mocha",
-	font = wezterm.font("CommitMono"),
+	font = wezterm.font_with_fallback({
+		"CommitMono",
+		"Apple Symbols",
+		"Symbols Nerd Font Mono",
+	}),
 	font_size = 16,
 
 	window_padding = {
@@ -64,9 +68,14 @@ local config = {
 
 		k.cmd_key("q", k.multiple_actions(":qa!")),
 		{ key = "t", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
-		
+
 		-- Scroll to bottom when needed
 		{ key = "End", mods = "SHIFT", action = wezterm.action.ScrollToBottom },
+
+		-- Ensure ctrl+d and ctrl+u are sent to the terminal app (enable nvim-style scrolling)
+		-- rather than being consumed by WezTerm's scrollback mode
+		{ key = "d", mods = "CTRL", action = wezterm.action.SendKey({ key = "d", mods = "CTRL" }) },
+		{ key = "u", mods = "CTRL", action = wezterm.action.SendKey({ key = "u", mods = "CTRL" }) },
 	},
 
 	-- mouse bindings for opening links
