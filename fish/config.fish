@@ -80,3 +80,6 @@ set -gx K9S_CONFIG_DIR ~/.config/k9s
 
 # Added by Radicle.
 export PATH="$PATH:/Users/josh/.radicle/bin"
+
+# kimi-code
+fish_add_path -g "/Users/josh/.kimi-code/bin"
