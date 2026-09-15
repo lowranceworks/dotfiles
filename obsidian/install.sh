@@ -25,6 +25,36 @@ if [ -f "$DOTFILES_OBSIDIAN/hotkeys.json" ]; then
   done
 fi
 
+# Copy local plugins (dotfiles/plugins/<id>/) into each vault and enable them
+if [ -d "$DOTFILES_OBSIDIAN/plugins" ]; then
+  echo ""
+  for local_plugin in "$DOTFILES_OBSIDIAN/plugins"/*/; do
+    plugin_id="$(basename "$local_plugin")"
+    for vault in "$VAULTS_DIR"/*/; do
+      target_dir="$vault.obsidian/plugins/$plugin_id"
+      mkdir -p "$target_dir"
+      cp "$local_plugin"* "$target_dir/"
+
+      cp_json="$vault.obsidian/community-plugins.json"
+      if [ -f "$cp_json" ]; then
+        if ! python3 -c "import json; ids=json.load(open('$cp_json')); exit(0 if '$plugin_id' in ids else 1)" 2>/dev/null; then
+          python3 -c "
+import json
+with open('$cp_json') as f:
+    ids = json.load(f)
+ids.append('$plugin_id')
+with open('$cp_json', 'w') as f:
+    json.dump(ids, f, indent=2)
+" 2>/dev/null
+        fi
+      else
+        echo '["'"$plugin_id"'"]' > "$cp_json"
+      fi
+      echo "local plugin: $plugin_id -> $(basename "$vault")"
+    done
+  done
+fi
+
 # Install plugins from plugins.txt into each vault
 plugin_list="$DOTFILES_OBSIDIAN/plugins.txt"
 if [ ! -f "$plugin_list" ]; then
