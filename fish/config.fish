@@ -30,6 +30,11 @@ set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every a
 
 set -g fish_greeting "" # disable the default fish greeting for a cleaner startup
 set -g fish_key_bindings fish_vi_key_bindings
+
+# atuin must init after key bindings are set so its Ctrl+R binding isn't clobbered
+if type -q atuin
+    atuin init fish | source # https://atuin.sh/
+end
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 
