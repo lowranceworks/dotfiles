@@ -64,6 +64,7 @@ brew "kustomize"                              # Kubernetes config customization
 brew "lazydocker"                             # Docker TUI
 brew "lazygit"                                # Git TUI
 brew "lsd"                                    # Modern ls with icons
+brew "imagemagick"                            # Image manipulation library
 brew "lua"                                    # Lua programming language
 brew "make"                                   # Build automation
 brew "mypy"                                   # Python type checker
@@ -77,7 +78,6 @@ brew "pre-commit"                             # Git hooks framework
 brew "protobuf"                               # Protocol buffers
 brew "proton-drive"                           # Proton Drive CLI
 brew "proton-mail"                            # Proton Mail CLI
-brew "pyenv"                                  # Python version manager
 brew "pytest"                                 # Python testing framework
 brew "qemu"                                   # Machine emulator
 brew "ripgrep"                                # Fast grep alternative

@@ -1,8 +1,26 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "anthropic/claude-opus-4-6",
-  "autoupdate": true,
+  "provider": {
+    "kimi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kimi (subscription)",
+      "options": {
+        "baseURL": "https://api.kimi.com/coding/v1",
+        "apiKey": "{env:KIMI_API_KEY}"
+      },
+      "models": {
+        "k3": {
+          "name": "Kimi K3"
+        },
+        "kimi-for-coding": {
+          "name": "Kimi K2.8 Preview"
+        }
+      }
+    }
+  },
   "plugin": [
-    "opencode-anthropic-user-agent-plugin"
-  ]
+    "opencode-mem",
+    "superpowers@git+https://github.com/obra/superpowers.git"
+  ],
+  "model": "kimi/k3"
 }
