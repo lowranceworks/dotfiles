@@ -12,3 +12,8 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Show diagnostic error
 vim.keymap.set("n", "<leader>E", vim.diagnostic.open_float, { desc = "Show diagnostic error" })
+
+-- Workmux dashboard in a floating terminal
+vim.keymap.set("n", "<leader>wm", function()
+  Snacks.terminal("workmux dashboard")
+end, { desc = "Workmux dashboard" })

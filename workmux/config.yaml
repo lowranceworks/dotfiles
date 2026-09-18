@@ -1,0 +1,29 @@
+# workmux global configuration
+# Reference: `workmux config reference` (all options, documented)
+# Project overrides: .workmux.yaml in a repo root
+# Layout adapted from https://github.com/smnatale/dotfiles/blob/main/dot_config/workmux/config.yaml
+
+# each worktree opens as a separate session as opposed to windows
+# per-command override: workmux add <branch> --mode window
+mode: session
+
+# don't add agent icons to tmux windows
+status_format: false
+
+# enable nerd fonts
+nerdfont: true
+
+window_prefix: "{project} 󰘬 "
+
+# default window layout
+windows:
+  - name: editor
+    panes:
+      - command: nvim
+        focus: true
+  - name: server
+  - name: agent
+
+# branch new worktrees from the detected main/master instead of the
+# currently checked out branch
+base_branch: auto
