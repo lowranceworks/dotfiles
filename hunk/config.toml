@@ -1,1 +1,6 @@
 theme = "catppuccin-mocha"
+
+[keybindings]
+"hunk.search.find" = "/"
+"hunk.search.next" = "n"
+"hunk.search.previous" = ["N", "p"]
