@@ -66,7 +66,7 @@ local config = {
 		{ mods = "CMD", key = "RightArrow", action = wezterm.action.SendKey({ mods = "CTRL", key = "e" }) },
 		{ mods = "CMD", key = "Backspace", action = wezterm.action.SendKey({ mods = "CTRL", key = "u" }) },
 
-		k.cmd_key("q", k.multiple_actions(":qa!")),
+		k.cmd_key("q", wezterm.action.EmitEvent("smart-quit")),
 		{ key = "t", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
 
 		-- Scroll to bottom when needed
@@ -94,6 +94,29 @@ local config = {
 		},
 	},
 }
+
+-- Cmd+Q: quit the foreground TUI the way it expects.
+-- lazygit quits on "q"; nvim and everything else gets ":qa!".
+wezterm.on("smart-quit", function(window, pane)
+	local process = pane:get_foreground_process_name() or ""
+	if process:find("tmux") then
+		-- absolute path: the wezterm-gui process has no Homebrew in its PATH
+		local ok, stdout = wezterm.run_child_process({
+			"/opt/homebrew/bin/tmux",
+			"display-message",
+			"-p",
+			"#{pane_current_command}",
+		})
+		if ok and stdout then
+			process = stdout
+		end
+	end
+	if process:find("lazygit") then
+		window:perform_action(wezterm.action.SendKey({ key = "q" }), pane)
+	else
+		window:perform_action(k.multiple_actions(":qa!"), pane)
+	end
+end)
 
 wezterm.on("user-var-changed", function(window, pane, name, value)
 	local overrides = window:get_config_overrides() or {}
