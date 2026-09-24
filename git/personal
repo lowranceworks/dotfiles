@@ -1,0 +1,6 @@
+[user]
+	name = Joshua Lowrance
+	email = lowranceworks@gmail.com
+
+[url "https://lowranceworks@github.com/lowranceworks/"]
+	insteadOf = https://github.com/lowranceworks/

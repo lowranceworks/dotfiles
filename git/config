@@ -3,7 +3,7 @@
 
 [user]
 	name = Joshua Lowrance
-	email = lowranceworks@gmail.com
+	email = joshua.lowrance@mlb.com
 
 [core]
 	editor = nvim
@@ -46,15 +46,15 @@
 [include]
 	path = ~/.config/git/catppuccin.gitconfig
 
-[includeIf "gitdir:~/Projects/work/"]
-	path = ~/Projects/work/.gitconfig
-
-[includeIf "gitdir:~/Projects/LawnOps/"]
-	path = ~/Projects/LawnOps/.gitconfig
+[includeIf "gitdir:~/projects/lowranceworks/"]
+	path = ~/.config/git/personal
 
 [credential "https://github.com"]
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://github.mlbam.net"]
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
