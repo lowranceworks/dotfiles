@@ -7,14 +7,16 @@ keybinding:
   universal:
     prevPage: <c-u>
     nextPage: <c-d>
-
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never
 customCommands:
   - key: "o"
     context: "files"
     description: "Open file in nvim (tmux vertical split)"
     command: 'tmux split-window -h "nvim {{.SelectedPath | quote}}"'
     output: none
-
 gui:
   # Use the mocha catppuccin theme
   theme:
