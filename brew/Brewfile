@@ -51,6 +51,7 @@ brew "gnu-sed"                                # GNU sed (non-BSD version)
 brew "go-task"                                # Task runner / Make alternative
 brew "goenv"                                  # Go version manager
 brew "helm"                                   # Kubernetes package manager
+brew "hunk"                                   # Terminal diff viewer for changesets
 brew "isort"                                  # Python import sorting
 brew "jfrog-cli"                              # JFrog Artifactory CLI
 brew "jj"                                     # Jujutsu version control
