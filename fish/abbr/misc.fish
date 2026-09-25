@@ -5,7 +5,7 @@ abbr fu "fisher update"
 
 abbr gcsp "gcloud config set project"
 
-abbr hd "history delete --exact --case-sensitive \'(history | fzf-tmux -p -m)\'"
+abbr hdel "history delete --exact --case-sensitive \'(history | fzf-tmux -p -m)\'"
 
 abbr vim nvim
 abbr v "nvim ."

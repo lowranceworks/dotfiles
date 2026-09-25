@@ -1,0 +1,39 @@
+git:
+  paging:
+    colorArg: always
+    pager: delta --paging=never
+
+keybinding:
+  universal:
+    prevPage: <c-u>
+    nextPage: <c-d>
+
+customCommands:
+  - key: "o"
+    context: "files"
+    description: "Open file in nvim (tmux vertical split)"
+    command: 'tmux split-window -h "nvim {{.SelectedPath | quote}}"'
+    output: none
+
+gui:
+  # Use the mocha catppuccin theme
+  theme:
+    activeBorderColor:
+      - "#89b4fa"
+      - bold
+    inactiveBorderColor:
+      - "#a6adc8"
+    optionsTextColor:
+      - "#89b4fa"
+    selectedLineBgColor:
+      - "#313244"
+    cherryPickedCommitBgColor:
+      - "#45475a"
+    cherryPickedCommitFgColor:
+      - "#89b4fa"
+    unstagedChangesColor:
+      - "#f38ba8"
+    defaultFgColor:
+      - "#cdd6f4"
+    searchingActiveBorderColor:
+      - "#f9e2af"

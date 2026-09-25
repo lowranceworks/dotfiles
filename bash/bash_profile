@@ -1,0 +1,27 @@
+# ██████╗  █████╗ ███████╗██╗  ██╗
+# ██╔══██╗██╔══██╗██╔════╝██║  ██║
+# ██████╔╝███████║███████╗███████║
+# ██╔══██╗██╔══██║╚════██║██╔══██║
+# ██████╔╝██║  ██║███████║██║  ██║
+# ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+# Bourne Again Shell
+# https://www.gnu.org/software/bash/
+#
+# Bootstrap: add this to ~/.bash_profile:
+#   [ -f ~/.config/bash/bash_profile ] && source ~/.config/bash/bash_profile
+
+# Homebrew
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# tmux session manager
+export PATH="$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH"
+export PATH="$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH"
+
+# Source bashrc for interactive shells
+if [ -f "$HOME/.config/bash/bashrc" ]; then
+    source "$HOME/.config/bash/bashrc"
+fi
