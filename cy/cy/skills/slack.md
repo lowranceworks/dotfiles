@@ -1,32 +1,48 @@
 ---
 name: slack
-description: Read and post Slack messages via the Web API (curl) using SLACK_BOT_TOKEN
+description: Read/monitor Slack channels and post messages via slack-cli (slack api) with the user's token
 ---
 
-# Slack via Web API
+# Slack via slack-cli
 
-No CLI needed — the Slack Web API over `curl` covers Cy's use cases.
+The official `slack` CLI (v4+) is installed and handles API calls via
+`slack api <method>`. Auth: `SLACK_USER_TOKEN` in
+`~/.config/cy/config.local.env` (minted via the slack-cli auth-ticket
+flow). The CLI also reads SLACK_USER_TOKEN itself, so `slack api` works
+once it's exported. If calls return `not_authed` / `invalid_auth`, tell the
+user the token needs refreshing — don't improvise.
 
-## Config
+## Watched channels (user's defaults)
 
-Needs `SLACK_BOT_TOKEN` (xoxb-) in `~/.config/cy/config.local.env`, plus
-optionally `SLACK_DEFAULT_CHANNEL` (a channel ID like `C0123456789`).
-The token comes from a Slack app — one-time setup with the manifest at
-`slack-app-manifest.yaml` in the cy repo (api.slack.com/apps → Create New
-App → From a manifest → paste). Recommended bot scopes: `chat:write`,
-`channels:read`, `channels:history`, `groups:read`, `groups:history`.
-
-If the token is unset, tell the user — don't improvise.
+| Channel | ID | Notes |
+|---|---|---|
+| #infra-eng-tdc-private | C055FDHLP32 | private team channel |
+| #infra-eng-tdc-engage | C054K508X9U | engagement/intake channel |
 
 ## Patterns
 
-- Verify: `curl -s -H "Authorization: Bearer $SLACK_BOT_TOKEN" https://slack.com/api/auth.test`
-- List channels: `curl -s -H "Authorization: Bearer $SLACK_BOT_TOKEN" "https://slack.com/api/conversations.list?limit=50" | jq '.channels[] | {id, name}'`
-- Read history: `curl -s -H "Authorization: Bearer $SLACK_BOT_TOKEN" "https://slack.com/api/conversations.history?channel=CHANNEL_ID&limit=20" | jq -r '.messages[].text'`
-- Post: `curl -s -X POST -H "Authorization: Bearer $SLACK_BOT_TOKEN" -H "Content-Type: application/json" -d '{"channel":"CHANNEL_ID","text":"..."}' https://slack.com/api/chat.postMessage`
+- Verify: `slack api auth.test`
+- Recent messages: `slack api conversations.history --json '{"channel":"C055FDHLP32","limit":20}' | jq -r '.messages[] | .ts + " " + (.user // .bot_id // "?") + ": " + .text'`
+- New since last check (monitoring): add `"oldest":"<last_ts>"` to the
+  history call. Track last-seen ts per channel in
+  `~/obsidian-vaults/TDC-MLB/30 Wiki/Cy/slack-monitor.json` (create if
+  missing; never in repos).
+- Channel list: `slack api conversations.list --json '{"limit":50,"types":"public_channel,private_channel"}' | jq '.channels[] | {id, name}'`
+- Post: `slack api chat.postMessage --json '{"channel":"C055FDHLP32","text":"..."}'`
+- DM groups: `slack api conversations.list --json '{"types":"mpim,im","limit":50}'` then history on the conversation ID.
+
+## Monitoring workflow (when asked or on the slack-monitor cron)
+
+1. Read `slack-monitor.json` for last-seen ts per channel.
+2. Fetch new messages per watched channel (oldest = last ts).
+3. Update last ts in the file.
+4. If nothing new, stay quiet. Otherwise summarize what matters — questions
+   to the team, incidents, deploys, decisions; skip bot noise and routine
+   chatter — and notify the user (iMessage). Always link/quote channel name.
 
 ## Rules
 
-- Reading is default. Post to a channel only when the user explicitly asks
-  (or a cron job they approved says to) — and quote which channel.
-- Slack API errors come back as `{"ok":false,"error":"..."}` — surface them.
+- Reading/monitoring is default. Post to a channel ONLY when the user
+  explicitly asks (or an approved cron job says to) — quote the channel.
+- The user token sees exactly what the user sees. Never relay private
+  channel content to unallowlisted destinations.
