@@ -45,3 +45,4 @@ k9s/screen-dumps/
 
 # zsh
 .zsh_history
+config.local.env
