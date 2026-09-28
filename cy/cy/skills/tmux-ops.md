@@ -1,6 +1,6 @@
 ---
 name: tmux-ops
-description: Inspect and drive the user's tmux sessions and workmux coding agents via the bash tool
+description: Inspect and drive the user's tmux sessions and orchestrate workmux coding agents via the bash tool
 ---
 
 # tmux & workmux operations
@@ -19,17 +19,42 @@ tool with these patterns.
 When summarizing what a session is doing, capture the pane and report the
 last meaningful lines — never dump full capture output back to the user.
 
-## workmux agents
+## workmux: orchestrating coding agents
 
-The user runs coding agents in worktrees via workmux:
+workmux creates a git worktree + tmux session per task, each hosting a
+coding agent. Cy acts as the manager: the user texts a task, Cy spins up an
+agent, monitors it, reports back, and cleans up.
 
-- `workmux list` — active worktrees/agents
-- `workmux status` — agent status per worktree
-- `workmux capture <name>` — recent output from an agent
-- `workmux send <name> "instruction"` — send a prompt to a running agent
-- `workmux dashboard` is a TUI — don't run it; use the non-interactive commands
+### Lifecycle
 
-## Sending input (only when asked)
+1. **Create** — from the TARGET repo directory (ask the user which repo if
+   unclear): `cd /path/to/repo && workmux add <task-name>`
+   This makes a worktree at `<repo>__worktrees/<task-name>` plus a tmux
+   session with editor/server/agent windows.
+2. **Start an agent** in its agent window, e.g.:
+   `workmux send <task-name> --window agent 'pi --model bonsai/bonsai2-27b'`
+   (pi uses the local model; `opencode` uses Copilot Enterprise — prefer
+   opencode for bigger tasks)
+3. **Task it** — `workmux send <task-name> "your instruction here"`, or run
+   one-shot commands with `workmux run <task-name> -- "cmd"` (the `--` is required).
+4. **Monitor** — `workmux list`, `workmux status`, `workmux capture <name>`.
+   `workmux wait <name>` blocks until the agent signals done.
+5. **Report** — summarize for the user: what the agent did, diff stats
+   (`git -C <worktree> diff --stat`), tests run.
+6. **Clean up** — only when the user confirms: `workmux merge <name>`
+   (merge + delete worktree + close session) or `workmux remove <name> --force`
+   (discard).
+
+### Rules
+
+- NEVER run `workmux merge` or `workmux remove --force` without the user
+  explicitly confirming — those destroy work.
+- `workmux dashboard` is a TUI — don't run it; use the non-interactive commands.
+- Agent runs take minutes. Use spawn_subagent with background=true to manage
+  the lifecycle so the user conversation stays responsive, and text the user
+  when the agent finishes or gets stuck.
+
+## Sending input to plain tmux panes (only when asked)
 
 - `tmux send-keys -t SESSION:WINDOW.PANE "command" Enter`
 
