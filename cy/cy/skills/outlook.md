@@ -1,38 +1,33 @@
 ---
 name: outlook
-description: Read and send Outlook mail via Microsoft Graph REST using the cached device-code token
+description: Read and send Outlook mail via the m365 CLI (Microsoft 365) — or Graph REST as fallback
 ---
 
-# Outlook via Microsoft Graph
+# Outlook via m365 CLI
 
-Mail access is plain Graph REST. The access token comes from
-`bin/cy msgraph-token` (caches and self-refreshes; initial consent is
-`bin/cy msgraph-auth` — if that errors, tell the user to run it).
+The `m365` CLI (v11+) is installed and handles auth. If `m365 status` says
+"Logged out", tell the user to run `m365 login` (one-time device-code
+consent in the browser) — do not improvise around auth.
 
-## Config (one-time, user does this)
+## Patterns (all support `--output json` for jq filtering)
 
-- `CY_MSGRAPH_CLIENT_ID` in `~/.config/cy/config.env` — from an Entra app
-  registration (Accounts in any org directory, **public client flows
-  enabled**, no secret needed)
-- Optional: `CY_MSGRAPH_TENANT` (default `common`)
+- Auth check: `m365 status`
+- Recent mail: `m365 outlook message list --folderName inbox --top 10 --output json | jq '.[] | {subject, from: .from.emailAddress.address, receivedDateTime, isRead}'`
+- Other folders: `--folderName "Sent Items"`, `archive`, `junkemail`, etc.
+- Read one message: `m365 outlook message get --id MESSAGE_ID --output json`
+- Search: `m365 search --queryText "subject:deploy" --output json` (or
+  `m365 outlook message list --folderName inbox --output json` + jq filter)
+- Send: `m365 outlook mail send --to someone@mlb.com --subject "..." --bodyContents "..."`
 
-## Patterns
+## Fallback: Graph REST (if m365 ever breaks)
 
-Get a token first (run from the cy repo, or use the absolute path to bin/cy):
-
-```sh
-TOKEN=$(bin/cy msgraph-token)
-```
-
-- Unread count: `curl -s -H "Authorization: Bearer $TOKEN" "https://graph.microsoft.com/v1.0/me/mailFolders/inbox?$select=unreadItemCount"`
-- Recent mail: `curl -s -H "Authorization: Bearer $TOKEN" "https://graph.microsoft.com/v1.0/me/mailFolders/inbox/messages?$top=10&$select=subject,from,receivedDateTime,isRead" | jq '.value[] | {subject, from: .from.emailAddress.address, receivedDateTime, isRead}'`
-- Read one message: `curl -s -H "Authorization: Bearer $TOKEN" "https://graph.microsoft.com/v1.0/me/messages/MESSAGE_ID?$select=subject,bodyPreview,body"`
-- Search: `curl -s -H "Authorization: Bearer $TOKEN" "https://graph.microsoft.com/v1.0/me/messages?$search=%22query%22&$top=10&$select=subject,from,receivedDateTime" | jq '.value'`
-- Send: `curl -s -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"message":{"subject":"...","body":{"contentType":"Text","content":"..."},"toRecipients":[{"emailAddress":{"address":"someone@mlb.com"}}]}}' https://graph.microsoft.com/v1.0/me/sendMail`
+`TOKEN=$(bin/cy msgraph-token)` then curl `https://graph.microsoft.com/v1.0/me/...`
+— see git history of this skill for the full patterns. Requires
+CY_MSGRAPH_CLIENT_ID; the m365 path needs none of that.
 
 ## Rules
 
 - Reading is default. Sending mail only when the user explicitly asks —
   always confirm recipient, subject, and body before sending.
-- Token/permission errors (401/403): tell the user the exact fix
-  (`bin/cy msgraph-auth` or consent for the scope) — don't retry blindly.
+- Permission errors (401/403): surface them with the exact fix
+  (`m365 login`, or admin consent for the scope) — don't retry blindly.
