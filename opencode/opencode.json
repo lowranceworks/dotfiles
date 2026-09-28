@@ -16,11 +16,28 @@
           "name": "Kimi K2.8 Preview"
         }
       }
+    },
+    "bonsai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Bonsai (local llama.cpp)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1"
+      },
+      "models": {
+        "bonsai2-27b": {
+          "name": "Bonsai 2 27B",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        }
+      }
     }
   },
   "plugin": [
     "opencode-mem",
     "superpowers@git+https://github.com/obra/superpowers.git"
   ],
-  "model": "github-copilot/claude-opus-5.5"
+  "model": "github-copilot/claude-opus-5.5",
+  "small_model": "github-copilot/gpt-4o-mini"
 }
