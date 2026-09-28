@@ -1,16 +1,11 @@
 git:
-  paging:
-    colorArg: always
-    pager: delta --paging=never
-
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never
 keybinding:
   universal:
     prevPage: <c-u>
     nextPage: <c-d>
-git:
-  pagers:
-    - colorArg: always
-      pager: delta --paging=never
 customCommands:
   - key: "o"
     context: "files"
