@@ -22,5 +22,5 @@
     "opencode-mem",
     "superpowers@git+https://github.com/obra/superpowers.git"
   ],
-  "model": "kimi/k3"
+  "model": "github-copilot/claude-opus-5.5"
 }
