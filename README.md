@@ -60,10 +60,12 @@ or edit the live file and adopt it back with `chezmoi edit` / `chezmoi re-add`.
 
 - `dot_config/` — everything under `~/.config/` (fish, nvim, tmux, wezterm, git, ...)
 - `dot_zshenv`, `dot_bashrc`, `dot_bash_profile` — home-root bootstraps (zsh `ZDOTDIR`, bash sourcing)
-- `private_dot_kimi-code/` — `~/.kimi-code/` (private permissions)
+- `private_dot_ssh/` — `~/.ssh/` config and public keys (private permissions; no private keys)
+- `dot_agents/skills/` — agent skills deployed to `~/.agents/skills/`
+- `dot_pi/` — pi-coding-agent config (`~/.pi/agent/`)
 - `.chezmoi.toml.tmpl` — config template; prompts for `mlb` / `personal` roles
 - `.chezmoiignore` — paths not deployed (docs, scripts-only dirs, runtime state)
 - `.chezmoiscripts/` — provisioning scripts (`run_once_`, `run_onchange_`)
-- `ai/`, `obsidian/`, `inkdrop/`, `nix-darwin/`, `vimium/` — source content not deployed directly (used by scripts or applied by other means)
+- `apps/` — source content not deployed directly (obsidian vault sync, vimium options; used by scripts or applied by other means)
 
 Runtime state (e.g. `fish_variables`, `k9s/aliases.yaml`, `tmux/plugins/`) is intentionally not managed — the tools own those files after first deploy.

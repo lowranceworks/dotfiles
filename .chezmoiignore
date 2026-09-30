@@ -1,10 +1,6 @@
 # Repo documentation and non-deployed content
 README.md
-ai/**
-inkdrop/**
-nix-darwin/**
-obsidian/**
-vimium/**
+apps/**
 
 # Runtime state: deployed once by hand, then managed by the tool itself
 .config/fish/fish_variables
