@@ -74,6 +74,7 @@ brew "neofetch"                               # System info display
 brew "neovim"                                 # Vim-based text editor
 brew "node"                                   # Node.js runtime
 brew "oci-cli"                                # Oracle Cloud CLI
+brew "pi-coding-agent"                        # Pi coding agent
 brew "pipx"                                   # Install Python apps isolated
 brew "podman"                                 # Daemonless container engine
 brew "pre-commit"                             # Git hooks framework
