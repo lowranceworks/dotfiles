@@ -46,4 +46,4 @@ dot_config/k9s/screen-dumps/
 # zsh
 .zsh_history
 config.local.env
-dot_config/cy/cy/skills/*/
+dot_config/cy/skills/*/

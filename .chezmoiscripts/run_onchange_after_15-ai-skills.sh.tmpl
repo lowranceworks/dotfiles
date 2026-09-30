@@ -14,6 +14,11 @@ fi
 
 DOTFILES_AI="{{ .chezmoi.sourceDir }}/ai"
 
+if [ ! -d "$DOTFILES_AI" ]; then
+    echo "ai/ not present in dotfiles; nothing to sync"
+    exit 0
+fi
+
 copy() {
   local target="$HOME/$1"
   mkdir -p "$(dirname "$target")"
