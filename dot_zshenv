@@ -1,0 +1,5 @@
+# Point zsh to ~/.config/zsh for all config files
+export ZDOTDIR="$HOME/.config/zsh"
+
+# Homebrew - must be here since ZDOTDIR/.zshenv is read before ~/.zshenv sets ZDOTDIR
+export PATH="/opt/homebrew/bin:$PATH"

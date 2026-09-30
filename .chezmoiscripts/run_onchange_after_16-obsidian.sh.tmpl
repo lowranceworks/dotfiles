@@ -1,5 +1,18 @@
-#!/bin/bash
-DOTFILES_OBSIDIAN="$HOME/Projects/LowranceWorks/dotfiles/obsidian"
+#!/usr/bin/env bash
+# shellcheck shell=bash
+
+# Sync Obsidian vault config and community plugins.
+# Replaces obsidian/install.sh; re-runs when the inputs change:
+# plugins.txt: {{ include "obsidian/plugins.txt" | sha256sum }}
+# hotkeys.json: {{ include "obsidian/hotkeys.json" | sha256sum }}
+# .obsidian.vimrc: {{ include "obsidian/.obsidian.vimrc" | sha256sum }}
+
+if [ -n "${CI:-}" ]; then
+    echo "Skipping due to \$CI"
+    exit
+fi
+
+DOTFILES_OBSIDIAN="{{ .chezmoi.sourceDir }}/obsidian"
 REGISTRY_URL="https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugins.json"
 VAULTS_DIR="$HOME/obsidian-vaults"
 

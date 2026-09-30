@@ -13,21 +13,20 @@ ai/
 
 ## Install
 
-Run once to wire everything up:
-
-```sh
-./install.sh
-```
+Installed automatically by chezmoi via
+`.chezmoiscripts/run_onchange_after_15-ai-skills.sh.tmpl`, which copies
+`ai/skills`, `ai/agents`, and `ai/subagents` into `~/.claude/skills`,
+`~/.gemini/skills`, `~/.codex/skills`, and every vault under
+`~/obsidian-vaults/`. Re-runs on `chezmoi apply` whenever anything under
+`ai/` changes.
 
 ---
 
 ```STDOUT
-linked /Users/josh/.claude/skills -> /Users/josh/Projects/LowranceWorks/dotfiles/ai/skills
-linked /Users/josh/.gemini/skills -> /Users/josh/Projects/LowranceWorks/dotfiles/ai/skills
-linked /Users/josh/.codex/skills -> /Users/josh/Projects/LowranceWorks/dotfiles/ai/skills
+copied <sourceDir>/ai/skills -> /Users/josh/.claude/skills
+copied <sourceDir>/ai/skills -> /Users/josh/.gemini/skills
+copied <sourceDir>/ai/skills -> /Users/josh/.codex/skills
 ```
-
-> **Note:** Symlink the `ai/skills` directory *as* the target path — don't symlink it *into* an existing directory or you'll get a nested `skills/skills/` path.
 
 ## Adding a New Skill
 
@@ -36,12 +35,14 @@ mkdir skills/my-new-skill
 touch skills/my-new-skill/SKILL.md
 ```
 
-No re-linking needed — existing symlinks pick it up automatically.
+No manual step needed — the run_onchange script picks it up on the next `chezmoi apply`.
 
 ## Adding a New Tool
 
+Copy (don't symlink) the skills into the tool's config dir by adding another
+`copy` line to `.chezmoiscripts/run_onchange_after_15-ai-skills.sh.tmpl`:
+
 ```sh
-mkdir -p ~/.newtool
-ln -s ~/Projects/LowranceWorks/dotfiles/ai/skills ~/.newtool/skills
+copy ".newtool/skills" "skills"
 ```
 ```

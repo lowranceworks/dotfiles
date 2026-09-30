@@ -16,34 +16,34 @@ helm/
 *.bak
 
 # ignore fish plugins with embedded git repositories
-./fish/fish-kube-prompt
+dot_config/fish/fish-kube-prompt
 
 # ignore macos files
 .DS_Store
 
 # ignore compiled fish files
 fish_variables
-./fish
 
 # ignore nvim files
-nvim/lazyvim.json
+dot_config/nvim/lazyvim.json
+dot_config/nvim/nvim/
 
 # ignore tmux plugins with embedded git repositories
-tmux/plugins/
+dot_config/tmux/plugins/
 
 # ignore fzf history
 fzf
 
 # ignore raycast extensions
-raycast/extensions
+dot_config/raycast/extensions
 
 # k9s
-k9s/aliases.yaml
-k9s/benchmarks/
-k9s/clusters/
-k9s/screen-dumps/
+dot_config/k9s/aliases.yaml
+dot_config/k9s/benchmarks/
+dot_config/k9s/clusters/
+dot_config/k9s/screen-dumps/
 
 # zsh
 .zsh_history
 config.local.env
-cy/cy/skills/*/
+dot_config/cy/cy/skills/*/

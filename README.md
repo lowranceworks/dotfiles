@@ -1,8 +1,6 @@
 # Joshua Lowrance's Dotfiles
 
-<!-- add screenshot of your terminal -->
-
-This repository contains my personal dotfiles, which are configuration files used to customize various applications and tools on my computer, with a focus on terminal-based utilities.
+macOS dotfiles managed with [chezmoi](https://www.chezmoi.io/): XDG-compliant layout under `dot_config/`, role-based templating (`mlb` / `personal`), and provisioning via `.chezmoiscripts/`.
 
 ## Stack
 
@@ -23,67 +21,49 @@ This repository contains my personal dotfiles, which are configuration files use
 - **Automation**: [Hammerspoon](https://www.hammerspoon.org/)
 - **Launcher**: [Raycast](https://www.raycast.com/)
 - **Browser Extensions**: [Vimium](https://vimium.github.io/)
-- **Package Managers**: 
+- **Package Managers**:
   - macOS: [Homebrew](https://brew.sh)
   - Nix: [Nix](https://nixos.org/) / [nix-darwin](https://github.com/LnL7/nix-darwin)
-- **Alternative Shell**: [Nushell](https://www.nushell.sh/)
-- **Dotfile Manager**: [GNU Stow](https://www.gnu.org/software/stow/)
+- **Dotfile Manager**: [chezmoi](https://www.chezmoi.io/)
 
 ## Installation
 
-1. **Install Homebrew**
-   ```bash
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-
-2. **Install GNU Stow**
-   ```bash
-   brew install stow
-   ```
-
-3. **Clone this repository**
-   ```bash
-   mkdir -p ~/Projects/lowranceworks/
-   git clone https://github.com/lowranceworks/dotfiles.git ~/Projects/lowranceworks/dotfiles/
-   ```
-
-4. **Stow the dotfiles**
-   ```bash
-   cd ~/Projects/lowranceworks/dotfiles/
-   stow .
-   ```
-
-This will symlink all configuration files to `~/.config/` as defined in `.stowrc`.
-
-## Uninstallation
-
-To remove all symlinked dotfiles:
+If you already have `chezmoi`:
 
 ```bash
-cd ~/Projects/lowranceworks/dotfiles/
-stow -D .
+chezmoi init --apply lowranceworks
 ```
+
+Otherwise:
+
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply lowranceworks
+```
+
+`chezmoi init` prompts for two independent **roles** — `mlb` and `personal` — which gate machine-specific git identity and credentials. A machine can carry both.
+
+After applying, `.chezmoiscripts/` installs Homebrew packages (`brew bundle`), copies AI skills/agents to tool config dirs and Obsidian vaults, and syncs Obsidian community plugins.
+
+## Daily workflow
+
+chezmoi **copies** files rather than symlinking. Edit files in this repo, then:
+
+```bash
+chezmoi apply          # deploy changes
+chezmoi diff           # preview what would change
+chezmoi update         # pull + apply
+```
+
+or edit the live file and adopt it back with `chezmoi edit` / `chezmoi re-add`.
 
 ## Structure
 
-Each directory in this repository represents a separate application's configuration:
+- `dot_config/` — everything under `~/.config/` (fish, nvim, tmux, wezterm, git, ...)
+- `dot_zshenv`, `dot_bashrc`, `dot_bash_profile` — home-root bootstraps (zsh `ZDOTDIR`, bash sourcing)
+- `private_dot_kimi-code/` — `~/.kimi-code/` (private permissions)
+- `.chezmoi.toml.tmpl` — config template; prompts for `mlb` / `personal` roles
+- `.chezmoiignore` — paths not deployed (docs, scripts-only dirs, runtime state)
+- `.chezmoiscripts/` — provisioning scripts (`run_once_`, `run_onchange_`)
+- `ai/`, `obsidian/`, `inkdrop/`, `nix-darwin/`, `vimium/` — source content not deployed directly (used by scripts or applied by other means)
 
-- `fish/` - Fish shell configuration
-- `nvim/` - Neovim configuration with LazyVim
-- `tmux/` - tmux configuration and plugins
-- `wezterm/` - Wezterm terminal configuration
-- `lazygit/` - lazygit TUI configuration
-- `starship/` - Starship prompt configuration
-- `aerospace/` - Aerospace window manager configuration
-- `sketchybar/` - SketchyBar menu bar configuration and plugins
-- `skhd/` - skhd hotkey daemon configuration and AppleScripts
-- `hammerspoon/` - Hammerspoon automation scripts and Spoons
-- `brew/` - Homebrew bundle file
-- `sesh/` - sesh tmux session manager configuration
-- `raycast/` - Raycast launcher extensions and settings
-- `nushell/` - Nushell alternative shell configuration
-- `nix/` - Nix package manager configuration
-- `nix-darwin/` - nix-darwin macOS configuration
-- `neofetch/` - Neofetch system info configuration
-- `vimium/` - Vimium browser extension settings
-- `cy/` - Cy personal agent (iMessage gateway) configuration
+Runtime state (e.g. `fish_variables`, `k9s/aliases.yaml`, `tmux/plugins/`) is intentionally not managed — the tools own those files after first deploy.

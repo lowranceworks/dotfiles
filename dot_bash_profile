@@ -1,0 +1,1 @@
+[ -f ~/.config/bash/bash_profile ] && source ~/.config/bash/bash_profile

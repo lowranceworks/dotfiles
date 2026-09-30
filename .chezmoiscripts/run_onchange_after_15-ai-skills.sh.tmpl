@@ -1,5 +1,18 @@
-#!/bin/bash
-DOTFILES_AI="$HOME/Projects/LowranceWorks/dotfiles/ai"
+#!/usr/bin/env bash
+# shellcheck shell=bash
+
+# Copy ai/ skills, agents, and subagents to AI tool config dirs and Obsidian vaults.
+# Replaces ai/install.sh; re-runs when anything under ai/ changes:
+{{ range glob "ai/**" -}}
+# {{ . }}: {{ include . | sha256sum }}
+{{ end }}
+
+if [ -n "${CI:-}" ]; then
+    echo "Skipping due to \$CI"
+    exit
+fi
+
+DOTFILES_AI="{{ .chezmoi.sourceDir }}/ai"
 
 copy() {
   local target="$HOME/$1"
