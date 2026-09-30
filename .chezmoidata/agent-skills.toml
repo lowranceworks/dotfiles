@@ -1,0 +1,12 @@
+# Third-party agent skills, installed by
+# .chezmoiscripts/run_onchange_after_15-install-agent-skills.sh.tmpl via the
+# pinned `skills` CLI into ~/.agents/skills (the "universal" target).
+# Homegrown skills do NOT belong here — they live in dot_agents/skills/.
+
+[[agentSkills]]
+id = "antonbabenko/terraform-skill"
+skills = ["terraform-skill"]
+
+# Whole collection — restrict by adding: skills = ["name-a", "name-b"]
+[[agentSkills]]
+id = "obra/superpowers"

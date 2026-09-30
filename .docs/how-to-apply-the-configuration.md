@@ -55,6 +55,6 @@ nix run nix-darwin \
 ### Apply the configuration (part 2)
 
 ```zsh
-cd ~/projects/lowranceworks/dotfiles
-stow .
+brew install chezmoi
+chezmoi init --apply --source="$HOME/projects/lowranceworks/dotfiles"
 ```

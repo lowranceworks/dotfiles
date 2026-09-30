@@ -1,0 +1,143 @@
+# Brewfile - Homebrew Bundle configuration
+
+# --- Taps ---
+tap "FelixKratz/formulae"                     # SketchyBar and related tools
+tap "dotenvx/brew"                            # dotenvx environment variable manager
+tap "hashicorp/tap"                           # HashiCorp tools (Terraform, Vault, etc.)
+tap "homebrew/services"                       # Manage services with Homebrew
+tap "minamijoyo/hcledit"                      # HCL configuration editor
+tap "nikitabobko/tap"                         # AeroSpace window manager
+
+# --- Formulae (brews) ---
+# brew "borders"                              # macOS window borders (archived/unmaintained)
+# brew "docker"                               # Using podman instead
+# brew "docker-completion"                    # Docker shell completion
+# brew "docker-compose"                       # Multi-container Docker apps
+# brew "docker-credential-helper"             # Docker credential management
+# brew "espanso"                              # Text expander
+# brew "go"                                   # Use goenv instead
+# brew "hcledit"                              # HCL file editor
+# brew "packer"                               # VM image builder
+# brew "sketchybar"                           # macOS status bar replacement
+brew "act"                                    # Run GitHub Actions locally
+brew "ansible"                                # Infrastructure automation
+brew "ansible-lint"                           # Ansible linting
+brew "argocd"                                 # GitOps CD for Kubernetes
+brew "atuin"                                  # Shell history sync
+brew "awscli"                                 # AWS command line tool
+brew "azure-cli"                              # Azure command line tool
+brew "bandit"                                 # Python security linting
+brew "bash"                                   # Bash shell
+brew "bitwarden-cli"                          # Password manager CLI
+brew "checkov"                                # IaC security scanner
+brew "crossplane"                             # Kubernetes control plane
+brew "cryptography"                           # Cryptographic libraries
+brew "direnv"                                 # Environment variable manager
+brew "docutils"                               # Python documentation utilities
+brew "dotenvx"                                # Enhanced dotenv
+brew "dtc"                                    # Device tree compiler
+brew "earthly"                                # Build automation tool
+brew "eza"                                    # Modern ls replacement
+brew "fd"                                     # Fast find alternative
+brew "fish"                                   # Friendly interactive shell
+brew "fisher"                                 # Fish plugin manager
+brew "fontconfig"                             # Font configuration library
+brew "fzf"                                    # Fuzzy finder
+brew "gh"                                     # GitHub CLI
+brew "gemini-cli"                             # Gemini CLI
+brew "git-delta"                              # Better git diff pager
+brew "git-filter-repo"                        # Git history rewriting
+brew "gnu-sed"                                # GNU sed (non-BSD version)
+brew "go-task"                                # Task runner / Make alternative
+brew "goenv"                                  # Go version manager
+brew "helm"                                   # Kubernetes package manager
+brew "hunk"                                   # Terminal diff viewer for changesets
+brew "isort"                                  # Python import sorting
+brew "jfrog-cli"                              # JFrog Artifactory CLI
+brew "jj"                                     # Jujutsu version control
+brew "jq"                                     # JSON processor
+brew "kind"                                   # Kubernetes in Docker
+brew "krew"                                   # kubectl plugin manager
+brew "kubebuilder"                            # Kubernetes API builder
+brew "kubectx"                                # Kubernetes context switcher
+brew "kubent"                                 # Kubernetes deprecated API scanner
+brew "kubernetes-cli"                         # kubectl
+brew "kustomize"                              # Kubernetes config customization
+brew "lazydocker"                             # Docker TUI
+brew "lazygit"                                # Git TUI
+brew "lsd"                                    # Modern ls with icons
+brew "imagemagick"                            # Image manipulation library
+brew "lua"                                    # Lua programming language
+brew "make"                                   # Build automation
+brew "mypy"                                   # Python type checker
+brew "neofetch"                               # System info display
+brew "neovim"                                 # Vim-based text editor
+brew "node"                                   # Node.js runtime
+brew "oci-cli"                                # Oracle Cloud CLI
+brew "pi-coding-agent"                        # Pi coding agent
+brew "pipx"                                   # Install Python apps isolated
+brew "podman"                                 # Daemonless container engine
+brew "pre-commit"                             # Git hooks framework
+brew "protobuf"                               # Protocol buffers
+brew "proton-drive"                           # Proton Drive CLI
+brew "proton-mail"                            # Proton Mail CLI
+brew "pytest"                                 # Python testing framework
+brew "qemu"                                   # Machine emulator
+brew "ripgrep"                                # Fast grep alternative
+brew "ruff"                                   # Fast Python linter
+brew "sesh"                                   # tmux session manager
+brew "sops"                                   # Secrets encryption
+brew "starship"                               # Cross-shell prompt
+brew "stern"                                  # Kubernetes log tailing
+brew "stow"                                   # Symlink farm manager
+brew "talos"                                  # Kubernetes OS
+brew "telnet"                                 # Telnet client
+brew "terraform-docs"                         # Terraform documentation generator
+brew "terragrunt"                             # Terraform wrapper
+brew "terrascan"                              # IaC security scanner
+brew "tfenv"                                  # Terraform version manager
+brew "tflint"                                 # Terraform linter
+brew "tfsec"                                  # Terraform security scanner
+brew "tfupdate"                               # Terraform version updater
+brew "tldr"                                   # Simplified man pages
+brew "tmux"                                   # Terminal multiplexer
+brew "tree"                                   # Directory tree viewer
+brew "watch"                                  # Execute program periodically
+brew "yamllint"                               # YAML linting
+brew "yazi"                                   # Terminal file manager
+brew "yq"                                     # YAML processor
+brew "yubikey-agent"                          # YubiKey SSH agent
+brew "zoxide"                                 # Smart cd command
+brew "zsh-autosuggestions"                    # Fish-like autosuggestions for zsh
+brew "zsh-fast-syntax-highlighting"           # Syntax highlighting for zsh
+brew "zsh-vi-mode"                            # Vi mode for zsh
+brew "zstd"                                   # Zstandard compression
+
+# --- Casks ---
+cask "1password-cli"                          # 1Password command-line tool
+cask "aerospace"                              # Tiling window manager for macOS
+cask "arc"                                    # Arc browser
+cask "betterdisplay"                          # Display management tool
+cask "bitwarden"                              # Password manager
+cask "brave-browser"                          # Privacy-focused web browser
+cask "chromium"                               # Open-source web browser
+cask "cleanshot"                              # Screenshot and screen recording tool
+cask "contexts"                               # Window switcher
+cask "drawio"                                 # Diagram and flowchart editor
+cask "font-commit-mono"                       # Monospace font for coding
+cask "font-sf-pro"                            # Required for SketchyBar"
+cask "font-symbols-only-nerd-font"            # Required for icons in Obsidian Terminal
+cask "google-chrome"                          # Google Chrome browser
+cask "google-cloud-sdk"                       # Google Cloud Platform CLI
+cask "inkdrop"                                # Markdown note-taking app
+cask "keycastr"                               # Keystroke visualizer
+cask "meetingbar"                             # Menu bar calendar meetings
+cask "mission-control-plus"                   # Enhanced Mission Control
+cask "paintbrush"                             # Simple paint application
+cask "podman-desktop"                         # Container management GUI
+cask "raycast"                                # Productivity launcher
+cask "slack"                                  # Team communication platform
+cask "spacelauncher"                          # Keyboard-driven app launcher
+cask "stats"                                  # System monitor in menu bar
+cask "utm"                                    # Virtual machine manager
+cask "wezterm"                                # GPU-accelerated terminal emulator

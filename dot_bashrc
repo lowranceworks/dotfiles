@@ -1,0 +1,5 @@
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
+. "$HOME/.atuin/bin/env"
+
+[ -f ~/.config/bash/bashrc ] && source ~/.config/bash/bashrc

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "hello_cli",
+    "description": "Example custom CLI — echoes its input. Replace with your own entries; each entry becomes an agent tool without code changes.",
+    "command": "/bin/echo",
+    "timeout_ms": 5000
+  },
+  {
+    "name": "watch_agent",
+    "description": "Block until a workmux agent reaches a status (default 'done'), firing a macOS notification automatically. Input: '<worktree> [status] [timeout-seconds]'. Use from a background sub-agent to watch a dev session; your final report becomes the iMessage notification.",
+    "command": "{{ .chezmoi.homeDir }}/projects/lowranceworks/cy/scripts/watch-agent",
+    "timeout_ms": 22000000
+  }
+]
