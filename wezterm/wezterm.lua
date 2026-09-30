@@ -54,8 +54,8 @@ local config = {
 	-- Enable hyperlink support
 	hyperlink_rules = wezterm.default_hyperlink_rules(),
 
-	-- Allow Shift to bypass tmux mouse reporting so hyperlinks work
-	bypass_mouse_reporting_modifiers = "SHIFT",
+	-- Allow Cmd to bypass tmux mouse reporting so hyperlinks work
+	bypass_mouse_reporting_modifiers = "SUPER",
 
 	-- keys
 	keys = {
@@ -79,17 +79,32 @@ local config = {
 	},
 
 	-- mouse bindings for opening links
-	-- Shift+Click to open hyperlinks (bypasses tmux mouse reporting)
+	-- Cmd+Click to open hyperlinks
 	mouse_bindings = {
+		-- Outside tmux (no mouse reporting): SUPER modifier matches directly
 		{
 			event = { Up = { streak = 1, button = "Left" } },
-			mods = "SHIFT",
+			mods = "SUPER",
 			action = wezterm.action.OpenLinkAtMouseCursor,
 		},
 		-- Disable the Down event to avoid issues with tmux
 		{
 			event = { Down = { streak = 1, button = "Left" } },
-			mods = "SHIFT",
+			mods = "SUPER",
+			action = wezterm.action.Nop,
+		},
+		-- Inside tmux (mouse reporting on): the SUPER bypass strips the
+		-- modifier, so the same gesture arrives as an unmodified click
+		{
+			event = { Up = { streak = 1, button = "Left" } },
+			mods = "NONE",
+			mouse_reporting = true,
+			action = wezterm.action.OpenLinkAtMouseCursor,
+		},
+		{
+			event = { Down = { streak = 1, button = "Left" } },
+			mods = "NONE",
+			mouse_reporting = true,
 			action = wezterm.action.Nop,
 		},
 	},
