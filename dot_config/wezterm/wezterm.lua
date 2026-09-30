@@ -93,20 +93,7 @@ local config = {
 			mods = "SUPER",
 			action = wezterm.action.Nop,
 		},
-		-- Inside tmux (mouse reporting on): the SUPER bypass strips the
-		-- modifier, so the same gesture arrives as an unmodified click
-		{
-			event = { Up = { streak = 1, button = "Left" } },
-			mods = "NONE",
-			mouse_reporting = true,
-			action = wezterm.action.OpenLinkAtMouseCursor,
-		},
-		{
-			event = { Down = { streak = 1, button = "Left" } },
-			mods = "NONE",
-			mouse_reporting = true,
-			action = wezterm.action.Nop,
-		},
+		-- no mouse_reporting bindings: they swallow plain clicks and break tmux mouse selection
 	},
 }
 
