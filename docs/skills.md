@@ -1,7 +1,7 @@
 # Agent skills management
 
 How skills are organized in this repo — three kinds of skills, three
-mechanisms. Modeled on [mgoodness/dotfiles](https://github.com/mgoodness/dotfiles).
+mechanisms.
 
 | Kind | Examples | Where they live | How they're deployed | How they update |
 |---|---|---|---|---|

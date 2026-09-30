@@ -4,7 +4,7 @@ Merge wanted config into Pi's existing ~/.pi/agent/settings.json instead of
 replacing it, so runtime state Pi writes itself survives `chezmoi apply`:
 provider/model changes made interactively, and any packages added with
 `pi install`. Seeds only fill in when absent; every other key is preserved
-untouched. Modeled on mgoodness/dotfiles dot_pi/agent/modify_settings.json.
+untouched.
 */ -}}
 {{- $current := dict -}}
 {{- if trim .chezmoi.stdin -}}
