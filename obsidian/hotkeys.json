@@ -1,0 +1,8 @@
+{
+  "copy-focused-path:copy-full-path": [
+    {
+      "modifiers": ["Ctrl"],
+      "key": "Y"
+    }
+  ]
+}

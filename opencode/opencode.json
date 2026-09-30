@@ -1,8 +1,43 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "anthropic/claude-opus-4-6",
-  "autoupdate": true,
+  "provider": {
+    "kimi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kimi (subscription)",
+      "options": {
+        "baseURL": "https://api.kimi.com/coding/v1",
+        "apiKey": "{env:KIMI_API_KEY}"
+      },
+      "models": {
+        "k3": {
+          "name": "Kimi K3"
+        },
+        "kimi-for-coding": {
+          "name": "Kimi K2.8 Preview"
+        }
+      }
+    },
+    "bonsai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Bonsai (local llama.cpp)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1"
+      },
+      "models": {
+        "bonsai2-27b": {
+          "name": "Bonsai 2 27B",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
   "plugin": [
-    "opencode-anthropic-user-agent-plugin"
-  ]
+    "opencode-mem",
+    "superpowers@git+https://github.com/obra/superpowers.git"
+  ],
+  "model": "github-copilot/claude-opus-5.5",
+  "small_model": "github-copilot/gpt-4o-mini"
 }

@@ -208,7 +208,7 @@ run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = "move-node-to-workspace Q"
+run = ["move-node-to-workspace F", "layout v_tiles"]
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser' # arc
@@ -227,12 +227,16 @@ if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace A"
 
 [[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop '
-run = "move-node-to-workspace S"
+if.app-id = 'com.1password.1password'
+run = ["move-node-to-workspace V", "layout v_tiles"]
+
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+run = ["move-node-to-workspace V", "layout v_tiles"]
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
-run = "move-node-to-workspace S"
+run = ["move-node-to-workspace S", "layout v_tiles"]
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
@@ -247,12 +251,20 @@ if.app-id = 'com.microsoft.teams'
 run = "move-node-to-workspace D"
 
 [[on-window-detected]]
-if.app-id = 'com.microsoft.Outlook'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.electron.keet'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = "move-node-to-workspace E"
 
 # [[on-window-detected]]
 # if.app-id = ''

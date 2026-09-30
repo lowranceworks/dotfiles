@@ -1,0 +1,8 @@
+[
+  {
+    "name": "hello_cli",
+    "description": "Example custom CLI — echoes its input. Replace with your own entries; each entry becomes an agent tool without code changes.",
+    "command": "/bin/echo",
+    "timeout_ms": 5000
+  }
+]

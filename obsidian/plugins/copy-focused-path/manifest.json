@@ -1,0 +1,8 @@
+{
+  "id": "copy-focused-path",
+  "name": "Copy Focused Path",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Copy the full system path of the file or folder last clicked in the file explorer, falling back to the active note.",
+  "author": "lowranceworks"
+}

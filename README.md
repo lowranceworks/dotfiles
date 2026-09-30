@@ -86,3 +86,4 @@ Each directory in this repository represents a separate application's configurat
 - `nix-darwin/` - nix-darwin macOS configuration
 - `neofetch/` - Neofetch system info configuration
 - `vimium/` - Vimium browser extension settings
+- `cy/` - Cy personal agent (iMessage gateway) configuration

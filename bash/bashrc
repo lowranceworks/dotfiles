@@ -1,0 +1,111 @@
+# ██████╗  █████╗ ███████╗██╗  ██╗
+# ██╔══██╗██╔══██╗██╔════╝██║  ██║
+# ██████╔╝███████║███████╗███████║
+# ██╔══██╗██╔══██║╚════██║██╔══██║
+# ██████╔╝██║  ██║███████║██║  ██║
+# ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+# Bourne Again Shell
+# https://www.gnu.org/software/bash/
+#
+# Bootstrap: add this to ~/.bashrc:
+#   [ -f ~/.config/bash/bashrc ] && source ~/.config/bash/bashrc
+
+# Exit if not running interactively
+[[ $- != *i* ]] && return
+
+# Homebrew
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# Source tools
+if command -v starship &> /dev/null; then
+    eval "$(starship init bash)" # https://starship.rs/
+fi
+
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init bash)" # https://github.com/ajeetdsouza/zoxide
+fi
+
+if command -v direnv &> /dev/null; then
+    eval "$(direnv hook bash)" # https://direnv.net/
+fi
+
+# Shell options
+shopt -s histappend     # append to history instead of overwriting
+shopt -s cdspell        # autocorrect minor cd typos
+shopt -s dirspell       # autocorrect minor directory name typos
+shopt -s autocd         # cd into directories by typing the name
+shopt -s globstar       # enable ** recursive globbing
+
+# History configuration
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTCONTROL=ignoreboth  # ignore duplicates and lines starting with space
+
+# Vi keybindings
+set -o vi
+
+# Locale settings
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Editor configuration
+export EDITOR=nvim
+export VISUAL=nvim
+
+# FZF configuration
+export FZF_DEFAULT_COMMAND="fd -H -E '.git'"
+
+# Go configuration with goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$GOENV_ROOT/shims:$PATH"
+export PATH="$GOENV_ROOT/bin:$PATH"
+
+# Custom scripts
+export PATH="$HOME/.scripts:$PATH"
+
+# Starship config
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+# Yabai config
+export YABAI_CONFIG="$HOME/.config/yabai/yabairc"
+
+# Skhd config
+export SKHD_CONFIG="$HOME/.config/skhd/skhdrc"
+
+# Erase leaked API keys from environment
+unset ANTHROPIC_API_KEY
+unset CLAUDE_CODE_OAUTH_TOKEN
+
+# Load carapace shell completions
+if command -v carapace &> /dev/null; then
+    source <(carapace _carapace bash)
+fi
+
+# Portable PATH configuration
+export PATH="$HOME/.local/bin:$PATH"
+[ -d /Library/TeX/texbin ] && export PATH="/Library/TeX/texbin:$PATH"
+
+# K9s config directory
+export K9S_CONFIG_DIR="$HOME/.config/k9s"
+
+# Radicle
+export PATH="$PATH:$HOME/.radicle/bin"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# FZF integration
+if [ -f "$HOME/.fzf.bash" ]; then
+    source "$HOME/.fzf.bash"
+fi
+
+# Source aliases
+if [ -f "$HOME/.config/bash/aliases.bash" ]; then
+    source "$HOME/.config/bash/aliases.bash"
+fi

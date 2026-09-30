@@ -24,7 +24,11 @@ local config = {
 	cursor_blink_ease_out = "Constant",
 
 	color_scheme = "Catppuccin Mocha",
-	font = wezterm.font("CommitMono"),
+	font = wezterm.font_with_fallback({
+		"CommitMono",
+		"Apple Symbols",
+		"Symbols Nerd Font Mono",
+	}),
 	font_size = 16,
 
 	window_padding = {
@@ -50,8 +54,8 @@ local config = {
 	-- Enable hyperlink support
 	hyperlink_rules = wezterm.default_hyperlink_rules(),
 
-	-- Allow Shift to bypass tmux mouse reporting so hyperlinks work
-	bypass_mouse_reporting_modifiers = "SHIFT",
+	-- Allow Cmd to bypass tmux mouse reporting so hyperlinks work
+	bypass_mouse_reporting_modifiers = "SUPER",
 
 	-- keys
 	keys = {
@@ -62,29 +66,72 @@ local config = {
 		{ mods = "CMD", key = "RightArrow", action = wezterm.action.SendKey({ mods = "CTRL", key = "e" }) },
 		{ mods = "CMD", key = "Backspace", action = wezterm.action.SendKey({ mods = "CTRL", key = "u" }) },
 
-		k.cmd_key("q", k.multiple_actions(":qa!")),
+		k.cmd_key("q", wezterm.action.EmitEvent("smart-quit")),
 		{ key = "t", mods = "CMD", action = wezterm.action.DisableDefaultAssignment },
-		
+
 		-- Scroll to bottom when needed
 		{ key = "End", mods = "SHIFT", action = wezterm.action.ScrollToBottom },
+
+		-- Ensure ctrl+d and ctrl+u are sent to the terminal app (enable nvim-style scrolling)
+		-- rather than being consumed by WezTerm's scrollback mode
+		{ key = "d", mods = "CTRL", action = wezterm.action.SendKey({ key = "d", mods = "CTRL" }) },
+		{ key = "u", mods = "CTRL", action = wezterm.action.SendKey({ key = "u", mods = "CTRL" }) },
 	},
 
 	-- mouse bindings for opening links
-	-- Shift+Click to open hyperlinks (bypasses tmux mouse reporting)
+	-- Cmd+Click to open hyperlinks
 	mouse_bindings = {
+		-- Outside tmux (no mouse reporting): SUPER modifier matches directly
 		{
 			event = { Up = { streak = 1, button = "Left" } },
-			mods = "SHIFT",
+			mods = "SUPER",
 			action = wezterm.action.OpenLinkAtMouseCursor,
 		},
 		-- Disable the Down event to avoid issues with tmux
 		{
 			event = { Down = { streak = 1, button = "Left" } },
-			mods = "SHIFT",
+			mods = "SUPER",
+			action = wezterm.action.Nop,
+		},
+		-- Inside tmux (mouse reporting on): the SUPER bypass strips the
+		-- modifier, so the same gesture arrives as an unmodified click
+		{
+			event = { Up = { streak = 1, button = "Left" } },
+			mods = "NONE",
+			mouse_reporting = true,
+			action = wezterm.action.OpenLinkAtMouseCursor,
+		},
+		{
+			event = { Down = { streak = 1, button = "Left" } },
+			mods = "NONE",
+			mouse_reporting = true,
 			action = wezterm.action.Nop,
 		},
 	},
 }
+
+-- Cmd+Q: quit the foreground TUI the way it expects.
+-- lazygit quits on "q"; nvim and everything else gets ":qa!".
+wezterm.on("smart-quit", function(window, pane)
+	local process = pane:get_foreground_process_name() or ""
+	if process:find("tmux") then
+		-- absolute path: the wezterm-gui process has no Homebrew in its PATH
+		local ok, stdout = wezterm.run_child_process({
+			"/opt/homebrew/bin/tmux",
+			"display-message",
+			"-p",
+			"#{pane_current_command}",
+		})
+		if ok and stdout then
+			process = stdout
+		end
+	end
+	if process:find("lazygit") then
+		window:perform_action(wezterm.action.SendKey({ key = "q" }), pane)
+	else
+		window:perform_action(k.multiple_actions(":qa!"), pane)
+	end
+end)
 
 wezterm.on("user-var-changed", function(window, pane, name, value)
 	local overrides = window:get_config_overrides() or {}

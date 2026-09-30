@@ -5,10 +5,6 @@
 -- Basic vim keymaps (non-plugin)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
 
 -- Keep visual selection when indenting
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
@@ -16,3 +12,8 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Show diagnostic error
 vim.keymap.set("n", "<leader>E", vim.diagnostic.open_float, { desc = "Show diagnostic error" })
+
+-- Workmux dashboard in a floating terminal
+vim.keymap.set("n", "<leader>wm", function()
+  Snacks.terminal("workmux dashboard")
+end, { desc = "Workmux dashboard" })
