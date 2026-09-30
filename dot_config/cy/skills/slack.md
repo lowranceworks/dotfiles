@@ -12,12 +12,10 @@ flow). The CLI also reads SLACK_USER_TOKEN itself, so `slack api` works
 once it's exported. If calls return `not_authed` / `invalid_auth`, tell the
 user the token needs refreshing — don't improvise.
 
-## Watched channels (user's defaults)
+## Watched channels
 
-| Channel | ID | Notes |
-|---|---|---|
-| #team-private | CXXXXXXXXXX | private team channel |
-| #team-engage | CYYYYYYYYYY | engagement/intake channel |
+Defined per-machine in `~/.config/cy/slack.local.md` (untracked — real
+channel names/IDs are never committed; this repo is public).
 
 ## Patterns
 

@@ -10,6 +10,8 @@ models:
   task: claude-fable-5.1
 
 # Slack channels Cy may access. access: read | readwrite | ignore
+# Placeholders only — real channel names/IDs live per-machine in
+# ~/.config/cy/slack.local.md (untracked; this repo is public).
 slack:
   channels:
     - name: team-private
