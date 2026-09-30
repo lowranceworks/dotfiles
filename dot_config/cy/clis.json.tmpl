@@ -8,7 +8,7 @@
   {
     "name": "watch_agent",
     "description": "Block until a workmux agent reaches a status (default 'done'), firing a macOS notification automatically. Input: '<worktree> [status] [timeout-seconds]'. Use from a background sub-agent to watch a dev session; your final report becomes the iMessage notification.",
-    "command": "/Users/josh/projects/lowranceworks/cy/scripts/watch-agent",
+    "command": "{{ .chezmoi.homeDir }}/projects/lowranceworks/cy/scripts/watch-agent",
     "timeout_ms": 22000000
   }
 ]

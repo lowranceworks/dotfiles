@@ -23,8 +23,8 @@ channel names/IDs are never committed; this repo is public).
 - Recent messages: `slack api conversations.history --json '{"channel":"CXXXXXXXXXX","limit":20}' | jq -r '.messages[] | .ts + " " + (.user // .bot_id // "?") + ": " + .text'`
 - New since last check (monitoring): add `"oldest":"<last_ts>"` to the
   history call. Track last-seen ts per channel in
-  `~/obsidian-vaults/work-vault/30 Wiki/Cy/slack-monitor.json` (create if
-  missing; never in repos).
+  `$CY_WORK_VAULT/30 Wiki/Cy/slack-monitor.json` (vault path in
+  slack.local.md; create if missing; never in repos).
 - Channel list: `slack api conversations.list --json '{"limit":50,"types":"public_channel,private_channel"}' | jq '.channels[] | {id, name}'`
 - Post: `slack api chat.postMessage --json '{"channel":"CXXXXXXXXXX","text":"..."}'`
 - DM groups: `slack api conversations.list --json '{"types":"mpim,im","limit":50}'` then history on the conversation ID.

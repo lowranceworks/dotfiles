@@ -57,9 +57,9 @@ Profile in `~/.oci/config` (default).
 
 ## gcloud (Google Cloud)
 
-TWO accounts configured; the ACTIVE one is `you@example.com`
-(personal) — for MLB work check and switch first:
+TWO accounts configured; the ACTIVE one is the personal account — for
+MLB work check and switch first:
 
 - `gcloud config get-value account; gcloud config get-value project`
-- `gcloud config set account you@example.com` (and set the right
+- `gcloud config set account "$WORK_ACCOUNT"` (and set the right
   project) before MLB operations — confirm with the user before switching.

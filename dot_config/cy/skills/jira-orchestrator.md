@@ -8,10 +8,14 @@ description: Recurring workflow — watch the INF board, onboard new items into 
 Runs on the cron schedule `*/15 8-16 * * 1-5` (weekdays 8am-4:45pm local) as
 a sub-agent, and interactively whenever the user asks about orchestration.
 Uses the `atlassian` skill for Jira and `tmux-ops` for workmux. All
-orchestration state lives in the Obsidian vault — NEVER in repos:
+orchestration state lives in the Obsidian vault — NEVER in repos.
+
+Machine/org specifics — the vault path and the Jira-text→repo heuristics —
+live in `~/.config/cy/jira-orchestrator.local.md` (untracked, per-machine;
+this repo is public). Read it at the start of every run.
 
 ```
-~/obsidian-vaults/work-vault/20 Projects/In Progress/AI Orchestration/
+$CY_WORK_VAULT/20 Projects/In Progress/AI Orchestration/
 ├── Jira Orchestration.md      # dashboard (dedupe source of truth)
 └── INF-XXXX-PLAN.md           # one per item
 ```
@@ -25,15 +29,10 @@ orchestration state lives in the Obsidian vault — NEVER in repos:
    the run quietly — no message.
 4. **Fetch issue detail** (summary, description) via
    `/rest/api/3/issue/KEY?fields=summary,description,status,priority`.
-5. **Infer repo(s)** from the issue text. Heuristics (check against actual
-   repos under ~/projects first — use `ls` to verify names):
-   - "port" / "port.io" → internal-org/port-terraform
-   - "awx" / "ansible" → internal-org/awx-terraform
-   - "gcp" → gcp-projects-terraform / gcp-web-platform-terraform
-   - "oci" → oci-infrastructure-terraform
-   - "tfe" / "terraform enterprise" → tfe-infra
-   - "release flow" → internal-org/release-flow
-   - No confident match → say so and ask, proposing nothing.
+5. **Infer repo(s)** from the issue text using the keyword→repo map in
+   `jira-orchestrator.local.md` (check against actual repos under
+   ~/projects first — use `ls` to verify names). No confident match → say
+   so and ask, proposing nothing.
 6. **iMessage the user** (via notify): *"New: INF-XXXX — summary. Proposed
    repo(s): R. Reply to confirm or correct."* Add the item to the dashboard
    with status `awaiting-confirmation`. End the run.

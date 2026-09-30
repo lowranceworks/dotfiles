@@ -20,8 +20,8 @@ AUTH=$(/usr/bin/python3 -c "import base64,os; print(base64.b64encode((os.environ
 
 - My open issues: `curl -s -X POST "$ATLASSIAN_URL/rest/api/3/search/jql" -H "Authorization: Basic $AUTH" -H "Content-Type: application/json" -d '{"jql":"assignee = currentUser() AND status != Done ORDER BY updated DESC","maxResults":20,"fields":["summary","status","issuetype"]}'`
 - Any JQL works: `project = INF AND status = "In Progress"`, `text ~ "deploy"`, etc.
-- The user's default board is `$ATLASSIAN_BOARD` (project INF, board id
-  00000). Board issues: `curl -s "$ATLASSIAN_URL/rest/agile/1.0/board/00000/issue?jql=assignee = currentUser()" -H "Authorization: Basic $AUTH"`
+- The user's default board is `$ATLASSIAN_BOARD` (project key + board id are
+  set in config.local.env — never hardcode them). Board issues: `curl -s "$ATLASSIAN_URL/rest/agile/1.0/board/00000/issue?jql=assignee = currentUser()" -H "Authorization: Basic $AUTH"`
 - Issue detail: `curl -s "$ATLASSIAN_URL/rest/api/3/issue/INF-XXXX?fields=summary,status,description,comment" -H "Authorization: Basic $AUTH"`
 
 ## Confluence
