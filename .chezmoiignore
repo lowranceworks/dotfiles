@@ -1,6 +1,7 @@
 # Repo documentation and non-deployed content
 README.md
 apps/**
+docs/**
 
 # Runtime state: deployed once by hand, then managed by the tool itself
 .config/fish/fish_variables
