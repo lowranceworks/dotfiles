@@ -1,0 +1,11 @@
+[[piPackages]]
+id = "npm:@gotgenes/pi-anthropic-auth"
+
+[[piPackages]]
+id = "npm:@upstash/context7-pi"
+
+[[piPackages]]
+id = "npm:pi-exa"
+
+[[piPackages]]
+id = "npm:pi-usage-live"
