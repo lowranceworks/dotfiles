@@ -27,3 +27,8 @@ windows:
 # branch new worktrees from the detected main/master instead of the
 # currently checked out branch
 base_branch: auto
+
+# keep the dashboard open after jumping to an agent/worktree with Enter,
+# so `sesh last` back to the hub session lands on the dashboard again
+dashboard:
+  close_on_jump: false
