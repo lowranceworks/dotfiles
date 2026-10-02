@@ -15,14 +15,9 @@ nerdfont: true
 
 window_prefix: "{project} 󰘬 "
 
-# default window layout
-windows:
-  - name: editor
-    panes:
-      - command: nvim
-        focus: true
-  - name: server
-  - name: agent
+panes:
+  - command: pi
+    focus: true
 
 # branch new worktrees from the detected main/master instead of the
 # currently checked out branch
