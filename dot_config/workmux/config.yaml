@@ -15,15 +15,20 @@ nerdfont: true
 
 window_prefix: "{project} 󰘬 "
 
-# default window layout
 windows:
-  - name: editor
-    panes:
-      - command: nvim
-        focus: true
-  - name: server
   - name: agent
+    panes:
+      - command: pi
+        focus: true
+  - name: lazygit
+    panes:
+      - command: lazygit
 
 # branch new worktrees from the detected main/master instead of the
 # currently checked out branch
 base_branch: auto
+
+# keep the dashboard open after jumping to an agent/worktree with Enter,
+# so `sesh last` back to the hub session lands on the dashboard again
+dashboard:
+  close_on_jump: false

@@ -10,6 +10,9 @@
 
 blacklist = ["scratch"]
 
+# Name sessions with the last 2 path components: "lowranceworks/dotfiles"
+dir_length = 2
+
 # default
 [default_session]
 startup_command = "bash ~/.config/sesh/default-session.sh" 

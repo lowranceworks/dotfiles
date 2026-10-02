@@ -71,6 +71,9 @@ export PATH="$HOME/.scripts:$PATH"
 # Starship config
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
+# Point the `skills` CLI at the chezmoi-managed manifest
+export SKILLS_CONFIG="$HOME/.config/skills/skills.toml"
+
 # Yabai config
 export YABAI_CONFIG="$HOME/.config/yabai/yabairc"
 

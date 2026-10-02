@@ -1,9 +1,12 @@
 ---
 name: workmux
-description: Reference for the workmux CLI that manages git worktrees and
-  tmux windows as isolated development environments. Use when the user
-  mentions workmux, worktrees, or parallel agent workflows.
-disable-model-invocation: true
+description: Manage git worktrees and tmux windows as isolated development
+  environments, and observe or drive terminal panes from the command line —
+  read what a pane is displaying (including full-screen TUIs that produce no
+  pipeable output), send input to agents and shells, and run commands in
+  another pane. Use when the user mentions workmux, worktrees, or parallel
+  agent workflows, or asks to run something in a tmux pane, inspect what a
+  terminal is showing, or drive an interactive program.
 ---
 
 # workmux
@@ -157,6 +160,50 @@ workmux run agent-a -- pytest tests/    # wait and stream output
 workmux run agent-a -b -- npm run build # run in background
 ```
 
+### Observing and driving panes
+
+Two layers — pick by target:
+
+- **A workmux-managed agent**: `workmux capture`, `workmux send`, `workmux
+  run` (above). They resolve the agent by handle and know the right pane.
+- **Any other tmux pane**: raw `tmux`.
+  - `tmux capture-pane -p -t <target>` — what the pane is displaying; add
+    `-S -` for full scrollback. This is the observation channel for
+    full-screen TUIs that produce no pipeable output.
+  - `tmux send-keys -t <target> -l "text"` types literal text; without `-l`
+    the arguments are key names — `Enter`, `Escape`, `Up`, `C-c`.
+  - Target syntax is `session:window.pane`; enumerate with
+    `tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{pane_current_command}'`.
+    `$TMUX_PANE` self-targets when the caller is itself inside tmux.
+
+Rules:
+
+- **Target explicitly.** Handles and full `session:window.pane` targets
+  survive layout churn that shifts bare indices; re-list rather than assume.
+- **Typed text and key events aren't interchangeable.** `send-keys -l` and
+  `workmux send` type text; a control byte (`C-c`) or named key (`Escape`,
+  `Up`) needs a real key event. Typed text is only submitted with a trailing
+  newline — with tmux, append `Enter` as a separate argument.
+- **Wrap redirects in `/bin/sh -c '…'`.** Typed text lands in whatever shell
+  runs in that pane, and shells disagree — a bare `>` in the wrong one
+  silently writes nothing.
+- **Wait for a sentinel, never a sleep.** There is no reliable "is it
+  finished" signal to poll:
+
+  ```sh
+  rm -f /tmp/done
+  tmux send-keys -t "$pane" "/bin/sh -c 'make test; echo ok > /tmp/done'" Enter
+  until [ -f /tmp/done ]; do sleep 0.5; done
+  tmux capture-pane -p -t "$pane" | tail -20
+  ```
+
+  If you poll the screen instead, remember the line you typed is echoed
+  there — assemble the marker at runtime (`printf done-%s "$nonce"`) so the
+  joined string only ever appears in real output.
+- **Killing is destructive — ask first.** `tmux kill-pane`,
+  `tmux kill-session`, and `workmux remove` terminate whatever is running in
+  them. Never force-close a busy pane without the user's go-ahead.
+
 ### Other commands
 
 ```bash
@@ -175,14 +222,14 @@ Two levels: global (`~/.config/workmux/config.yaml`) and project
 ### Key options
 
 ```yaml
-agent: claude                    # default agent for <agent> placeholder
+agent: pi                        # default agent for <agent> placeholder
 merge_strategy: rebase           # merge, rebase, or squash
-mode: window                     # window or session
+mode: session                    # window or session
 
 panes:
-  - command: <agent>             # <agent> resolves to configured agent
+  - command: pi                  # agent pane
+  - split: vertical              # second pane with shell
     focus: true
-  - split: horizontal            # second pane with shell
 
 files:
   copy:
