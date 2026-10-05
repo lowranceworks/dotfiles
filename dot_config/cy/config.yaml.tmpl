@@ -20,3 +20,21 @@ slack:
     - name: team-engage
       id: CYYYYYYYYYY
       access: readwrite
+
+# Work controller: watches item notes under vault.root (vault + repos are
+# private — see below) and reminds hourly during work hours.
+controller:
+  watch: [20-Projects/In-Progress]
+  work_hours: { days: mon-fri, start: "08:00", end: "17:00" }
+  remind_every: 1h
+
+jira:
+  work_backlog: false
+
+# Private sections (vault:, repos:) come from the local, untracked
+# ~/.config/chezmoi/cy.private.yaml — see docs/cy-private.example.yaml.
+{{- $private := joinPath .chezmoi.homeDir ".config/chezmoi/cy.private.yaml" }}
+{{- if stat $private }}
+# --- private (from ~/.config/chezmoi/cy.private.yaml) ---
+{{ include $private }}
+{{- end }}
