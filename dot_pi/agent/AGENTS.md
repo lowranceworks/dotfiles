@@ -48,3 +48,12 @@ really one-plus-two invites worktree collisions.
 
 If the repo has its own ticket-slicing doc (e.g. `docs/agents/ticket-slicing.md`),
 read it for the full checklist and worked examples.
+
+## Worktree naming
+
+Name every worktree with the Jira key first, then the feature change being
+made: `INF-1234-<feature-slug>` (e.g. `INF-5014-import-tfe-workspaces`;
+slug lowercase kebab-case, 2–5 words, verb-first). The branch stays the bare
+key (`INF-1234`) unless the repo says otherwise; with workmux use
+`workmux add INF-1234 --name INF-1234-<feature-slug> --base <default-branch>`.
+No Jira key → the feature slug alone.
