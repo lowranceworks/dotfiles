@@ -31,6 +31,9 @@ agent, monitors it, reports back, and cleans up.
    unclear): `cd /path/to/repo && workmux add <task-name>`
    This makes a worktree at `<repo>__worktrees/<task-name>` plus a tmux
    session with editor/server/agent windows.
+   For a Jira item the name is always the key first, then the feature
+   change — `INF-XXXX-<feature-slug>` (e.g. `INF-5014-import-tfe-workspaces`);
+   follow `start-dev-session` for the exact command.
 2. **Start an agent** in its agent window, e.g.:
    `workmux send <task-name> --window agent 'pi --model bonsai/bonsai2-27b'`
    (pi uses the local model; `opencode` uses Copilot Enterprise — prefer
