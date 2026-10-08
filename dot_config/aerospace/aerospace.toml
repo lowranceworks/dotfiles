@@ -106,7 +106,8 @@ outer.right = 8
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-# TODO: come up with a more intuitive keybinding for this?
+# Toggle the focused container's orientation between horizontal and vertical
+alt-backslash = 'layout horizontal vertical'
 # alt-slash = 'layout tiles horizontal vertical'
 # alt-comma = 'layout accordion vertical'
 
