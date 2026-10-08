@@ -20,8 +20,8 @@ packages added with `pi install`.
 {{- end -}}
 {{- $seeds := dict "defaultThinkingLevel" "high" -}}
 {{- if .mlb -}}
-{{-   $_ := set $seeds "defaultProvider" "github-copilot" -}}
-{{-   $_ := set $seeds "defaultModel" "claude-sonnet-5" -}}
+{{-   $_ := set $seeds "defaultProvider" "openrouter" -}}
+{{-   $_ := set $seeds "defaultModel" "moonshotai/kimi-k3" -}}
 {{- else -}}
 {{-   $_ := set $seeds "defaultProvider" "kimi-coding" -}}
 {{-   $_ := set $seeds "defaultModel" "kimi-for-coding-highspeed" -}}
