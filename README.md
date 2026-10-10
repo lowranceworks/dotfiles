@@ -19,7 +19,7 @@ macOS dotfiles managed with [chezmoi](https://www.chezmoi.io/): XDG-compliant la
 - **Menu Bar**: [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - **Hotkeys**: [skhd](https://github.com/koekeishiya/skhd)
 - **Automation**: [Hammerspoon](https://www.hammerspoon.org/)
-- **Launcher**: [Raycast](https://www.raycast.com/)
+- **Launcher**: [Vicinae](https://vicinae.com)
 - **Browser Extensions**: [Vimium](https://vimium.github.io/)
 - **Package Managers**:
   - macOS: [Homebrew](https://brew.sh)
@@ -62,7 +62,7 @@ or edit the live file and adopt it back with `chezmoi edit` / `chezmoi re-add`.
 - `dot_zshenv`, `dot_bashrc`, `dot_bash_profile` — home-root bootstraps (zsh `ZDOTDIR`, bash sourcing)
 - `private_dot_ssh/` — `~/.ssh/` config and public keys (private permissions; no private keys)
 - `dot_agents/skills/` — agent skills deployed to `~/.agents/skills/`
-- `dot_pi/` — pi-coding-agent config (`~/.pi/agent/`)
+- `dot_pi/` — pi-coding-agent config (`~/.pi/agent/`): `modify_settings.json` merges into pi's live `settings.json` (role-seeded provider/model, catppuccin theme, packages unioned from `.chezmoidata/pi-packages.toml`, installed by `run_onchange_after_13-install-pi-packages.sh.tmpl`), subagent extension symlinked from the Homebrew formula, review/research subagents, catppuccin themes
 - `.chezmoi.toml.tmpl` — config template; prompts for `mlb` / `personal` roles
 - `.chezmoiignore` — paths not deployed (docs, scripts-only dirs, runtime state)
 - `.chezmoiscripts/` — provisioning scripts (`run_once_`, `run_onchange_`)

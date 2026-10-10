@@ -10,6 +10,16 @@
 
 blacklist = ["scratch"]
 
+# Name sessions with the last 2 path components: "lowranceworks/dotfiles".
+# dir_length covers plain directories; paths inside a git repo go through
+# the git namer, which keys off git_dir_length instead (default 1 = repo
+# basename only). git_namer_use_worktree_root names worktree checkouts
+# (e.g. dotfiles__worktrees/latest) after the worktree itself instead of
+# "<repo>" + the full absolute path.
+dir_length = 2
+git_dir_length = 2
+git_namer_use_worktree_root = true
+
 # default
 [default_session]
 startup_command = "bash ~/.config/sesh/default-session.sh" 

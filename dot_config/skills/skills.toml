@@ -1,0 +1,30 @@
+# skills.toml — declarative manifest for the `skills` CLI
+# https://github.com/owainlewis/skills
+#
+# Deployed to ~/.config/skills/skills.toml on every machine. Shells export
+# SKILLS_CONFIG so bare `skills` commands find it, and
+# .chezmoiscripts/run_onchange_after_15-skills-sync.sh.tmpl runs `skills sync`
+# whenever this file changes. Edit here, then `chezmoi apply`.
+#
+# Targets:
+#   agents  ~/.agents/skills — universal pool. kimi reads it via
+#           extra_skill_dirs in ~/.kimi-code/config.toml and pi discovers it
+#           natively, so neither needs its own target (a dedicated pi copy in
+#           ~/.pi/agent/skills would make pi report every skill as a name
+#           collision between the two identical locations).
+#   claude  ~/.claude/skills
+#   codex   ~/.codex/skills
+#   hermes  ~/.hermes/skills
+# Targets install even when the agent isn't on this machine yet, so servers
+# that gain claude/codex/kimi later already have their skills in place.
+default_targets = ["agents", "claude", "codex", "hermes"]
+
+# Whole collection — restrict by adding: skills = ["name-a", "name-b"]
+[[skill]]
+source = "obra/superpowers"
+scope  = "global"
+
+[[skill]]
+source = "antonbabenko/terraform-skill"
+skills = ["terraform-skill"]
+scope  = "global"

@@ -2,14 +2,37 @@
 {{- /*
 Merge wanted config into Pi's existing ~/.pi/agent/settings.json instead of
 replacing it, so runtime state Pi writes itself survives `chezmoi apply`:
-provider/model changes made interactively, and any packages added with
-`pi install`. Seeds only fill in when absent; every other key is preserved
-untouched.
+lastChangelogVersion, provider/model/thinking changes from Ctrl+S, and any
+packages added with `pi install`.
+
+- `theme` is chezmoi-managed and always wins.
+- `defaultProvider`/`defaultModel`/`defaultThinkingLevel` are profile seeds:
+  they only fill in when absent, so a Ctrl+S change is never reverted.
+- Packages declared in `.chezmoidata/pi-packages.toml` are unioned into
+  `packages`. A companion run_onchange script actually installs them
+  (`pi install`), since declaring a package here only makes pi load it if
+  it's already fetched under `~/.pi/agent/npm/`.
+- Every other key (e.g. lastChangelogVersion) is preserved untouched.
 */ -}}
 {{- $current := dict -}}
 {{- if trim .chezmoi.stdin -}}
 {{-   $current = fromJson .chezmoi.stdin -}}
 {{- end -}}
 {{- $seeds := dict "defaultThinkingLevel" "high" -}}
+{{- if .mlb -}}
+{{-   $_ := set $seeds "defaultProvider" "openrouter" -}}
+{{-   $_ := set $seeds "defaultModel" "moonshotai/kimi-k3" -}}
+{{- else -}}
+{{-   $_ := set $seeds "defaultProvider" "kimi-coding" -}}
+{{-   $_ := set $seeds "defaultModel" "kimi-for-coding-highspeed" -}}
+{{- end -}}
 {{- $current = merge $current $seeds -}}
+{{- $_ := set $current "theme" "catppuccin-latte/catppuccin-frappe" -}}
+{{- $packages := index $current "packages" | default list -}}
+{{- range .piPackages -}}
+{{-   if not (has .id $packages) -}}
+{{-     $packages = append $packages .id -}}
+{{-   end -}}
+{{- end -}}
+{{- $_ := set $current "packages" $packages -}}
 {{- toPrettyJson $current -}}
