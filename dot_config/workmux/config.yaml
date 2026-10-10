@@ -13,6 +13,11 @@ status_format: false
 # enable nerd fonts
 nerdfont: true
 
+# Prefix for tmux window/session names. `{project}` resolves to the repo
+# directory basename only — there is no parent-dir placeholder yet. To get
+# "parent/repo 󰘬 branch" session names, each repo carries a .workmux.yaml at
+# its root that overrides this with a hardcoded parent-qualified prefix, e.g.
+# window_prefix: "lowranceworks/dotfiles 󰘬 "
 window_prefix: "{project} 󰘬 "
 
 windows:

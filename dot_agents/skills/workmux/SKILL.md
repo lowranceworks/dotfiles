@@ -247,6 +247,20 @@ window_prefix: wm-               # tmux window name prefix
 
 Use `'<global>'` in project config arrays to include global values.
 
+**Session naming convention (this machine):** the global config sets
+`window_prefix: "{project} 󰘬 "`, and `{project}` only resolves to the repo
+basename. Before the first `workmux add` in a repo that lacks a
+`.workmux.yaml`, create one at the repo root with a parent-qualified prefix
+so sessions read `parent/repo 󰘬 branch`:
+
+```yaml
+window_prefix: "<parent-dir>/<repo> 󰘬 "
+```
+
+Never rename a workmux-managed tmux session by hand to work around this —
+workmux recomputes the session name from `window_prefix` for `open`,
+`close`, and `remove`, so a mismatched name breaks those commands.
+
 For the full configuration reference with all options documented, run
 `workmux config reference`.
 
