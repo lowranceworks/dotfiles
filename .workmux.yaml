@@ -1,0 +1,6 @@
+# workmux project configuration (merges over ~/.config/workmux/config.yaml)
+
+# Qualify tmux session/window names with the parent directory so same-named
+# repos stay distinct (workmux's {project} placeholder only resolves to the
+# repo basename). Keep in sync if the repo is moved or renamed.
+window_prefix: "lowranceworks/dotfiles 󰘬 "
