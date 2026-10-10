@@ -1,18 +1,17 @@
 #!/usr/bin/osascript
 
 # Required parameters:
-# @raycast.schemaVersion 1
-# @raycast.title Dismiss Notifications
-# @raycast.mode silent
+# @vicinae.schemaVersion 1
+# @vicinae.title Dismiss Notifications
+# @vicinae.mode silent
 
 # Optional parameters:
-# @raycast.icon 🔕
-# @raycast.packageName System
+# @vicinae.icon 🔕
 
 # Documentation:
-# @raycast.description Close all notification alerts staying on screen, e.g., Calendar notifications.
-# @raycast.author benyn
-# @raycast.authorURL github.com/benyn
+# @vicinae.description Close all notification alerts staying on screen, e.g., Calendar notifications.
+# @vicinae.author benyn
+# @vicinae.authorURL github.com/benyn
 
 tell application "System Events"
 	tell process "NotificationCenter"

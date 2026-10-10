@@ -19,7 +19,7 @@ macOS dotfiles managed with [chezmoi](https://www.chezmoi.io/): XDG-compliant la
 - **Menu Bar**: [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - **Hotkeys**: [skhd](https://github.com/koekeishiya/skhd)
 - **Automation**: [Hammerspoon](https://www.hammerspoon.org/)
-- **Launcher**: [Raycast](https://www.raycast.com/)
+- **Launcher**: [Vicinae](https://vicinae.com)
 - **Browser Extensions**: [Vimium](https://vimium.github.io/)
 - **Package Managers**:
   - macOS: [Homebrew](https://brew.sh)
