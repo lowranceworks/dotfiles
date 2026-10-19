@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "higgsfield": {
+      "transport": "streamable-http",
+      "url": "https://mcp.higgsfield.ai/mcp",
+      "lifecycle": "eager"
+    }
+  }
+}

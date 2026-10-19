@@ -1,0 +1,42 @@
+#  ██████╗ ██╗  ██╗ ██████╗ ███████╗████████╗████████╗██╗   ██╗
+# ██╔════╝ ██║  ██║██╔═══██╗██╔════╝╚══██╔══╝╚══██╔══╝╚██╗ ██╔╝
+# ██║  ███╗███████║██║   ██║███████╗   ██║      ██║    ╚████╔╝
+# ██║   ██║██╔══██║██║   ██║╚════██║   ██║      ██║     ╚██╔╝
+# ╚██████╔╝██║  ██║╚██████╔╝███████║   ██║      ██║      ██║
+#  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝      ╚═╝      ╚═╝
+# A fast, native, GPU-accelerated terminal emulator
+# https://ghostty.org/docs/config/reference
+
+# -- Appearance ---------------------------------------------------------------
+theme = Catppuccin Mocha
+font-family = CommitMono
+font-size = 16
+
+background-opacity = 0.9
+
+cursor-style = block
+cursor-style-blink = true
+# keep the block cursor at the prompt (shell integration would switch it to a bar)
+shell-integration-features = no-cursor
+
+# -- Window -------------------------------------------------------------------
+window-padding-x = 30
+window-padding-y = 20,10
+
+# no titlebar (wezterm's RESIZE-only decorations)
+macos-titlebar-style = hidden
+# never prompt on close/quit
+confirm-close-surface = false
+
+# -- Keys ---------------------------------------------------------------------
+# natural text editing
+keybind = opt+left=esc:b
+keybind = opt+right=esc:f
+# Ctrl-E — jump to end of line
+keybind = cmd+right=text:\x05
+# Ctrl-U — kill line
+keybind = cmd+backspace=text:\x15
+
+# no tabs
+keybind = cmd+t=unbind
+keybind = shift+end=scroll_to_bottom
