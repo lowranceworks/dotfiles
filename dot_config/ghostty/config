@@ -41,6 +41,11 @@ keybind = cmd+backspace=text:\x15
 keybind = cmd+t=unbind
 keybind = shift+end=scroll_to_bottom
 
+# vim-style half-page scroll through the scrollback (plain-shell context).
+# cmd- chords never reach tmux/pi/nvim — ctrl+u/d are left to those apps.
+keybind = cmd+u=scroll_page_fractional:-0.5
+keybind = cmd+d=scroll_page_fractional:0.5
+
 # Cmd+Q: quit the foreground TUI, not ghostty (wezterm smart-quit equivalent).
 # ghostty can't inspect the foreground process, so send one sequence that each
 # app handles its own way:
