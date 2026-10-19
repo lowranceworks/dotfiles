@@ -8,7 +8,7 @@
 # https://ghostty.org/docs/config/reference
 
 # -- Appearance ---------------------------------------------------------------
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 font-family = CommitMono
 font-size = 16
 
@@ -23,15 +23,20 @@ shell-integration-features = no-cursor
 window-padding-x = 30
 window-padding-y = 20,10
 
-macos-titlebar-style = hidden # no titlebar (wezterm's RESIZE-only decorations)
-confirm-close-surface = false # never prompt on close/quit
+# no titlebar (wezterm's RESIZE-only decorations)
+macos-titlebar-style = hidden
+# never prompt on close/quit
+confirm-close-surface = false
 
 # -- Keys ---------------------------------------------------------------------
 # natural text editing
 keybind = opt+left=esc:b
 keybind = opt+right=esc:f
-keybind = cmd+right=text:\x05     # Ctrl-E — jump to end of line
-keybind = cmd+backspace=text:\x15 # Ctrl-U — kill line
+# Ctrl-E — jump to end of line
+keybind = cmd+right=text:\x05
+# Ctrl-U — kill line
+keybind = cmd+backspace=text:\x15
 
-keybind = cmd+t=unbind # no tabs
+# no tabs
+keybind = cmd+t=unbind
 keybind = shift+end=scroll_to_bottom
