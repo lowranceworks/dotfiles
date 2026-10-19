@@ -40,3 +40,11 @@ keybind = cmd+backspace=text:\x15
 # no tabs
 keybind = cmd+t=unbind
 keybind = shift+end=scroll_to_bottom
+
+# Cmd+Q: quit the foreground TUI, not ghostty (wezterm smart-quit equivalent).
+# ghostty can't inspect the foreground process, so send one sequence that each
+# app handles its own way:
+#   nvim    — ESC forces normal mode, ":qa!" quits all windows
+#   lazygit — ESC closes popups, ":" is unbound, the "q" quits it
+#   shell   — ":qa!" runs the no-op ":" builtin
+keybind = cmd+q=text:\x1b:qa!\x0d
