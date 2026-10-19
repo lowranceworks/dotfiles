@@ -1,0 +1,16 @@
+# Example for ~/.config/chezmoi/cy.private.yaml (local only, never committed).
+# chezmoi appends this file verbatim to ~/.config/cy/config.yaml.
+# Keys here must NOT repeat keys in dot_config/cy/config.yaml.tmpl
+# (provider, models, slack, controller, jira) — YAML forbids duplicates.
+
+vault:
+  name: MyVault
+  root: ~/obsidian-vaults/MyVault
+
+repos:
+  - slug: example-org/example-repo
+    keywords: [example, demo]
+    # path: ~/code/example-repo   # optional; default ~/projects/<slug>
+    # issues:                     # optional; enables GitHub issue watching
+    #   assignee: "@me"
+    #   labels: [cy]

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# shellcheck shell=bash
+
+# Converge agent skills to match dot_config/skills/skills.toml using the
+# `skills` CLI (https://github.com/owainlewis/skills).
+# Re-runs when the manifest changes:
+# skills.toml: {{ include "dot_config/skills/skills.toml" | sha256sum }}
+
+if [ -n "${CI:-}" ]; then
+    echo "Skipping due to \$CI"
+    exit
+fi
+
+# Pinned so a `skills` release doesn't silently change apply behavior on one
+# machine before another. Bump deliberately. Only installs when missing —
+# upgrades are manual (`skills` self-update or rerun of install.sh).
+skills_version="v0.2.1"
+
+if ! command -v skills &>/dev/null; then
+    if ! command -v curl &>/dev/null; then
+        echo "Skipping: neither skills nor curl found"
+        exit 0
+    fi
+    echo "Installing skills ${skills_version}"
+    VERSION="$skills_version" BINDIR="$HOME/.local/bin" \
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/owainlewis/skills/main/install.sh)"
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# --config is explicit (not SKILLS_CONFIG) so this works in chezmoi's
+# non-interactive shell. --prune removes skills this CLI installed that are
+# no longer declared; chezmoi-managed homegrown skills in ~/.agents/skills
+# are not in its lockfile and are left alone.
+skills sync --config "$HOME/.config/skills/skills.toml" --prune

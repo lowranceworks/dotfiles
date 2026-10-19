@@ -34,8 +34,8 @@ dot_config/tmux/plugins/
 # ignore fzf history
 fzf
 
-# ignore raycast extensions
-dot_config/raycast/extensions
+# ignore vicinae state managed by the app
+dot_local/share/vicinae/extensions
 
 # k9s
 dot_config/k9s/aliases.yaml
