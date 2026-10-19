@@ -140,4 +140,4 @@ cask "slack"                                  # Team communication platform
 cask "spacelauncher"                          # Keyboard-driven app launcher
 cask "stats"                                  # System monitor in menu bar
 cask "utm"                                    # Virtual machine manager
-cask "wezterm"                                # GPU-accelerated terminal emulator
+cask "ghostty"                               # GPU-accelerated terminal emulator

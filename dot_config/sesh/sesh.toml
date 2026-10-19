@@ -47,9 +47,9 @@ path = "~/projects/lowranceworks/dotfiles/nix-darwin/"
 startup_command = "nvim flake.nix"
 
 [[session]]
-name = "wezterm config"
-path = "~/projects/lowranceworks/dotfiles/wezterm"
-startup_command = "nvim wezterm.lua"
+name = "ghostty config"
+path = "~/projects/lowranceworks/dotfiles/ghostty"
+startup_command = "nvim config"
 
 [[session]]
 name = "neovim config"

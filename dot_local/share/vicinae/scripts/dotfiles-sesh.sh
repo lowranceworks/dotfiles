@@ -14,4 +14,4 @@
 # @vicinae.authorURL https://github.com/joshmedeski
 
 ~/go/bin/sesh connect --switch "dotfiles"
-open -a "Wezterm"
+open -a "Ghostty"
