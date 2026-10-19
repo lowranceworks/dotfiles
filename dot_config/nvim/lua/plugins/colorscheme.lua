@@ -36,9 +36,7 @@ return {
     },
     color_overrides = {},
     integrations = {
-      cmp = true,
       gitsigns = true,
-      nvimtree = true,
       treesitter = true,
       notify = true,
       mini = {
@@ -62,9 +60,6 @@ return {
         inlay_hints = {
           background = true,
         },
-      },
-      telescope = {
-        enabled = true,
       },
       which_key = true,
       -- Add Snacks integration if you're using it
