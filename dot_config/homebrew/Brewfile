@@ -77,6 +77,7 @@ brew "oci-cli"                                # Oracle Cloud CLI
 brew "pi-coding-agent"                        # Pi coding agent
 brew "pipx"                                   # Install Python apps isolated
 brew "podman"                                 # Daemonless container engine
+brew "tree-sitter-cli"                        # tree-sitter CLI (required by nvim-treesitter main branch to build parsers)
 brew "pre-commit"                             # Git hooks framework
 brew "protobuf"                               # Protocol buffers
 brew "proton-drive"                           # Proton Drive CLI
