@@ -33,6 +33,13 @@ windows:
 # currently checked out branch
 base_branch: auto
 
+# symlink .env from the main worktree into every new worktree
+# (git worktree only materializes tracked files, so gitignored files
+# like .env would otherwise be missing)
+files:
+  symlink:
+    - .env
+
 # keep the dashboard open after jumping to an agent/worktree with Enter,
 # so `sesh last` back to the hub session lands on the dashboard again
 dashboard:
