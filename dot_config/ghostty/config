@@ -61,3 +61,8 @@ keybind = cmd+q=text:\x1b:qa!\x0d
 # protocol — hold shift to escape the capture: cmd+shift+click. By design,
 # not configurable until ghostty#3848 (mouse bindings) lands.
 link-url = true
+
+# force shift to always escape mouse capture (native selection/clicks) —
+# running programs can NOT override this with XTSHIFTESCAPE.
+# default `false` allows that override; `never` forbids it.
+mouse-shift-capture = never
