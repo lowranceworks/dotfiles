@@ -53,3 +53,11 @@ keybind = cmd+d=scroll_page_fractional:0.5
 #   lazygit — ESC closes popups, ":" is unbound, the "q" quits it
 #   shell   — ":qa!" runs the no-op ":" builtin
 keybind = cmd+q=text:\x1b:qa!\x0d
+
+# -- Links --------------------------------------------------------------------
+# cmd+click opens a hyperlink (link-url is on by default; set explicitly for
+# the comment). In mouse-capturing apps (tmux with `mouse on`, nvim, TUIs),
+# the click is forwarded to the app and cmd is stripped by the xterm mouse
+# protocol — hold shift to escape the capture: cmd+shift+click. By design,
+# not configurable until ghostty#3848 (mouse bindings) lands.
+link-url = true
