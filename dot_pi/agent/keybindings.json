@@ -1,5 +1,6 @@
 {
   "app.exit": [],
   "tui.altScreen.halfPageUp": "ctrl+u",
-  "tui.altScreen.halfPageDown": "ctrl+d"
+  "tui.altScreen.halfPageDown": "ctrl+d",
+  "tui.altScreen.bottom": "shift+g"
 }
