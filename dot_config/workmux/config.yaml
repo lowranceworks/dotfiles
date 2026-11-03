@@ -25,7 +25,6 @@ windows:
     panes:
       - command: pi
         focus: true
-  - name: fish
 
 # branch new worktrees from the detected main/master instead of the
 # currently checked out branch
