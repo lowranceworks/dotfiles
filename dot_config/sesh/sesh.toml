@@ -21,10 +21,9 @@ git_dir_length = 2
 git_namer_use_worktree_root = true
 
 # default
+# no startup_command: new sessions open as a single plain shell window
 [default_session]
-startup_command = "bash ~/.config/sesh/default-session.sh" 
 preview_command = "eza --all --git --icons --color=always {}"
-startup_command_ignore_dirs = ["~/projects/lowranceworks/dotfiles"]
 
 # common
 

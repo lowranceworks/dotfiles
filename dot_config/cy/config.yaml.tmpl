@@ -31,7 +31,10 @@ controller:
 # Jira is the source of truth for status; Cy mirrors each item note into
 # the folder for its status every 10 minutes.
 jira:
-  work_backlog: true    # backlog items that are unassigned or mine
+  work_backlog: true      # also comb the backlog for items assigned to me
+  # Unassigned items: true = intake picks them up and their notes notify.
+  # false = only items assigned to me notify; others stay quiet (jira-assignee).
+  work_unassigned: false
   status_folders:
     Submitted: 20-Projects/Submitted
     Backlog: 20-Projects/Todo
@@ -40,6 +43,7 @@ jira:
     In Progress: 20-Projects/In-Progress
     Needs More Info: 20-Projects/Blocked
     Parked: 20-Projects/Blocked
+    Blocked: 20-Projects/Blocked
     Cancelled: 20-Projects/Canceled
     Done: 20-Projects/Completed
 
