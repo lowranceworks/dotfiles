@@ -52,6 +52,9 @@
 {{ if .personal }}
 [includeIf "gitdir/i:~/projects/lowranceworks/"]
 	path = ~/.config/git/personal
+
+[includeIf "gitdir/i:~/projects/ad-crunch-digital/"]
+	path = ~/.config/git/personal
 {{- end }}
 
 [credential "https://github.com"]
