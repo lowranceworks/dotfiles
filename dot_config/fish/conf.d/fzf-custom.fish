@@ -1,4 +1,8 @@
-set -Ux FZF_DEFAULT_OPTS "\
+# -gx (not -Ux): an inherited env var shadows a universal one, so with -Ux
+# a stale FZF_DEFAULT_OPTS from the parent process (e.g. the tmux server's
+# start-time env) wins and this file never takes effect. -gx re-asserts the
+# value on every shell start.
+set -gx FZF_DEFAULT_OPTS "\
 --reverse \
 --border rounded \
 --no-info \
@@ -13,7 +17,7 @@ set -Ux FZF_DEFAULT_OPTS "\
 # minus its bg:#1e1e2e so ghostty's translucent background shows through
 # (the theme's own advice for transparent terminals); gutter:-1 likewise.
 
-set -Ux FZF_TMUX_OPTS "-p 55%,60%"
+set -gx FZF_TMUX_OPTS "-p 55%,60%"
 
-set -Ux FZF_CTRL_R_OPTS "--border-label=' history ' \
+set -gx FZF_CTRL_R_OPTS "--border-label=' history ' \
 --prompt='  '"
