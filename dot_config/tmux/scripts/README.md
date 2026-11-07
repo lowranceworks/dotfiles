@@ -1,5 +1,11 @@
 # scripts
 
+## sesh-list.sh
+
+- Feeds the `prefix + /` sesh picker (`tmux.sesh.conf`)
+- Prints `<target>\t<display>`: fzf shows and matches the display (`~/projects/` trimmed) and passes the real target to `sesh connect`
+- `--find` lists directories via `fd` instead of sesh
+
 ## workmux-menu.sh
 
 - Bound to `prefix + w` via `tmux.workmux.conf`
