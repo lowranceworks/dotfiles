@@ -80,8 +80,6 @@ brew "podman"                                 # Daemonless container engine
 brew "tree-sitter-cli"                        # tree-sitter CLI (required by nvim-treesitter main branch to build parsers)
 brew "pre-commit"                             # Git hooks framework
 brew "protobuf"                               # Protocol buffers
-brew "proton-drive"                           # Proton Drive CLI
-brew "proton-mail"                            # Proton Mail CLI
 brew "pytest"                                 # Python testing framework
 brew "qemu"                                   # Machine emulator
 brew "ripgrep"                                # Fast grep alternative
@@ -117,10 +115,8 @@ brew "zstd"                                   # Zstandard compression
 # --- Casks ---
 cask "1password-cli"                          # 1Password command-line tool
 cask "aerospace"                              # Tiling window manager for macOS
-cask "arc"                                    # Arc browser
 cask "betterdisplay"                          # Display management tool
 cask "bitwarden"                              # Password manager
-cask "brave-browser"                          # Privacy-focused web browser
 cask "chromium"                               # Open-source web browser
 cask "cleanshot"                              # Screenshot and screen recording tool
 cask "contexts"                               # Window switcher
@@ -130,8 +126,6 @@ cask "font-sf-pro"                            # Required for SketchyBar"
 cask "font-symbols-only-nerd-font"            # Required for icons in Obsidian Terminal
 cask "google-chrome"                          # Google Chrome browser
 cask "google-cloud-sdk"                       # Google Cloud Platform CLI
-cask "inkdrop"                                # Markdown note-taking app
-cask "keycastr"                               # Keystroke visualizer
 cask "meetingbar"                             # Menu bar calendar meetings
 cask "mission-control-plus"                   # Enhanced Mission Control
 cask "paintbrush"                             # Simple paint application
