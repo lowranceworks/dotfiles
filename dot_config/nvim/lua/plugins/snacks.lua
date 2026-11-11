@@ -97,6 +97,13 @@ return {
       end),
       desc = "Keymaps",
     },
+    {
+      "<leader>fp",
+      pick(function()
+        Snacks.picker.files({ cwd = require("lazy.core.config").options.root })
+      end),
+      desc = "Find Plugin File",
+    },
 
     -- Buffer operations (replacing BufferLine functionality)
     {

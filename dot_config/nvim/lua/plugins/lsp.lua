@@ -9,8 +9,5 @@ return {
         pyright = {},
       },
     },
-
-    -- LazyVim extra handles lspconfig, treesitter, mason and typescript setup
-    { import = "lazyvim.plugins.extras.lang.typescript" },
   },
 }

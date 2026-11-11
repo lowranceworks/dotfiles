@@ -49,10 +49,6 @@
 
 [include]
 	path = ~/.config/git/catppuccin.gitconfig
-{{ if .personal }}
-[includeIf "gitdir/i:~/projects/lowranceworks/"]
-	path = ~/.config/git/personal
-{{- end }}
 
 [credential "https://github.com"]
 	helper =
@@ -65,3 +61,7 @@
 	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 {{- end }}
+
+# Keep scoped overrides after the default credential helpers.
+[includeIf "gitdir/i:~/Projects/lowranceworks/"]
+	path = ~/.config/git/personal

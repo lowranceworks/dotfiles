@@ -40,7 +40,11 @@ Otherwise:
 sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply lowranceworks
 ```
 
-`chezmoi init` prompts for two independent **roles** — `mlb` and `personal` — which gate machine-specific git identity and credentials. A machine can carry both.
+`chezmoi init` prompts for two independent **roles** — `mlb` and `personal` — which select machine-specific defaults, tools, and provisioning. A machine can carry both.
+
+Git repositories under `~/Projects/lowranceworks/` use `lowranceworks@gmail.com` for commits and the `lowranceworks` account for GitHub HTTPS credentials, regardless of roles or repository owner. The scoped credential helper reads that account's token from `gh` without switching its globally active account; other directories and hosts retain their defaults. Sign into `lowranceworks` once with `gh auth login --hostname github.com --git-protocol https --web` (then switch back to your preferred default account with `gh auth switch` if needed).
+
+This configures Git authentication, not the account used by standalone `gh` API commands or SSH remotes. The `gitdir/i` directory rule matches Git's administrative directory: linked worktrees follow their main repository's location, not the checkout path.
 
 After applying, `.chezmoiscripts/` installs Homebrew packages (`brew bundle`), copies AI skills/agents to tool config dirs and Obsidian vaults, and syncs Obsidian community plugins.
 

@@ -2,5 +2,8 @@
 	name = Joshua Lowrance
 	email = lowranceworks@gmail.com
 
-[url "https://lowranceworks@github.com/lowranceworks/"]
-	insteadOf = https://github.com/lowranceworks/
+# Select the account explicitly without changing gh's globally active account.
+[credential "https://github.com"]
+	username = lowranceworks
+	helper =
+	helper = "!f() { test \"$1\" = get || return 0; token=$(/opt/homebrew/bin/gh auth token --hostname github.com --user lowranceworks) || return; printf 'username=lowranceworks\\npassword=%s\\n' \"$token\"; }; f"

@@ -13,8 +13,3 @@ docs/**
 
 # Stale duplicate of nvim/lua kept on disk (safe to delete)
 .config/nvim/nvim/**
-
-# Role-gated files
-{{ if not .personal }}
-.config/git/personal
-{{ end }}
