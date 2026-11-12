@@ -34,8 +34,10 @@ keybind = opt+left=esc:b
 keybind = opt+right=esc:f
 # Ctrl-E — jump to end of line
 keybind = cmd+right=text:\x05
-# Ctrl-U — kill line
-keybind = cmd+backspace=text:\x15
+# Cmd-Backspace — kill to line start. Sends Alt+Ctrl+U, not a bare Ctrl+U:
+# tmux binds bare C-u to copy-mode scrolling, and turns M-C-u back into a
+# real C-u for the pane (tmux.conf); fish binds it too for use outside tmux.
+keybind = cmd+backspace=text:\x1b\x15
 
 # no tabs
 keybind = cmd+t=unbind
