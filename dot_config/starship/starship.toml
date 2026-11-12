@@ -16,6 +16,7 @@ $nodejs\
 $rust\
 $lua\
 $cmd_duration\
+$status\
 $line_break\
 $character"""
 
@@ -30,9 +31,17 @@ style = "bold green"
 
 [character]
 # vi mode, after joshmedeski/dotfiles: chevron in insert, Vim logo (e62b) in normal.
-success_symbol = ""
-vimcmd_symbol = ""
-error_symbol = "󰩈"
+success_symbol = "[](bold green)"
+vimcmd_symbol = "[](bold teal)"
+# The input line stays a chevron after a failure; $status on the line above
+# marks the failed command instead.
+error_symbol = "[](bold green)"
+
+[status]
+disabled = false
+symbol = "󰩈"
+style = "bold red"
+format = "[$symbol]($style) " # icon only, no exit code
 
 [cmd_duration]
 style = "bold yellow"
