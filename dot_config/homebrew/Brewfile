@@ -9,7 +9,6 @@ tap "minamijoyo/hcledit"                      # HCL configuration editor
 tap "nikitabobko/tap"                         # AeroSpace window manager
 
 # --- Formulae (brews) ---
-# brew "borders"                              # macOS window borders (archived/unmaintained)
 # brew "docker"                               # Using podman instead
 # brew "docker-completion"                    # Docker shell completion
 # brew "docker-compose"                       # Multi-container Docker apps
@@ -29,6 +28,7 @@ brew "azure-cli"                              # Azure command line tool
 brew "bandit"                                 # Python security linting
 brew "bash"                                   # Bash shell
 brew "bitwarden-cli"                          # Password manager CLI
+brew "borders", start_service: true          # JankyBorders macOS window borders (config: ~/.config/borders/bordersrc)
 brew "checkov"                                # IaC security scanner
 brew "crossplane"                             # Kubernetes control plane
 brew "cryptography"                           # Cryptographic libraries
