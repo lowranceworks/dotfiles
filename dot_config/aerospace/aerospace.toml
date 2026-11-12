@@ -105,11 +105,10 @@ alt-backslash = 'layout horizontal vertical'
 # alt-comma = 'layout accordion vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-# TODO: integrate with tmux vim navigation
-# alt-h = 'focus left'
-# alt-j = 'focus down'
-# alt-k = 'focus up'
-# alt-l = 'focus right'
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
 # alt-0 = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
