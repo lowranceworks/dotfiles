@@ -115,6 +115,7 @@ brew "zstd"                                   # Zstandard compression
 # --- Casks ---
 cask "1password-cli"                          # 1Password command-line tool
 cask "aerospace"                              # Tiling window manager for macOS
+cask "arc"                                    # Web browser (pinned in the Dock by nix-darwin)
 cask "betterdisplay"                          # Display management tool
 cask "bitwarden"                              # Password manager
 cask "chromium"                               # Open-source web browser

@@ -1,0 +1,181 @@
+{
+  description = "nix-darwin system flake: macOS settings";
+
+  # chezmoi template, rendered per machine into ~/.config/nix/flake.nix.
+  # Apply with:
+  #   sudo darwin-rebuild switch --flake ~/.config/nix
+  # darwin-rebuild picks the configuration named after `scutil --get LocalHostName`,
+  # which chezmoi fills in below, so any Mac gets a matching configuration.
+  #
+  # Packages are not managed here: Homebrew installs them from
+  # ~/.config/homebrew/Brewfile (see .chezmoiscripts/run_once_after_10-homebrew.sh).
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs =
+    inputs@{
+      self,
+      nix-darwin,
+      nixpkgs,
+    }:
+    let
+      user = "{{ .chezmoi.username }}";
+      host = "{{ output "scutil" "--get" "LocalHostName" | trim }}";
+
+      configuration =
+        { pkgs, ... }:
+        {
+          nixpkgs.hostPlatform = "aarch64-darwin";
+
+          ids.gids.nixbld = 350; # GID the Nix installer gives nixbld on macOS
+          # Per machine: the value at this Mac's first nix-darwin install; never bump.
+          # Set by the nixStateVersion prompt in .chezmoi.toml.tmpl.
+          system.stateVersion = {{ get . "nixStateVersion" | default 7 }};
+          system.configurationRevision = self.rev or self.dirtyRev or null;
+          system.primaryUser = user;
+
+          nix.settings.experimental-features = "nix-command flakes";
+
+          programs.zsh.enable = true;
+          programs.fish.enable = true;
+
+          security.pam.services.sudo_local.touchIdAuth = true;
+
+          # Caps Lock -> Control on the built-in keyboard only; external keyboards
+          # (the Logitech) keep Caps Lock. nix-darwin's system.keyboard remap
+          # applies to every keyboard, so a launchd daemon runs hidutil with a
+          # Built-In match instead, at boot and on every switch.
+          system.keyboard.enableKeyMapping = false;
+          launchd.daemons.remap-builtin-capslock.serviceConfig = {
+            ProgramArguments = [
+              "/usr/bin/hidutil"
+              "property"
+              "--matching"
+              ''{"Built-In":true}''
+              "--set"
+              ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":30064771129,"HIDKeyboardModifierMappingDst":30064771300}]}''
+            ];
+            RunAtLoad = true;
+          };
+
+          # Screenshots save to ~/Pictures/screenshots (below); macOS won't create it.
+          system.activationScripts.postActivation.text = ''
+            sudo --user=${user} -- mkdir -p /Users/${user}/Pictures/screenshots
+          '';
+
+          system.defaults = {
+            NSGlobalDomain = {
+              AppleInterfaceStyle = "Dark";
+              AppleShowAllExtensions = true;
+              InitialKeyRepeat = 17;
+              KeyRepeat = 2;
+              NSAutomaticWindowAnimationsEnabled = true;
+              NSScrollAnimationEnabled = true;
+              NSWindowResizeTime = 0.2;
+              _HIHideMenuBar = true; # menu bar auto-hides; SketchyBar replaces it
+              "com.apple.trackpad.scaling" = 1.0;
+            };
+
+            ".GlobalPreferences"."com.apple.mouse.scaling" = 3.0;
+
+            dock = {
+              autohide = true;
+              orientation = "right";
+              mineffect = "scale";
+              mru-spaces = false;
+              wvous-br-corner = 14; # Quick Note
+              persistent-apps = [
+                "/System/Applications/Apps.app"
+                "/System/Applications/Calendar.app"
+                "/Applications/Ghostty.app"
+                "/Applications/Arc.app"
+                "/Applications/Bitwarden.app"
+                "/Applications/draw.io.app"
+              ];
+              persistent-others = [
+                {
+                  folder = {
+                    path = "/Users/${user}/Downloads";
+                    arrangement = "date-added";
+                    displayas = "stack";
+                    showas = "fan";
+                  };
+                }
+              ];
+            };
+
+            finder = {
+              AppleShowAllExtensions = true;
+              AppleShowAllFiles = true;
+              FXDefaultSearchScope = "SCcf"; # search the current folder
+              FXPreferredViewStyle = "Nlsv"; # list view
+              ShowPathbar = true;
+              ShowStatusBar = false;
+              ShowExternalHardDrivesOnDesktop = true;
+              ShowHardDrivesOnDesktop = false;
+              ShowRemovableMediaOnDesktop = true;
+            };
+
+            trackpad = {
+              Clicking = false; # no tap to click
+              Dragging = false;
+              DragLock = false;
+              TrackpadRightClick = true;
+              TrackpadCornerSecondaryClick = 0;
+              TrackpadThreeFingerDrag = false;
+              TrackpadThreeFingerTapGesture = 0;
+              TrackpadTwoFingerFromRightEdgeSwipeGesture = 3; # Notification Center
+              FirstClickThreshold = 1;
+              SecondClickThreshold = 1;
+              ActuateDetents = true;
+              ForceSuppressed = false;
+            };
+
+            magicmouse.MouseButtonMode = "OneButton";
+
+            menuExtraClock = {
+              ShowAMPM = true;
+              ShowDate = 0; # when space allows
+              ShowDayOfWeek = true;
+            };
+
+            WindowManager = {
+              AutoHide = false;
+              HideDesktop = true; # hide desktop items in Stage Manager
+              StandardHideWidgets = false;
+              StageManagerHideWidgets = false;
+            };
+
+            ActivityMonitor.ShowCategory = 102; # My Processes
+
+            loginwindow = {
+              GuestEnabled = false;
+              LoginwindowText = "Let's Go!";
+            };
+
+            screencapture.location = "~/Pictures/screenshots";
+            screensaver.askForPasswordDelay = 10;
+
+            # Settings nix-darwin has no typed option for.
+            CustomUserPreferences = {
+              NSGlobalDomain = {
+                AppleMenuBarVisibleInFullscreen = false;
+                AppleMiniaturizeOnDoubleClick = false;
+                "com.apple.scrollwheel.scaling" = 1;
+                "com.apple.sound.beep.flash" = 0;
+              };
+              "com.apple.loginwindow".TALLogoutSavesState = false; # don't reopen windows at login
+            };
+          };
+        };
+    in
+    {
+      darwinConfigurations.${host} = nix-darwin.lib.darwinSystem {
+        modules = [ configuration ];
+      };
+    };
+}

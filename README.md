@@ -23,7 +23,7 @@ macOS dotfiles managed with [chezmoi](https://www.chezmoi.io/): XDG-compliant la
 - **Browser Extensions**: [Vimium](https://vimium.github.io/)
 - **Package Managers**:
   - macOS: [Homebrew](https://brew.sh)
-  - Nix: [Nix](https://nixos.org/) / [nix-darwin](https://github.com/LnL7/nix-darwin)
+  - Nix: [Nix](https://nixos.org/) / [nix-darwin](https://github.com/nix-darwin/nix-darwin) (macOS settings, `~/.config/nix`)
 - **Dotfile Manager**: [chezmoi](https://www.chezmoi.io/)
 
 ## Installation

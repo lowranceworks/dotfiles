@@ -2,6 +2,8 @@
 {{ $personal := promptBoolOnce . "personal" "Personal role (personal identity, tools, secrets)" true -}}
 {{ $workEmail := "" -}}
 {{ if $mlb }}{{ $workEmail = promptStringOnce . "workEmail" "Work git email" }}{{ end -}}
+{{/* nix-darwin system.stateVersion: the value at this Mac's first nix-darwin install. 4 on MAC-X1H6Q9QGF3; 7 for new installs. Never bump. */ -}}
+{{ $nixStateVersion := promptIntOnce . "nixStateVersion" "nix-darwin stateVersion (7 for a new install)" 7 -}}
 
 sourceDir = {{ .chezmoi.sourceDir | quote }}
 
@@ -9,6 +11,7 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
     mlb = {{ $mlb }}
     personal = {{ $personal }}
     workEmail = {{ $workEmail | quote }}
+    nixStateVersion = {{ $nixStateVersion }}
 
 [diff]
     pager = "delta --line-numbers"

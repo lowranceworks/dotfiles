@@ -12,21 +12,9 @@ You must install it with `zsh`
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
-### Install nix-darwin
-
-This command could take awhile to complete...
-
-```zsh
-nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
-./result/bin/darwin-installer
-```
-
-- Select `no` when prompted if you want to edit the default configuration file
-- Select `yes` when prompted if you want to manage darwin with a nix-channel
-
 ### Install homebrew
 
-The nix configuration depends on [homebrew]() to install software.
+chezmoi installs software from `~/.config/homebrew/Brewfile` with [homebrew](https://brew.sh).
 
 ```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -41,20 +29,33 @@ nix-shell -p git \
   --run 'git clone https://github.com/lowranceworks/dotfiles.git ~/projects/lowranceworks/dotfiles'
 ```
 
-### Apply the configuration (part 1)
-
-This will take a long time to complete.
-
-```zsh
-nix run nix-darwin \
-  --extra-experimental-features 'nix-command flakes' \
-  -- switch \
-  --flake ~/projects/lowranceworks/dotfiles/nix-darwin/#"LowranceWorks"
-```
-
-### Apply the configuration (part 2)
+### Apply the dotfiles
 
 ```zsh
 brew install chezmoi
 chezmoi init --apply --source="$HOME/projects/lowranceworks/dotfiles"
 ```
+
+### Apply the macOS settings (nix-darwin)
+
+chezmoi renders the nix-darwin flake from a template into `~/.config/nix`. It
+manages macOS settings only, not packages. chezmoi fills in the username and
+names the configuration after `scutil --get LocalHostName`, so any Mac gets a
+matching configuration. `chezmoi init` asks once for the nix-darwin
+`stateVersion`: answer 7 on a new Mac and never change it afterwards.
+
+First run, which bootstraps nix-darwin:
+
+```zsh
+sudo nix --extra-experimental-features 'nix-command flakes' \
+  run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
+```
+
+After that:
+
+```zsh
+sudo darwin-rebuild switch --flake ~/.config/nix
+```
+
+To bump inputs, run `nix flake update --flake ~/.config/nix`. Then run
+`chezmoi re-add ~/.config/nix/flake.lock`.
