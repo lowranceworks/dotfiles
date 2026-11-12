@@ -30,6 +30,16 @@ set -g direnv_fish_mode eval_on_arrow # trigger direnv at prompt, and on every a
 
 set -g fish_greeting "" # disable the default fish greeting for a cleaner startup
 set -g fish_key_bindings fish_vi_key_bindings
+# vi mode cursor, after joshmedeski/dotfiles: block in normal, line in insert
+# (Ghostty's shell integration leaves the cursor to fish via `no-cursor`).
+# Fish's defaults are steady and override tmux's `cursor-style blinking-block`,
+# so keep fish's shapes but make them blink.
+set -g fish_cursor_default block blink
+set -g fish_cursor_insert line blink
+set -g fish_cursor_visual block blink
+set -g fish_cursor_external block blink
+set -g fish_cursor_replace_one underscore blink
+set -g fish_cursor_replace underscore blink
 
 # atuin must init after key bindings are set so its Ctrl+R binding isn't clobbered
 if type -q atuin

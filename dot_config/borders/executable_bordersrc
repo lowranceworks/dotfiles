@@ -1,0 +1,14 @@
+#!/bin/bash
+# JankyBorders (FelixKratz/JankyBorders): borders around macOS windows.
+# Run by the Homebrew service (`brew services start borders`), which reads
+# this file on start; restart the service after editing. The service owns
+# borders, so AeroSpace doesn't launch it.
+options=(
+  style=round
+  width=5.0
+  hidpi=on
+  active_color=0xffe1e3e4   # light grey (previous AeroSpace setting)
+  inactive_color=0xff494d64 # dark grey
+)
+
+borders "${options[@]}"
