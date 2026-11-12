@@ -2,6 +2,9 @@ name: Create Tag and Release
 on:
   pull_request:
     types: [closed]
+    # Only repository changes need a release; workflow-only PRs do not.
+    paths-ignore:
+      - '.github/**'
 jobs:
   create-tag-and-release:
     name: Create Tag and Release
