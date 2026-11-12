@@ -29,9 +29,10 @@ style = "bold green"
 'Pictures' = ' '
 
 [character]
-error_symbol = "[󰩈](bold red)"
-success_symbol = "[](bold green)"
-vicmd_symbol = "[](bold teal)"
+# vi mode, after joshmedeski/dotfiles: chevron in insert, Vim logo (e62b) in normal.
+success_symbol = ""
+vimcmd_symbol = ""
+error_symbol = "󰩈"
 
 [cmd_duration]
 style = "bold yellow"
