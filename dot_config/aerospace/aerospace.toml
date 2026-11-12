@@ -170,6 +170,10 @@ alt-shift-v = ['move-node-to-workspace V', 'workspace V']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 # alt-tab = 'workspace-back-and-forth'
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
+# Focus the next monitor (wraps around; with two monitors it toggles). The
+# mouse follows via on-focused-monitor-changed.
+alt-tab = 'focus-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 # alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
