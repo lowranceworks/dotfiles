@@ -74,6 +74,16 @@
 
             # Screenshots save here (below); macOS won't create the directory.
             sudo --user=${user} -- mkdir -p /Users/${user}/Pictures/screenshots
+
+            # Disable Cmd-Shift-3/4/5/6 and screenshot clipboard variants.
+            # Merge only screenshot entries; CustomUserPreferences would replace
+            # AppleSymbolicHotKeys and reset unrelated shortcuts (e.g. Spotlight).
+            for hotkey in 28 29 30 31 181 182 184; do
+              launchctl asuser "$(id -u -- ${lib.escapeShellArg user})" \
+                sudo --user=${lib.escapeShellArg user} -- \
+                defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys \
+                -dict-add "$hotkey" ${lib.escapeShellArg (lib.generators.toPlist { escape = true; } { enabled = false; })}
+            done
           '';
 
           system.defaults = {
