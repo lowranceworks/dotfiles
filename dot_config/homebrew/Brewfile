@@ -115,7 +115,6 @@ brew "zstd"                                   # Zstandard compression
 # --- Casks ---
 cask "1password-cli"                          # 1Password command-line tool
 cask "aerospace"                              # Tiling window manager for macOS
-cask "arc"                                    # Web browser (pinned in the Dock by nix-darwin)
 cask "betterdisplay"                          # Display management tool
 cask "bitwarden"                              # Password manager
 cask "chromium"                               # Open-source web browser
@@ -138,5 +137,6 @@ cask "vicinae"                               # Productivity launcher
 cask "slack"                                  # Team communication platform
 cask "spacelauncher"                          # Keyboard-driven app launcher
 cask "stats"                                  # System monitor in menu bar
+cask "thebrowsercompany-dia"                  # Web browser (pinned in the Dock by nix-darwin)
 cask "utm"                                    # Virtual machine manager
 cask "ghostty"                               # GPU-accelerated terminal emulator
