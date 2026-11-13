@@ -9,6 +9,13 @@ chezmoi apply ~/.config/nix
 sudo darwin-rebuild switch --flake "$HOME/.config/nix"
 ```
 
+## Accessibility
+
+`system.defaults.universalaccess.reduceMotion = true` enables **Accessibility →
+Display → Reduce motion**. Other animation preferences and transparency are
+unchanged. Apply with the chezmoi and `darwin-rebuild switch` commands above;
+log out and back in if the UI does not immediately reflect the setting.
+
 ## Menu bar
 
 The capture from macOS Tahoe **26.7.2** on 2026-11-13 retains:
