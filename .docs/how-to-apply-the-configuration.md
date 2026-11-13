@@ -72,6 +72,19 @@ dscl . -read "/Users/$(id -un)" UserShell
 # UserShell: /run/current-system/sw/bin/fish
 ```
 
+### Pointer color
+
+nix-darwin sets the macOS pointer fill to Catppuccin Mocha Peach (`#fab387`)
+with a black outline (`#000000`), leaving its size unchanged. Apply and activate
+the Nix configuration as above. If writing `com.apple.universalaccess` fails,
+grant your terminal **Full Disk Access** in System Settings → Privacy & Security,
+then quit and reopen the terminal. Retry from a fresh shell outside tmux; an
+existing tmux server can retain its old permission context.
+
+If the color does not update immediately, log out and back in. You can also set
+it manually in System Settings → Accessibility → Display → Pointer → Pointer
+fill color, using the hex value `FAB387`, and Pointer outline color, using `000000`.
+
 ### Updating Nix inputs
 
 To bump inputs, run `nix flake update --flake ~/.config/nix`. Then run

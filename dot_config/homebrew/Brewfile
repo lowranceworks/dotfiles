@@ -122,6 +122,7 @@ cask "chromium"                               # Open-source web browser
 cask "cleanshot"                              # Screenshot and screen recording tool
 cask "contexts"                               # Window switcher
 cask "drawio"                                 # Diagram and flowchart editor
+cask "focusrite-control-2"                    # Focusrite audio interface controller (4th generation and newer)
 cask "font-commit-mono"                       # Monospace font for coding
 cask "font-sf-pro"                            # Required for SketchyBar"
 cask "font-symbols-only-nerd-font"            # Required for icons in Obsidian Terminal
