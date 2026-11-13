@@ -134,6 +134,7 @@ cask "openlens"                               # Open-source Lens Kubernetes IDE
 cask "paintbrush"                             # Simple paint application
 cask "podman-desktop"                         # Container management GUI
 cask "vicinae"                               # Productivity launcher
+cask "vorssaint"                             # macOS utility suite
 cask "slack"                                  # Team communication platform
 cask "spacelauncher"                          # Keyboard-driven app launcher
 cask "stats"                                  # System monitor in menu bar
