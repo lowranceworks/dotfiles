@@ -131,6 +131,7 @@ cask "google-cloud-sdk"                       # Google Cloud Platform CLI
 cask "meetingbar"                             # Menu bar calendar meetings
 cask "mission-control-plus"                   # Enhanced Mission Control
 cask "muteme"                                 # Companion application to MuteMe
+cask "openlens"                               # Open-source Lens Kubernetes IDE
 cask "paintbrush"                             # Simple paint application
 cask "podman-desktop"                         # Container management GUI
 cask "vicinae"                               # Productivity launcher
