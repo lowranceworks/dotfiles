@@ -27,7 +27,7 @@
       host = "{{ output "scutil" "--get" "LocalHostName" | trim }}";
 
       configuration =
-        { pkgs, ... }:
+        { lib, pkgs, ... }:
         {
           nixpkgs.hostPlatform = "aarch64-darwin";
 
@@ -42,6 +42,8 @@
 
           programs.zsh.enable = true;
           programs.fish.enable = true;
+          # Enabling Fish configures it, but doesn't register it as a login shell.
+          environment.shells = [ pkgs.fish ];
 
           security.pam.services.sudo_local.touchIdAuth = true;
 
@@ -62,8 +64,15 @@
             RunAtLoad = true;
           };
 
-          # Screenshots save to ~/Pictures/screenshots (below); macOS won't create it.
           system.activationScripts.postActivation.text = ''
+            # Change only the login shell; macOS still owns the existing account.
+            # Do not add the primary account to users.knownUsers.
+            currentShell=$(/usr/bin/dscl . -read ${lib.escapeShellArg "/Users/${user}"} UserShell)
+            if [ "$currentShell" != "UserShell: /run/current-system/sw/bin/fish" ]; then
+              /usr/bin/chsh -s /run/current-system/sw/bin/fish ${lib.escapeShellArg user}
+            fi
+
+            # Screenshots save here (below); macOS won't create the directory.
             sudo --user=${user} -- mkdir -p /Users/${user}/Pictures/screenshots
           '';
 

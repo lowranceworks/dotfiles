@@ -51,11 +51,28 @@ sudo nix --extra-experimental-features 'nix-command flakes' \
   run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix
 ```
 
-After that:
+After that, deploy changes before activating them:
 
 ```zsh
+chezmoi apply ~/.config/nix
 sudo darwin-rebuild switch --flake ~/.config/nix
 ```
+
+### Default shell
+
+Activation registers nix-darwin's Fish in `/etc/shells` and sets it as the
+current user's login shell. It changes only the shell of the existing account;
+it does not add the account to nix-darwin's managed users.
+
+Open a new terminal window after activation. Existing shells and tmux panes
+keep running their current shell. Verify the account setting with:
+
+```zsh
+dscl . -read "/Users/$(id -un)" UserShell
+# UserShell: /run/current-system/sw/bin/fish
+```
+
+### Updating Nix inputs
 
 To bump inputs, run `nix flake update --flake ~/.config/nix`. Then run
 `chezmoi re-add ~/.config/nix/flake.lock`.

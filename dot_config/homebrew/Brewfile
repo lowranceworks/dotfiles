@@ -17,7 +17,6 @@ tap "nikitabobko/tap"                         # AeroSpace window manager
 # brew "go"                                   # Use goenv instead
 # brew "hcledit"                              # HCL file editor
 # brew "packer"                               # VM image builder
-# brew "sketchybar"                           # macOS status bar replacement
 brew "act"                                    # Run GitHub Actions locally
 brew "ansible"                                # Infrastructure automation
 brew "ansible-lint"                           # Ansible linting
@@ -85,6 +84,7 @@ brew "qemu"                                   # Machine emulator
 brew "ripgrep"                                # Fast grep alternative
 brew "ruff"                                   # Fast Python linter
 brew "sesh"                                   # tmux session manager
+brew "sketchybar", start_service: true         # macOS status bar (config: ~/.config/sketchybar/sketchybarrc)
 brew "sops"                                   # Secrets encryption
 brew "starship"                               # Cross-shell prompt
 brew "stern"                                  # Kubernetes log tailing
