@@ -1,4 +1,5 @@
--- Use Vim-style arrows globally, including while holding the keys.
+-- Kept for reference; uncomment to enable global Ctrl+H/J/K/L arrow keys.
+--[[
 local arrows = { h = "left", j = "down", k = "up", l = "right" }
 
 for key, arrow in pairs(arrows) do
@@ -8,3 +9,4 @@ for key, arrow in pairs(arrows) do
 
   hs.hotkey.bind({ "ctrl" }, key, sendArrow, nil, sendArrow)
 end
+]]
