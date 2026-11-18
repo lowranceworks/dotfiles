@@ -42,11 +42,11 @@ one shared CLI-managed pool and no chezmoi-owned skill definitions.
 - [x] Run all `docs/tests` tests and read the complete results.
 - [x] Obtain read-only standards/spec review and fix material findings.
 - [x] Back up affected runtime pools and lockfiles outside discovery.
-- [ ] Commit source/configuration changes locally; do not push.
-- [ ] Preview/apply only manifest + Pi instructions, then run non-pruning sync.
-- [ ] Archive identified Pi-local duplicates; verify installed file equality,
+- [x] Commit source/configuration changes locally; do not push.
+- [x] Preview/apply only manifest + Pi instructions, then run non-pruning sync.
+- [x] Archive identified Pi-local duplicates; verify installed file equality,
   lock ownership, unchanged non-Pi copies, and normal Pi discovery.
-- [ ] Record results and verify the final Git/deployed state.
+- [x] Record results and verify the final Git/deployed state.
 
 Pre-flight: one task owns the shared foundation; no parallel implementation.
 All initial dirty changes are from this session. Existing checkout is `latest`.
@@ -84,3 +84,29 @@ reproduced mutation of an unrelated temporary repo's Git config; fixture Git
 now always uses isolated HOME/config/templates with inherited GIT_* overrides
 removed. The regression and full suite passed (8/8). No material findings
 remain. Non-Pi pools will remain untouched by the non-pruning shared-only sync.
+
+## Applied outcome
+
+Source/configuration migration committed locally as `a927d07`; no push or real
+PR. Targeted chezmoi apply deployed only the rendered manifest and Pi global
+instructions, excluding scripts. Non-pruning CLI sync installed all 19 custom
+skills, left 15 Superpowers skills unchanged, and updated the upstream Terraform
+skill from `9c1e92d` to `a04a4c4`. All 35 result names were unique and all targeted
+`agents`; every custom installed file and lock entry matched committed source.
+
+The five Pi-native duplicates are archived in the backup directory's
+`archived-pi-native/` subdirectory. The obsolete deployed `.agents/README.md`
+was also archived after matching its original source. Non-Pi pools and locks
+were compared to backups and are unchanged. Chezmoi lists no owned paths under
+the installed pool or root skill collection; targeted configuration diff is
+empty.
+
+A fresh normal-discovery Pi process (read tool only) automatically read shared
+`open-pr` and `workmux`, returned workmux provisioning and draft/head-status
+verification, and explicitly rejected raw-Git fallbacks. No startup diagnostics
+appeared. Trace: `/tmp/skills-unified-pi-discovery.jsonl`; sync receipt:
+`/tmp/skills-unified-initial-sync.json`. Existing sessions need `/reload`.
+
+Verification notes are committed separately; final sync keeps the local lock
+at the current committed HEAD. Full `docs/tests` suite: 8/8 passing. No deferred
+findings, external pushes, destructive pruning, or unrelated runtime changes.

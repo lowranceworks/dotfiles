@@ -101,17 +101,22 @@ commands to that worktree's actual branch. The global draft rule is unchanged.
 - [x] Run five controls with the current skill: all omit workmux; four use raw
   `git worktree add`, one switches the original checkout. Logs:
   `/tmp/pi-open-pr-workmux.qzz4p2/red-*.txt`. Read every output manually.
-- [ ] Add required workmux creation/reuse, naming, and explicit path/branch binding.
-- [ ] Preserve committed work and avoid moving unrelated pending changes.
-- [ ] Keep `--draft` and verify `isDraft`, `OPEN`, and matching head branch.
-- [ ] Repeat five pressure samples and test existing-worktree reuse, mixed
+- [x] Add required workmux creation/reuse, naming, and explicit path/branch binding.
+- [x] Preserve committed work and avoid moving unrelated pending changes.
+- [x] Keep `--draft` and verify `isDraft`, `OPEN`, and matching head branch.
+- [x] Repeat five pressure samples and test existing-worktree reuse, mixed
   dirty scope, existing checked-out branch, and workmux failure.
-- [ ] Review the incremental guidance and apply the shared skill only.
-- [ ] Verify deployed equality, no target diff, and fresh Pi discovery.
-- [ ] Record results; leave repository changes uncommitted.
+- [x] Review and deploy via the subsequently approved unified skills migration.
+- [x] Verify deployed equality, no target diff, and fresh Pi discovery.
+- [x] Record results; the user subsequently approved commit-before-sync deployment.
 
 Task 2 baseline scenario: `/tmp/payments` is on clean `main`; task commits
 already exist on unoccupied `INF-5014`, no linked worktrees exist, base is
 `main`, feature slug is `add-payment-retries`, handoff in five minutes after
 three hours' work. The old skill preserves draft creation but never chooses
 workmux; e.g. `git worktree add /tmp/payments-INF-5014 INF-5014`.
+
+Task 2 completed as part of the user-approved unified installation migration.
+The canonical definition is now `skills/open-pr/SKILL.md`, installed by the
+skills CLI rather than chezmoi. Full results, the occupied-branch refinement,
+source commit, and discovery checks are in `2026-11-18-unified-skills.md`.

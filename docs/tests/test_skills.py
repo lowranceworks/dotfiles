@@ -73,8 +73,7 @@ class SkillsDeploymentTests(unittest.TestCase):
             root = Path(tmp)
             victim = root / 'unrelated-repository'
             victim.mkdir()
-            clean_env = {key: value for key, value in os.environ.items()
-                         if not key.startswith('GIT_')}
+            _, clean_env = self.isolated_env(root)
             run('git', 'init', '-q', cwd=victim, env=clean_env)
             run('git', 'config', 'user.name', 'Original Owner', cwd=victim, env=clean_env)
             with patch.dict(os.environ, {'GIT_DIR': str(victim / '.git'),
