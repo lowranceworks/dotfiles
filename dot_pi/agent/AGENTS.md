@@ -1,21 +1,42 @@
 # Global agent notes
 
+## Pull requests
+
+Whenever asked to create/open/make a PR, use the `open-pr` skill. Every PR this
+agent creates must be a **draft**, including PRs created by other skills,
+subagents, scripts, or API tools: use `gh pr create --draft` or explicitly set
+`draft: true`. Verify GitHub reports `isDraft: true` before claiming success.
+Passing tests, urgency, or a generic request to make a PR never authorize a
+ready-for-review PR. Do not automatically mark it ready afterward. If draft
+creation is unsupported or verification fails, stop and report the blocker;
+never fall back to a ready PR.
+
 ## Changing a skill's behaviour
 
-Skills under `~/.agents/skills/` come from two places: homegrown ones vendored
-in the dotfiles repo at `dot_agents/skills/<name>/`, and upstream ones converged
-by the `skills` CLI from `~/.config/skills/skills.toml`. Upstream skills are
-re-synced from source, so local edits to them are lost on update. To change how
-a skill behaves, in preference order:
+All session skills in `~/.agents/skills/` are installed by the `skills` CLI
+from `~/.config/skills/skills.toml`. Pi discovers that shared pool natively;
+do not create duplicate copies in `~/.pi/agent/skills/`. Never edit installed
+skills: sync/update can replace them.
 
-1. Add the rule to the repo's `AGENTS.md`.
-2. Add it to this file, if it holds in every project.
-3. For upstream skills, override or fork via `dot_config/skills/skills.toml`.
-4. Package it as a homegrown skill in the dotfiles under
-   `dot_agents/skills/<name>/` — the `skills` CLI does not manage those, so a
-   local tweak there cannot be silently overwritten.
+Homegrown definitions live in the dotfiles repository at `skills/<name>/`.
+Edit there, commit the changes, then run `skills sync` and `/reload` in Pi.
+The manifest uses the committed HEAD of the configured chezmoi source repo;
+no push is needed, but dirty edits are not installed. For feature-worktree
+edits, merge into that source checkout first or explicitly point a temporary
+manifest at the committed feature worktree.
 
-Upstream it only when it is generally useful and you will maintain it.
+For upstream behavior changes, in preference order:
+
+1. Add a project-specific rule to that project's `AGENTS.md`.
+2. Add it to this file if it holds in every project (still deployed by chezmoi).
+3. Override or fork the upstream source in
+   `dot_config/skills/skills.toml.tmpl`; never rely on same-name install ordering.
+4. Add a uniquely named homegrown skill to `skills/`.
+
+Run `chezmoi apply` for manifest/Pi configuration changes. It also syncs skills
+after the manifest or committed source HEAD changes. Sync is non-pruning by
+default; do not add `--prune` casually (source failures can remove installs).
+Upstream a change only when it is generally useful and you will maintain it.
 
 ## Subagent dispatch
 

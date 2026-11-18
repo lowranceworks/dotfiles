@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # shellcheck shell=bash
+set -euo pipefail
 
-# Converge agent skills to match dot_config/skills/skills.toml using the
-# `skills` CLI (https://github.com/owainlewis/skills).
-# Re-runs when the manifest changes:
-# skills.toml: {{ include "dot_config/skills/skills.toml" | sha256sum }}
+# One installer for custom and upstream skills. Re-run after manifest changes
+# or a new committed source HEAD; uncommitted skill edits are not installable.
+# skills.toml: {{ includeTemplate "dot_config/skills/skills.toml.tmpl" . | sha256sum }}
+# local-source: {{ .chezmoi.sourceDir }}
+# local-commit: {{ output "git" "-C" .chezmoi.sourceDir "rev-parse" "HEAD" | trim }}
 
 if [ -n "${CI:-}" ]; then
     echo "Skipping due to \$CI"
@@ -27,8 +29,7 @@ if ! command -v skills &>/dev/null; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# --config is explicit (not SKILLS_CONFIG) so this works in chezmoi's
-# non-interactive shell. --prune removes skills this CLI installed that are
-# no longer declared; chezmoi-managed homegrown skills in ~/.agents/skills
-# are not in its lockfile and are left alone.
-skills sync --config "$HOME/.config/skills/skills.toml" --prune
+# --config is explicit so this works in chezmoi's non-interactive shell.
+# No automatic pruning: v0.2.1 can remove installed skills after source failure.
+# Inspect a successful full sync and back up the pools before manual --prune.
+skills sync --config "$HOME/.config/skills/skills.toml"

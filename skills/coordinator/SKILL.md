@@ -150,6 +150,11 @@ Output is ANSI-stripped plain text.
 
 ### Send Instructions
 
+Send only actionable changes to the agent's current assignment: corrections,
+verified blockers, concrete integration requirements, or approved scope changes.
+Batch guidance; keep speculative future plans and progress chatter to yourself.
+New phases get separate assignments/worktrees, not additions to active agents.
+
 ```bash
 # Send a short instruction
 workmux send agent-a "fix the failing tests"
@@ -165,7 +170,15 @@ workmux send other-worktree "run the tests"
 
 # Disambiguate with project:handle when names collide
 workmux send myproject:docs-update "also add the API reference"
+
+# Confirm the agent picked up the instruction
+workmux send --wait --until working agent-a "fix the failing tests"
 ```
+
+`send` refuses an agent waiting on a dialog (`agent_waiting`, exit 3): look at
+it with `workmux capture` before answering it yourself. A worktree with several
+agents is refused too (`ambiguous_target`, exit 4); send to one of the listed
+pane IDs instead.
 
 ### Run Commands
 

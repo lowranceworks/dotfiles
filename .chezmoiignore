@@ -3,6 +3,14 @@ README.md
 apps/**
 docs/**
 
+# Skill definitions are Git sources for the skills CLI, not home-directory files.
+skills
+skills/**
+
+# The skills CLI exclusively owns this installed pool (including its lockfile).
+.agents/skills
+.agents/skills/**
+
 # Runtime state: deployed once by hand, then managed by the tool itself
 .config/fish/fish_variables
 .config/k9s/aliases.yaml

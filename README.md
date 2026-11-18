@@ -46,7 +46,7 @@ Git repositories under `~/Projects/lowranceworks/` use `lowranceworks@gmail.com`
 
 This configures Git authentication, not the account used by standalone `gh` API commands or SSH remotes. The `gitdir/i` directory rule matches Git's administrative directory: linked worktrees follow their main repository's location, not the checkout path.
 
-After applying, `.chezmoiscripts/` installs Homebrew packages (`brew bundle`), copies AI skills/agents to tool config dirs and Obsidian vaults, and syncs Obsidian community plugins.
+After applying, `.chezmoiscripts/` installs Homebrew packages (`brew bundle`), syncs custom and upstream agent skills through the `skills` CLI, and syncs Obsidian community plugins. Pi discovers the shared `~/.agents/skills/` pool. See [skill management](docs/skills.md) for the commit → sync workflow.
 
 ## Daily workflow
 
@@ -65,7 +65,8 @@ or edit the live file and adopt it back with `chezmoi edit` / `chezmoi re-add`.
 - `dot_config/` — everything under `~/.config/` (fish, nvim, tmux, ghostty, git, ...)
 - `dot_zshenv`, `dot_bashrc`, `dot_bash_profile` — home-root bootstraps (zsh `ZDOTDIR`, bash sourcing)
 - `private_dot_ssh/` — `~/.ssh/` config and public keys (private permissions; no private keys)
-- `dot_agents/skills/` — agent skills deployed to `~/.agents/skills/`
+- `skills/` — custom skill source collection; committed content installed by the `skills` CLI into `~/.agents/skills/`
+- `dot_config/skills/skills.toml.tmpl` — single skill manifest (local collection + upstream sources), rendered by chezmoi; shared pool only, no duplicate Pi target
 - `dot_pi/` — pi-coding-agent config (`~/.pi/agent/`): `modify_settings.json` merges into pi's live `settings.json` (role-seeded provider/model, catppuccin theme, packages unioned from `.chezmoidata/pi-packages.toml`, installed by `run_onchange_after_13-install-pi-packages.sh.tmpl`), subagent extension symlinked from the Homebrew formula, review/research subagents, catppuccin themes
 - `.chezmoi.toml.tmpl` — config template; prompts for `mlb` / `personal` roles
 - `.chezmoiignore` — paths not deployed (docs, scripts-only dirs, runtime state)

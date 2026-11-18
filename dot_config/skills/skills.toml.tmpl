@@ -1,0 +1,19 @@
+# All session skills are installed by https://github.com/owainlewis/skills.
+# Chezmoi deploys this manifest, never the installed skill directories.
+# Pi discovers ~/.agents/skills natively; do not also target "pi".
+default_targets = ["agents"]
+
+# Homegrown collection: committed HEAD of this machine's chezmoi source repo.
+# Local Git clones include committed changes only; a push is not required.
+[[skill]]
+source = {{ .chezmoi.sourceDir | quote }}
+scope = "global"
+
+[[skill]]
+source = "obra/superpowers"
+scope = "global"
+
+[[skill]]
+source = "antonbabenko/terraform-skill"
+skills = ["terraform-skill"]
+scope = "global"
