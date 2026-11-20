@@ -10,6 +10,7 @@ copy under `~/.pi/agent/skills/` and no separate Pi target in the manifest.
 |---|---|---|
 | Custom session skills | `skills/<name>/SKILL.md` | skills CLI → `~/.agents/skills/` |
 | Upstream session skills | `dot_config/skills/skills.toml.tmpl` entries | same CLI and pool |
+| Work-only skills | `Joshua-lowrance_mlb/agent-skills` on `main`, gated by `.mlb` | same CLI and pool on work profiles |
 | Manifest and Pi config, AGENTS.md, extensions, subagents | `dot_config/skills/`, `dot_pi/` | chezmoi |
 | cy's app-owned skills | `dot_config/cy/skills/` | chezmoi → cy's config (not Pi session skills) |
 
@@ -22,9 +23,9 @@ entry. Chezmoi ignores that source directory and the installed skill pool.
 
 ```sh
 # In the configured chezmoi source checkout:
-$EDITOR skills/open-pr/SKILL.md
-git add skills/open-pr/SKILL.md
-git commit -m "feat(skills): update PR workflow"
+$EDITOR skills/workmux/SKILL.md
+git add skills/workmux/SKILL.md
+git commit -m "feat(skills): update workmux workflow"
 skills sync
 ```
 
@@ -65,6 +66,23 @@ commits for the selected source refs; it can also update upstream skill
 behavior. The manifest's sole default target is `agents`, not a list of
 harness-specific directories.
 
+## Work and personal profiles
+
+The `Joshua-lowrance_mlb/agent-skills` source is rendered only when chezmoi's
+`[data].mlb` is `true`. Set `mlb=false` on a personal computer; `personal=true`
+alone does not exclude work sources when both roles are enabled.
+
+Pi's `AGENTS.md` is rendered from `dot_pi/agent/AGENTS.md.tmpl`: work profiles
+require `create-pr`, personal profiles do not require that work-only skill.
+The draft-only rule applies on **every** profile. Workmux's PR guidance follows
+the same distinction and always requires a verified draft from the task branch.
+
+Changing to a personal profile does not automatically remove previously
+installed work skills because sync is non-pruning. Back up the pool, inspect
+`skills list` for entries from the work source, and remove those names
+individually with `skills remove <name>` on that personal machine. Do not use
+broad pruning or remove the shared dotfiles source for this cleanup.
+
 ## Safe removal and migration
 
 Sync is **non-pruning by default**. v0.2.1 can prune already-installed skills
@@ -76,6 +94,11 @@ sources will be reachable on the pruning run). Never delete the shared pool or
 lockfile to reconcile it, and do not let chezmoi use `exact_` or removal rules
 against the pool.
 
+For a skill retired from a whole collection, remove its source definition,
+commit, sync, then run targeted `skills remove <name>`. A non-pruning sync alone
+leaves the old install. Keep the collection's manifest entry for its other
+skills; do not use broad `--prune` for a single-skill retirement.
+
 The initial migration backs up installed pools and lockfiles outside skill
 search directories. Pi-local guidance is preserved in the canonical collection
 before identified duplicates are archived. Old non-Pi harness installations
@@ -84,14 +107,21 @@ The migration transfers the existing custom skill directories to CLI ownership.
 
 ## Pull request creation
 
-`open-pr` loads automatically for requests to create/open/make a PR. It uses
-workmux to create or reuse the task worktree, preserves completed work, runs PR
-preparation there, and uses that worktree's branch explicitly as the PR head.
-It creates a **draft** (`gh pr create --draft`) and checks `isDraft`, `OPEN`, and
-matching head branch before reporting success. Passing tests or urgency never
-authorize automatically marking it ready. Pi's global instructions also cover
-PRs created through other workflows and tools. `/skill:open-pr` remains the
-explicit invocation.
+On work profiles, `create-pr` is installed from
+`Joshua-lowrance_mlb/agent-skills` on `main` and is required by Pi's global
+instructions for requests to create/open/make a PR. Edit that skill in its
+dedicated repository, commit/push and merge to `main`, then run `skills sync`;
+it is not a dotfiles-local definition. Personal profiles follow repository PR
+instructions without requiring `create-pr`, but must still create drafts.
+
+It uses workmux to create or reuse the task worktree, preserves completed work,
+runs PR preparation there, and uses that worktree's branch explicitly as the
+PR head. It creates a **draft** (`gh pr create --draft`) and checks `isDraft`,
+`OPEN`, matching head branch, and the published description before reporting
+success. The description requires Summary → Expected impact → Rollout and
+validation. Passing tests or urgency never authorize automatically marking it
+ready. Pi's global instructions also cover PRs created through other workflows
+and tools. Use `/skill:create-pr` for explicit invocation.
 
 ## Verification
 

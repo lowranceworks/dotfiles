@@ -351,7 +351,9 @@ step. This cleans up the worktree, tmux window, and branch.
 
 1. Commit changes
 2. `git push -u origin HEAD`
-3. Use `/open-pr` to create and verify a draft PR from the task worktree's branch
+3. On work profiles, use `/skill:create-pr` to create and verify a draft PR from
+   the task worktree's branch. On personal profiles, follow the repository's PR
+   workflow from that worktree; still create a draft and verify its draft status.
 4. After PR is merged remotely, clean up with `workmux rm --gone`
 
 ### Delegating tasks
@@ -394,4 +396,6 @@ other projects by path and let the agent explore on its own.
 - **`/rebase`**: rebase with smart conflict resolution
 - **`/worktree`**: delegate tasks to parallel worktree agents
 - **`/coordinator`**: orchestrate multiple agents (spawn, monitor, merge)
-- **`/open-pr`**: create and verify a draft PR from the task worktree's branch
+- **`/skill:create-pr`** (work profiles): create and verify a draft PR from the
+  task worktree's branch. Personal profiles still require verified draft PRs,
+  without requiring this work-only skill.

@@ -9,6 +9,14 @@ default_targets = ["agents"]
 source = {{ .chezmoi.sourceDir | quote }}
 scope = "global"
 
+{{ if .mlb }}
+# Work-only collection; track merged skills on main.
+[[skill]]
+source = "Joshua-lowrance_mlb/agent-skills"
+ref = "main"
+scope = "global"
+{{ end }}
+
 [[skill]]
 source = "obra/superpowers"
 scope = "global"

@@ -2,8 +2,11 @@
 
 ## Pull requests
 
-Whenever asked to create/open/make a PR, use the `open-pr` skill. Every PR this
-agent creates must be a **draft**, including PRs created by other skills,
+{{ if .mlb -}}
+Whenever asked to create/open/make a PR, use the `create-pr` skill.
+
+{{ end -}}
+Every PR this agent creates must be a **draft**, including PRs created by other skills,
 subagents, scripts, or API tools: use `gh pr create --draft` or explicitly set
 `draft: true`. Verify GitHub reports `isDraft: true` before claiming success.
 Passing tests, urgency, or a generic request to make a PR never authorize a

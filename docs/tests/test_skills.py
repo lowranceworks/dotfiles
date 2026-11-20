@@ -19,7 +19,7 @@ REPO = Path(__file__).resolve().parents[2]
 SKILL_NAMES = {
     'ansible-dev', 'argocd-akuity', 'cleanup-branch', 'coordinator', 'fan-out',
     'github-app-token', 'go-ci', 'go-dev', 'merge', 'obsidian-daily-journal',
-    'open-pr', 'python-dev', 'rebase', 'release-please', 'repo-hardening',
+    'python-dev', 'rebase', 'release-please', 'repo-hardening',
     'split-commits', 'terraform-dev', 'workmux', 'worktree',
 }
 
@@ -37,10 +37,14 @@ def render(path):
 
 
 class SkillsDeploymentTests(unittest.TestCase):
-    def manifest(self):
-        content = run('chezmoi', '--source', str(REPO), 'cat',
-                      str(Path.home() / '.config/skills/skills.toml')).stdout
-        return tomllib.loads(content)
+    def rendered_target(self, target, mlb=None, personal=None):
+        args = ['chezmoi', '--source', str(REPO)]
+        if mlb is not None:
+            args.extend(['--override-data', json.dumps({'mlb': mlb, 'personal': personal})])
+        return run(*args, 'cat', str(Path.home() / target)).stdout
+
+    def manifest(self, mlb=None, personal=None):
+        return tomllib.loads(self.rendered_target('.config/skills/skills.toml', mlb, personal))
 
     def fixture(self, root, name='source'):
         _, env = self.isolated_env(root)
@@ -98,6 +102,31 @@ class SkillsDeploymentTests(unittest.TestCase):
         self.assertIn('obra/superpowers', sources)
         self.assertEqual(sources['antonbabenko/terraform-skill']['skills'], ['terraform-skill'])
 
+    def test_published_work_collection_follows_mlb_role_not_personal_role(self):
+        for mlb, personal in ((True, False), (False, True), (True, True), (False, False)):
+            with self.subTest(mlb=mlb, personal=personal):
+                manifest = self.manifest(mlb, personal)
+                sources = {entry['source']: entry for entry in manifest['skill']}
+                self.assertEqual('Joshua-lowrance_mlb/agent-skills' in sources, mlb)
+                self.assertIn(str(REPO), sources)
+                self.assertIn('obra/superpowers', sources)
+                if mlb:
+                    published = sources['Joshua-lowrance_mlb/agent-skills']
+                    self.assertEqual(published['ref'], 'main')
+                    self.assertEqual(published['scope'], 'global')
+                    self.assertNotIn('path', published)
+
+    def test_create_pr_requirement_is_work_only_but_draft_policy_is_universal(self):
+        for mlb, personal in ((True, False), (False, True), (True, True), (False, False)):
+            with self.subTest(mlb=mlb, personal=personal):
+                instructions = self.rendered_target('.pi/agent/AGENTS.md', mlb, personal)
+                self.assertEqual('use the `create-pr` skill' in instructions, mlb)
+                self.assertIn('must be a **draft**', instructions)
+                self.assertIn('gh pr create --draft', instructions)
+                self.assertIn('isDraft: true', instructions)
+                self.assertIn('never fall back to a ready PR', instructions)
+                self.assertNotIn('{{', instructions)
+
     def test_collection_sync_uses_committed_files_and_preserves_supporting_assets(self):
         collection = REPO / 'skills'
         self.assertTrue(collection.is_dir(), 'custom collection must be discoverable at skills/')
@@ -106,8 +135,8 @@ class SkillsDeploymentTests(unittest.TestCase):
             source = self.fixture(root)
             shutil.copytree(collection, source / 'skills')
             self.commit(source)
-            committed = (source / 'skills/open-pr/SKILL.md').read_bytes()
-            (source / 'skills/open-pr/SKILL.md').write_text('uncommitted edit must not install\n')
+            committed = (source / 'skills/workmux/SKILL.md').read_bytes()
+            (source / 'skills/workmux/SKILL.md').write_text('uncommitted edit must not install\n')
             (source / 'skills/untracked').mkdir()
             (source / 'skills/untracked/SKILL.md').write_text('untracked skill\n')
             home, env = self.isolated_env(root)
@@ -119,7 +148,8 @@ class SkillsDeploymentTests(unittest.TestCase):
             run('skills', 'sync', '--config', str(manifest), cwd=root, env=env)
             installed = home / '.agents/skills'
             self.assertEqual({p.name for p in installed.iterdir() if p.is_dir()}, SKILL_NAMES)
-            self.assertEqual((installed / 'open-pr/SKILL.md').read_bytes(), committed)
+            self.assertEqual((installed / 'workmux/SKILL.md').read_bytes(), committed)
+            self.assertFalse((installed / 'open-pr').exists())
             self.assertEqual(
                 (installed / 'repo-hardening/RULESET-PAYLOAD.json').read_bytes(),
                 (collection / 'repo-hardening/RULESET-PAYLOAD.json').read_bytes(),
@@ -127,6 +157,36 @@ class SkillsDeploymentTests(unittest.TestCase):
             self.assertFalse((home / '.pi/agent/skills').exists())
             lock = tomllib.loads((installed / '.skills.lock.toml').read_text())
             self.assertEqual({entry['name'] for entry in lock['skill']}, SKILL_NAMES)
+
+    def test_targeted_removal_preserves_the_collection_and_other_skills(self):
+        with tempfile.TemporaryDirectory(prefix='dotfiles-skills-remove-') as tmp:
+            root = Path(tmp)
+            source = self.fixture(root)
+            for name in ('open-pr', 'workmux'):
+                skill = source / 'skills' / name
+                skill.mkdir(parents=True)
+                (skill / 'SKILL.md').write_text(f'---\nname: {name}\ndescription: Test fixture\n---\n')
+            self.commit(source)
+            home, env = self.isolated_env(root)
+            manifest = root / 'skills.toml'
+            manifest.write_text(
+                'default_targets = ["agents"]\n[[skill]]\n'
+                f'source = {json.dumps(str(source))}\nscope = "global"\n'
+            )
+            run('skills', 'sync', '--config', str(manifest), cwd=root, env=env)
+            installed = home / '.agents/skills'
+            remaining = (installed / 'workmux/SKILL.md').read_bytes()
+            shutil.rmtree(source / 'skills/open-pr')
+            self.commit(source)
+            run('skills', 'sync', '--config', str(manifest), cwd=root, env=env)
+            self.assertTrue((installed / 'open-pr').exists(), 'non-pruning sync leaves the stale install')
+            run('skills', 'remove', 'open-pr', '--config', str(manifest), cwd=root, env=env)
+            self.assertFalse((installed / 'open-pr').exists())
+            self.assertEqual((installed / 'workmux/SKILL.md').read_bytes(), remaining)
+            declared = tomllib.loads(manifest.read_text())
+            self.assertEqual(declared['skill'], [{'source': str(source), 'scope': 'global'}])
+            lock = tomllib.loads((installed / '.skills.lock.toml').read_text())
+            self.assertEqual({entry['name'] for entry in lock['skill']}, {'workmux'})
 
     def test_source_failure_does_not_prune_existing_installs(self):
         with tempfile.TemporaryDirectory(prefix='dotfiles-skills-failure-') as tmp:
