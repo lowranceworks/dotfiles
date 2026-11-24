@@ -1,0 +1,30 @@
+{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "providers": {
+    "ollama-cloud": {
+      "baseUrl": "https://ollama.com/v1",
+      "api": "openai-completions",
+      "apiKey": "!cat ~/.keys/ollama/personal-api-key",
+      "models": [
+        {
+          "id": "glm-5.3-flash:cloud",
+          "name": "GLM 5.3 Flash (Ollama Cloud)",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 524288,
+          "maxTokens": 16384
+        },
+        {
+          "id": "glm-5.3:cloud",
+          "name": "GLM 5.3 (Ollama Cloud)",
+          "reasoning": true,
+          "contextWindow": 128000,
+          "maxTokens": 16384
+        }
+      ]
+    }
+  }
+}
