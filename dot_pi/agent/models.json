@@ -10,10 +10,7 @@
           "id": "glm-5.3-flash:cloud",
           "name": "GLM 5.3 Flash (Ollama Cloud)",
           "reasoning": true,
-          "input": [
-            "text",
-            "image"
-          ],
+          "input": ["text", "image"],
           "contextWindow": 524288,
           "maxTokens": 16384
         },
@@ -21,7 +18,7 @@
           "id": "glm-5.3:cloud",
           "name": "GLM 5.3 (Ollama Cloud)",
           "reasoning": true,
-          "contextWindow": 128000,
+          "contextWindow": 524288,
           "maxTokens": 16384
         }
       ]
